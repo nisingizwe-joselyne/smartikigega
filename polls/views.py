@@ -379,12 +379,12 @@ def digitalapp(request):
                 response = "CON shyiramo code yumuhinzi \n"     
             elif int(st)== 2  and int(len(level))==2  and   str(level[1]) in str(level): 
                 response = "CON shyiramo ingano yumusaruro \n"      
-            elif int(st)== 2  and int(len(level))==3  and   str(level[2]) in str(level): 
-                response = "CON hitamo ubwoko bwumusaruro uguze: \n" 
-                response += '1.umuceri \n'
-                response += '2.ibishyimbo \n'
-                response += '3.ikawa \n'
-                response += '4.amata \n'   
+            # elif int(st)== 2  and int(len(level))==3  and   str(level[2]) in str(level): 
+            #     response = "CON hitamo ubwoko bwumusaruro uguze: \n" 
+            #     response += '1.umuceri \n'
+            #     response += '2.ibishyimbo \n'
+            #     response += '3.ikawa \n'
+            #     response += '4.amata \n'   
             elif int(st)== 2  and int(len(level))==3  and   str(level[2]) in str(level): 
                 response = "CON shyiramo umubare  wamafaranga ugiye kwishyura \n"   
             elif int(st)== 2  and int(len(level))==4  and   str(level[3]) in str(level): 
