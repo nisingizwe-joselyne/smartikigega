@@ -224,6 +224,7 @@ def digitalapp(request):
                 response += '2.momo isanzwe'
             elif text == '1*1':
                 response = 'CON shyiramo code yumuhinzi '+str(level)+' \n'
+            elif num == '1*1'and int(len(level))==2 and str(level[1]) in str(level):  
                 mycode = str(level[2])
                 cody=Farmers.objects.filter(code=mycode)
                 for dr in cody:
