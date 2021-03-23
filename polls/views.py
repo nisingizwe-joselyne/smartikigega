@@ -568,13 +568,12 @@ def login(request):
             # elif Active.objects.filter(user=request.user).exists():
             #     return redirect('record')
             else:
-                messages.info(request,'make sure if your account is registred')
-                return redirect('signin')
+                return render(request,'signin.html',{'message':'make sure if your account is registred' })
         else:
             print(userd)
             print(pass1)
-            messages(request,'Check your username and password password ')
-            return redirect('signin')
+            return render(request,'signin.html',{'message':'check your username and password' })
+            
     else:
         return render(request,'signin.html')
     return render(request,'signin.html')
@@ -618,7 +617,7 @@ def Harvestrecording(request):
                   # insert = Harvestrecord(Quantity=Quantity,code=code, donetime=donetime,donedate=donedate,email=email,firstname=firstname)
                   # insert.save()
                 else:
-                     return render(request,'record.html',{'message':'data  not submitted','data':select})
+                    return render(request,'record.html',{'message':'data  not submitted','data':select})
 
         else: 
                 return render(request,'record.html',{'message':'you have to enter a farmercode to submit','data':select})   
@@ -687,15 +686,16 @@ def registration(request):
                             user=User.objects.create_user(email=email,username=Name,password=password1,)
                             user.save()
                             mess=email
-                            return render(request,'cooperative.html',{'mess':mess})
-                            
+                            return render(request,'cooperative.html',{'message':'succesful registred','mess':mess })
+            
                         else:
-                            return render(request,'cooperative.html',{'message':'email already exist'})
+                            return render(request,'cooperative.html',{'message':' registration failed' })
 
                 else:
-                    return render(request,'cooperative.html',{'message':'password must be at least 8 characters'})
+                    return render(request,'cooperative.html',{'message':' password must be at least 8 characters' })
             else:
-                return render(request,'cooperative.html',{'message':'password dont match'})
+                return render(request,'cooperative.html',{'message':' password 1 and 2  dont match' })
+                
     
             
     else:

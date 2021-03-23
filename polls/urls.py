@@ -28,6 +28,7 @@ urlpatterns=[
     path('activation/<str:email>/<str:un>',views.activation,name='activation'),
     path('activate/',views.activate,name='activate'),
     path('reset-now/smartikigega-password/<username>/',views.resetnow, name='resetnow'),
+    path('smartikigega/reset/', views.reset, name='reset'),
     path('proove/get_admin/<int:pk>',views.prooving,name='proove'),
     path('farmerreg/',views.Farmerreg,name='farmerreg'),
     path('login/', views.login, name='login'),
