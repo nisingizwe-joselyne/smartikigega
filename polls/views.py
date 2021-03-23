@@ -486,7 +486,7 @@ def reset(request):
         if User.objects.filter(email=username).exists():
 
             subject='Password Resetting- Smartikigega'
-            message='Dear User, you requested  password reset,  click or copy the link below \n'+'activation link is https://smartikigega.herokuapp.com//reset-now/cityplus-password/'+str(username)
+            message='Dear User, you requested  password reset,  click or copy the link below \n'+'activation link is https://smartikigega.herokuapp.com//reset-now/smartikigega-password/<username>/'
             from_email=settings.EMAIL_HOST_USER
             rt=send_mail(subject,message,from_email,[str(username),],fail_silently=True)
             return render(request,'reset.html',{'success':'Reset account link has been sent to your email, check inbox'})
