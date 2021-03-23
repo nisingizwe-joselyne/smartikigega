@@ -224,13 +224,16 @@ def digitalapp(request):
                 response += '2.momo isanzwe'
             elif text == '1*1':
                 response = 'CON shyiramo code yumuhinzi '+str(level)+' \n'
-                mycode = str(level[2]
-                cody=Farmers.objects.filter(code=code)
-                for dr in cody:
-                    if mycode = dr:
-                        response = 'CON shyiramo ingano yumusaruro mu biro cg litiro '+str(level)+' \n'
-                    else:
-                       response = 'END code washyizemo ntibaho '+str(level)+' \n'
+                # mycode = str(level[2]
+                # cody=Farmers.objects.filter(code=code)
+                # for dr in cody:
+                #     if mycode = dr:
+            elif num == '1*1' and int(len(level))==2 and str(level[1]) in str(level):    
+                response = 'CON shyiramo ingano yumusaruro mu biro cg litiro '+str(level)+' \n'
+            elif num == '1*1' and int(len(level))==3 and str(level[2]) in str(level):    
+                response = 'CON shyiramo ingano yumusaruro mu biro cg litiro '+str(level)+'\n'     
+                    # else:
+                    #    response = 'END code washyizemo ntibaho '+str(level)+' \n'
         
             elif num == '1*1' and int(len(level))==4 and str(level[3]) in str(level):
                 response = 'CON shyiramo amafaranga ugiye kwishyura \n' 
