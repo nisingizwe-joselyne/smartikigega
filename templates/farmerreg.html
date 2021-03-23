@@ -1,0 +1,312 @@
+{% include 'base.html' %}
+{% load static %}<!-- Three columns -->
+<div class="flex shadow-lg bg-indigo-100">
+    <div class="w-1/6 block md:hidden">
+        <button type="button" id="modalbtn" class="btn block md:hidden" data-toggle="modal" data-placement="left" data-target="#exampleModalLong">
+        <ion-icon class="text-4xl " name="reorder-four-sharp"></ion-icon>
+    </button>
+    
+    <div id="simplemodal" class="modalrt">
+
+        <div class="modal-content  h-full">
+            <span id="closeBtn" class="closeBtn ml-32 ">
+            <ion-icon class=" text-3xl  ml-20 floart-right mt-4" name="close"></ion-icon></span>
+            <nav class="mt-2">
+              <a class="flex items-center py-2 px-8 block bg-gray-700 text-gray-100 border-r-4 border-gray-100" href="{% url 'farmerreg'%}">
+                <span class="text-white text-2xl"><ion-icon  name="home-outline"></ion-icon> </span>
+            
+                  <span class="mx-4 font-medium">Home</span>
+              </a>
+            
+                 
+            
+              <a class="flex items-center mt-2 py-2 px-8 block text-gray-700 border-r-4 border-gray-800 hover:bg-gray-700 hover:text-gray-100 hover:border-gray-100" href="{% url 'farmerreg'%}">
+                <ion-icon class="text-2xl" name="people-outline"></ion-icon>
+            
+                  <span class="mx-4 font-medium">Register</span>
+              </a>
+            
+              
+            
+              <a class="flex items-center mt-2 py-2 px-8 block text-gray-700 border-r-4 border-gray-800 hover:bg-gray-700 hover:text-gray-100 hover:border-gray-100" href="#">
+                <ion-icon class="text-2xl" name="search-outline"></ion-icon>
+            
+                  <span class="mx-4 font-medium">Codes</span>
+              </a>
+            
+            
+            <a class="flex items-center mt-2 py-2 px-8 block text-gray-700 border-r-4 border-gray-800 hover:bg-gray-700 hover:text-gray-100 hover:border-gray-100" href="#">
+            
+            <ion-icon class="text-2xl" name="create-outline"></ion-icon>
+            <span class="mx-4 font-medium">Edit User</span>
+            </a>
+            
+            
+            
+            <a class="flex items-center mt-5 py-2 px-8 block text-gray-700 border-r-4 border-gray-800 hover:bg-gray-700 hover:text-gray-100 hover:border-gray-100" href="#">
+            
+            <ion-icon class="text-2xl text-white" name="log-out-outline"></ion-icon>
+            
+            <span class="mx-4 font-medium">Logout</span>
+            </a>
+            
+          </nav>
+       </div>
+
+</div>
+           </div>
+
+    
+    <div class="w-2/6"> 
+      {% load static %}
+      <img src="{% static 'image/agribusiness.jpg'%}" class="h-12 w-32 justify-center ml-2 md:ml-12"/></div>
+
+
+
+    <div class="w-2/6 block md:hidden">
+
+
+
+      <button type="button" class="float-right btn-group  " role="group" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" > 
+        {% for dt in prof %}
+        <span class="group"><img src="{{dt.image.url}}" class="w-12 h-12 rounded-full  "/>
+        
+        
+      {%endfor%}
+      </button>
+
+
+
+   </div>
+  </div>
+
+
+
+
+  <div class="grid grid-cols-5">
+        <div class="w-full h-screen bg-gray-800  sm:mt-0 hidden md:block">
+          <div class="flex items-center justify-center ">
+            {% for dt in prof %}
+            <img src="{{dt.image.url}}" class="w-24 h-24 rounded-full mt-4 "/>
+          
+          {%endfor%}
+          </div>
+        
+          <nav class="mt-2">
+            <a class="flex items-center py-2 px-8 block bg-gray-700 text-gray-100 border-r-4 border-gray-100" href="#">
+              <span class="text-white text-2xl"><ion-icon  name="home-outline"></ion-icon> </span>
+          
+                <span class="mx-4 font-medium">Home</span>
+            </a>
+          
+               
+          
+            <a class="flex items-center mt-2 py-2 px-8 block text-gray-100 border-r-4 border-gray-800 hover:bg-gray-700 hover:text-gray-100 hover:border-gray-100" href="{% url 'farmerreg'%}">
+              <ion-icon class="text-2xl" name="people-outline"></ion-icon>
+          
+                <span class="mx-4 font-medium">Register</span>
+            </a>
+          
+            
+          
+            <a class="flex items-center mt-2 py-2 px-8 block text-gray-100 border-r-4 border-gray-800 hover:bg-gray-700 hover:text-gray-100 hover:border-gray-100" href="#">
+              <ion-icon class="text-2xl" name="search-outline"></ion-icon>
+          
+                <span class="mx-4 font-medium">Codes</span>
+            </a>
+          
+          
+          <a class="flex items-center mt-2 py-2 px-8 block text-gray-100 border-r-4 border-gray-800 hover:bg-gray-700 hover:text-gray-100 hover:border-gray-100" href="#">
+          
+          <ion-icon class="text-2xl" name="create-outline"></ion-icon>
+          <span class="mx-4 font-medium">Edit User</span>
+          </a>
+          
+          
+          
+          <a class="flex items-center mt-5 py-2 px-8 block text-gray-100 border-r-4 border-gray-800 hover:bg-gray-700 hover:text-gray-100 hover:border-gray-100" href="#">
+          
+          <ion-icon class="text-2xl text-white" name="log-out-outline"></ion-icon>
+          
+          <span class="mx-4 font-medium">Logout</span>
+          </a>
+          
+          </nav>
+        
+        </div>
+        <div class="col-span-5 sm:col-sm-5 md:col-span-4  p-2 justify-center">
+
+          <div class="md:ml-64 bg-indigo-100">
+    {% for message in messages %}
+    {% if message %}
+    <div class="">
+    <div class="max-w-lg md:mt-12 text-center bg-red-100 border border-red-400 text-red-900 px-4 py-4 rounded " role="alert">
+        <span class="block sm:inline">{{message}}</span>
+      </div>
+    </div>
+    {%endif%}
+    {%endfor%}
+
+
+    {% if mess %}
+    <div class="">
+    <div class="max-w-lg md:mt-12 text-center bg-green-100 border border-green-400 text-green-900 px-4 py-4 rounded " role="alert">
+        <span class="block sm:inline">{{mess}}</span>
+      </div>
+    </div>
+    {%endif%}
+<div class=""><h1 class="mx-4 font-medium mb-4 ml-64 ">Welcome to farmer registration</h1></div>
+<form class=" max-w-lg"  method="POST" action="{% url 'farmerreg'%}">
+  {% csrf_token %}
+  <div class="flex flex-wrap -mx-3 mb-6 mt-8">
+    <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+      <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-first-name">
+        First Name
+      </label>
+      <input name="firstname" class="form-control" id="grid-first-name" type="text" required placeholder="">
+      
+    </div>
+    <div class="w-full md:w-1/2 px-3">
+      <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-last-name">
+        Last Name
+      </label>
+      <input name="lastname" class="form-control" id="grid-last-name" required type="text" placeholder="">
+    </div>
+  </div>
+ 
+  <div class="flex flex-wrap -mx-3 mb-6">
+
+    <div class="w-full md:w-1/2 px-3">
+      <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-last-name">
+        Phone Number
+      </label>
+      <div class="input-group mb-2">
+        <div class="input-group-prepend">
+ 
+        </div>
+        <input type="telephone" name='number' class=" form-control" placeholder="" required id="telephone"> {% load static %}
+            <script src="{% static 'build/js/intlTelInput.js' %}"></script>
+            <script src="https://code.jquery.com/jquery-latest.min.js"></script>
+
+            <script src="{% static 'build/js/intlTelInput-jquery.min.js'%}"></script>
+            <script>
+                var input = document.querySelector("#telephone");
+
+                window.intlTelInput(input, {
+                    // allowDropdown: false,
+                    // autoHideDialCode: false,
+                    // autoPlaceholder: "off",
+                    // dropdownContainer: document.body,
+                    // excludeCountries: ["us"],
+                    formatOnDisplay: false,
+                    // geoIpLookup: function(callback) {
+                    //   $.get("http://ipinfo.io", function() {}, "jsonp").always(function(resp) {
+                    //     var countryCode = (resp && resp.country) ? resp.country : "";
+                    //     callback(countryCode);
+                    //   });
+                    // },
+                    // hiddenInput: "full_number",
+                    // initialCountry: "auto",
+                    // localizedCountries: { 'de': 'Deutschland' },
+                    nationalMode: false,
+                    // onlyCountries: ['RW', 'UG', 'MZ', 'TZ', 'UB'],
+                    // placeholderNumberType: "MOBILE",
+                    // preferredCountries: ['cn', 'jp'],
+                    // separateDialCode: true,
+                    // Get the extension part of the current number
+
+
+
+
+                    utilsScript: "{% static 'build/js/utils.js' %}",
+                });
+            </script>
+      </div>
+
+    </div>
+    <div class="w-full md:w-1/2 px-3 mb-6 md:mb-6">
+      <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-last-name">
+        Email
+      </label>
+      <input name="email" class="form-control" id="grid-last-name" type="email" placeholder="email">
+    </div>
+    <div class="w-full md:w-1/2 px-3 mb-6 md:mb-6">
+      <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-last-name">
+      Harvest type
+      </label>
+<select name="harvesttype" class="browser-default custom-select mb-4">
+  <option value="" disabled>Choose option</option>
+  <option value="1" selected>maize</option>
+  <option value="2">milk</option>
+  <option value="3">wheat</option>
+  <option value="1" >Rice</option>
+  <option value="2">Potatoes</option>
+  <option value="3">coffee</option>
+</select>
+    </div>
+  
+      <div class="w-full md:w-1/2 px-3 mb-6 md:mb-6">
+        <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-first-name">
+          village
+        </label>
+        <input name="village" class="form-control" id="grid-first-name" type="text" placeholder="village">
+        
+      </div>
+      <div class="w-full md:w-1/2 px-3">
+        <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-last-name">
+          Gender
+        </label>
+        <select name="gender" class="form-control" id="grid-state">
+          <option class="text-gray-200">Choose Gender</option>
+          <option value="Male">Male</option>
+          <option value="Female">Female</option>
+        </select>
+        </div>
+
+
+
+      
+
+
+  
+
+  <div class="w-full md:w-1/2 px-3 mb-6 md:mb-6">
+    <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-last-name">
+      District
+    </label>
+    <input name="district" class="form-control" id="grid-last-name" type="text" placeholder="Enter district">
+  </div>
+  <div class="w-full md:w-1/2 px-3 mb-6">
+    <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-last-name">
+    Sector
+    </label>
+    <input name="sector" class="form-control" id="grid-last-name" type="text" placeholder="Enter sector">
+  </div>
+  <div class="w-full md:w-1/2 px-3 mb-6">
+    <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-last-name">
+     Cell
+    </label>
+    <input name="cell" class="form-control" id="grid-last-name" type="text" placeholder="Enter cell">
+</div>
+    
+    <div class="w-full md:w-1/2 ">
+      <button class="bg-red-700 hover:bg-blue-700   text-white font-semibold hover:text-blue-700 py-2 px-8 border border-blue-500 hover:border-transparent shadow-lg rounded" type="submit">
+       Submit
+      </button>
+      </div>
+    
+  
+
+   
+</div>
+</div>
+
+
+
+</form>
+</div>
+</div>
+<center>
+
+  {% include 'footer.html' %}
+</center>

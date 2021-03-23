@@ -1,0 +1,340 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> ikigega system</title>
+    <link rel="icon" type="icon/jpg"  href="{% static 'image/rice.jpg' %}" >
+    <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <!-- UIkit CSS -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/uikit@3.5.7/dist/css/uikit.min.css" />
+
+<!-- UIkit JS -->
+<script src="https://cdn.jsdelivr.net/npm/uikit@3.5.7/dist/js/uikit.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/uikit@3.5.7/dist/js/uikit-icons.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+</head>
+<style>
+
+  body {
+    background-image: url("{% static 'image/womenag.jpg' %}" );
+    /* opacity: 0.8; */
+    background-repeat: no-repeat;
+    background-size: cover;
+   
+  }
+  
+  </style>
+
+<body>
+    <!-- This example requires Tailwind CSS v2.0+ -->
+<div class="relative  overflow-hidden">
+  <div class="max-w-7xl mx-auto">
+    <div class="relative z-10 pb-8  sm:pb-16 md:pb-20 lg:max-w-2xl lg:w-full lg:pb-28 xl:pb-32">
+      <svg class="hidden lg:block absolute right-0 inset-y-0 h-full w-48 text-white transform translate-x-1/2" fill="currentColor" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
+        <polygon points="50,0 100,0 50,100 0,100" />
+      </svg>
+
+      <div class="relative pt-6 px-4 sm:px-6 lg:px-8">
+        <nav class="relative flex items-center justify-between sm:h-10 lg:justify-start" aria-label="Global">
+          <div class="flex items-center flex-grow flex-shrink-0 lg:flex-grow-0">
+            <div class="flex items-center justify-between w-full md:w-auto">
+              <a href="#">
+                <span class="sr-only">Workflow</span>
+                <img class="h-8 w-auto sm:h-10" src="{% static 'image/agribusiness.jpg' %}">
+              </a>
+              <div class="-mr-2 flex items-center md:hidden">
+                <button type="button" class="bg-white rounded-md p-2 inline-flex items-center justify-center text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500" id="main-menu" aria-haspopup="true">
+                  <span class="sr-only">Open main menu</span>
+                  <!-- Heroicon name: outline/menu -->
+                  <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                  </svg>
+                </button>
+              </div>
+            </div>
+          </div>
+          <div class="hidden md:block md:ml-10 md:pr-4 md:space-x-8">
+            <a href="{% url 'kiny' %}" class="font-medium text-black hover:text-blue-500">Ahabanza</a>
+            <a href="{% url 'work' %}" class="font-medium text-black hover:text-blue-500">Serivisi</a>
+            <a href="{% url 'kiny' %}" class="font-medium text-black hover:text-blue-500">kiny</a> 
+            <a href="/" class="font-medium text-black hover:text-blue-500">english</a>
+          </div>
+        </nav>
+      </div>
+
+      <!--
+        Mobile menu, show/hide based on menu open state.
+
+        Entering: "duration-150 ease-out"
+          From: "opacity-0 scale-95"
+          To: "opacity-100 scale-100"
+        Leaving: "duration-100 ease-in"
+          From: "opacity-100 scale-100"
+          To: "opacity-0 scale-95"
+      -->
+      <div class="absolute top-0 inset-x-0 p-2 transition transform origin-top-right md:hidden">
+        <div class="rounded-lg shadow-md  ring-1 ring-black ring-opacity-5 overflow-hidden">
+          <div class="px-5 pt-4 flex items-center justify-between">
+            <div>
+              <img class="h-8 w-auto" src="{% static 'image/agribusiness.jpg' %}" alt="">
+            </div>
+            <div class="-mr-2">
+              <button type="button" class="bg-white rounded-md p-2 inline-flex items-center justify-center text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500">
+                <span class="sr-only">Ikigega</span>
+                <!-- Heroicon name: outline/x -->
+                <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                </svg>
+              </button>
+            </div>
+          </div>
+          <div role="menu" aria-orientation="vertical" aria-labelledby="main-menu">
+            <div class="px-2 pt-2 pb-3 space-y-1" role="none">
+              <a href="/" class="block px-3 py-2 rounded-md text-base font-medium text-black hover:text-blue-500 hover:bg-gray-50" role="menuitem">home</a>
+              <a href="{% url 'work' %}" class="block px-3 py-2 rounded-md text-base font-medium text-black hover:text-blue-500 hover:bg-gray-50" role="menuitem">Srevices</a>
+              <a href="{% url 'kiny' %}" class="block px-3 py-2 rounded-md text-base font-medium text-black hover:text-blue-500 hover:bg-gray-50" role="menuitem">kiny</a> 
+              <a href="/" class="block px-3 py-2 rounded-md text-base font-medium text-black hover:text-blue-500 hover:bg-gray-50" role="menuitem">english</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <main class="mt-10 mx-auto max-w-7xl px-4 sm:mt-12 sm:px-6 md:mt-16 lg:mt-20 lg:px-8 xl:mt-28">
+        <div class="sm:text-center lg:text-left">
+          <h1 class="text-4xl tracking-tight font-extrabold text-gray-900 sm:text-5xl md:text-6xl">
+            <span class="block xl:inline" data-aos="zoom-out-down">Murakaza neza ku</span>
+            <span class="block text-indigo-600 xl:inline"  data-aos="zoom-out-down" >rubuga rwa smart Ikigega</span>
+          </h1>
+          <p class="mt-3 text-base text-black sm:mt-5 sm:text-lg sm:max-w-xl sm:mx-auto md:mt-5 md:text-xl lg:mx-0" data-aos="zoom-in-left">
+            Uburyo bufasha abahinzi
+            kubarura ,kubika  no gukoresha 
+            umusaruro  wabo hakoreshejwe ikoranabuhanga
+     </p>
+     <div class="mt-5 sm:mt-8 sm:flex sm:justify-center lg:justify-start">
+      <div class="rounded-md shadow">
+        <a href="{% url 'signin' %}" class="w-full flex items-center justify-center px-8 py-3  text-base font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 md:py-4 md:text-lg md:px-10" data-aos="zoom-out-down">
+         kubarura umusaruro
+        </a>
+      </div>
+        <div class="px-4 rounded-md shadow">
+        <a href="{% url 'regpage' %}" class="w-full flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-indigo-700 bg-indigo-100 hover:bg-indigo-200 md:py-4 md:text-lg md:px-10">
+           Kwiyandikisha
+        </a>
+      </div>
+    </div>
+        </div>
+      </main>
+    </div>
+  </div>
+  <div class="lg:absolute lg:inset-y-0 lg:right-0 lg:w-1/2">
+    <img class="h-56 w-full object-cover sm:h-72 md:h-96 lg:w-full lg:h-full p-4" src="{% static 'image/agribusiness.jpg'  %}" alt="">
+  </div>
+</div>
+<!-- end of navbar -->
+
+
+<div class="py-12 ">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="lg:text-center shadow-2xl">
+      <h2 class="text-base text-black text-3xl font-semibold tracking-wide uppercase" data-aos="zoom-in-down"> kubera iki SmartIkigega aringenzi</h2>
+      <p class="mt-2 text-3xl leading-8 font-extrabold tracking-tight text-black sm:text-4xl" data-aos="zoom-in-up" >
+        Uburyo bwiza ku bahinzi bwo kubika,gukurikirana no gukoresha umusaruro wabo mu zindi servisi.
+      </p>
+      <p class="mt-4 max-w-2xl text-xl text-white lg:mx-auto" data-aos="zoom-in-up">
+     Hakoreshejwe iri koranabuhanga umuhinzi azajya abasha gukora servisi nyinshi yajyaga
+     akora bimusabye gukora urugendo cg kujya gushaka ibyangombwa bindi bimwunganira muri serivisi runaka
+     zijyanye nubuhinzi yibereye mu rugo akoresheje telephone ye gusa .
+      </p>
+    </div>
+
+    <div class="uk-slider-container-offset" uk-slider>
+
+      <div class="uk-position-relative uk-visible-toggle uk-light" tabindex="-1">
+  
+          <ul class="uk-slider-items uk-child-width-1-2@s uk-grid">
+              <li>
+                  <div class="uk-card uk-card-default">
+                      <div class="uk-card-media-top py-4">
+                          <img src="{% static 'image/agribusiness.jpg' %}" alt="">
+                      </div>
+                      <div class="uk-card-body">
+                          <h3 class="uk-card-title">Easiest way to manage farmers in all sectors</h3>
+                          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt.</p>
+                      </div>
+                  </div>
+              </li>
+              <li>
+                  <div class="uk-card uk-card-default">
+                      <div class="uk-card-media-top py-2">
+                          <img src="{% static 'image/rice.jpg' %}" alt="">
+                      </div>
+                      <div class="uk-card-body">
+                          <h3 class="uk-card-title">Easiest way  to use Cashless for farmers </h3>
+                          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt.</p>
+                      </div>
+                  </div>
+              </li>
+              <li>
+                  <div class="uk-card uk-card-default">
+                      <div class="uk-card-media-top py-4">
+                          <img src="{% static 'image/Capture.PNG' %}" alt="">
+                      </div>
+                      <div class="uk-card-body">
+                          <h3 class="uk-card-title">Easy way to Record data for cooperatives</h3>
+                          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt.</p>
+                      </div>
+                  </div>
+              </li>
+              <li>
+                  <div class="uk-card uk-card-default">
+                      <div class="uk-card-media-top ">
+                          <img src="{% static 'image/phone.jpg' %}" alt="">
+                      </div>
+                      <div class="uk-card-body">
+                          <h3 class="uk-card-title">Harvesting insurance</h3>
+                          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt.</p>
+                      </div>
+                  </div>
+              </li>
+              <li>
+                  <div class="uk-card uk-card-default">
+                      <div class="uk-card-media-top">
+                          <img src="{% static 'image/rice.jpg' %}" alt="">
+                      </div>
+                      <div class="uk-card-body">
+                          <h3 class="uk-card-title">Easy way to access financial services</h3>
+                          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt.</p>
+                      </div>
+                  </div>
+              </li>
+          </ul>
+  
+          <a class="uk-position-center-left uk-position-small uk-hidden-hover" href="#" uk-slidenav-previous uk-slider-item="previous"></a>
+          <a class="uk-position-center-right uk-position-small uk-hidden-hover" href="#" uk-slidenav-next uk-slider-item="next"></a>
+  
+      </div>
+  
+      <ul class="uk-slider-nav uk-dotnav uk-flex-center uk-margin"></ul>
+  
+  </div> 
+  </div>
+</div>
+
+    
+
+    
+<!-- Footer -->
+<div class="p-4 bg-white">
+  <div class="container my-4">
+
+   
+    <!-- Footer -->
+<footer class="page-footer font-small blue pt-4">
+
+  <!-- Footer Links -->
+  <div class="container-fluid text-center text-md-left">
+
+    <!-- Grid row -->
+    <div class="row">
+
+      <!-- Grid column -->
+      <div class="col-md-6 mt-md-0 mt-3">
+
+        <!-- Content -->
+        <h5 class="text-uppercase">Location</h5>
+        <p>Kigali city-Gasabo-Remera.</p>
+
+      </div>
+      <!-- Grid column -->
+
+      <hr class="clearfix w-100 d-md-none pb-3">
+
+      <!-- Grid column -->
+      <div class="col-md-3 mb-md-0 mb-3">
+
+        <!-- Links -->
+        <h5 class="text-uppercase">follow us</h5>
+
+        <ul class="list-unstyled">
+          <li>
+            <a href="#!">twitter</a>
+          </li>
+          <li>
+            <a href="#!">Facebook</a>
+          </li>
+          <li>
+            <a href="#!">Linkeldn</a>
+          </li>
+          <li>
+            <a href="#!">instagram</a>
+          </li>
+        </ul>
+
+      </div>
+      <!-- Grid column -->
+
+      <!-- Grid column -->
+      <div class="col-md-3 mb-md-0 mb-3">
+
+        <!-- Links -->
+        <h5 class="text-uppercase">Links</h5>
+
+        <ul class="list-unstyled">
+          <li>
+            <a href="#!">about us</a>
+          </li>
+          <li>
+            <a href="#!">contact us</a>
+          </li>
+          <li>
+            <a href="#!">company</a>
+          </li>
+          <li>
+            <a href="#!">home</a>
+          </li>
+        </ul>
+
+      </div>
+      <!-- Grid column -->
+
+    </div>
+    <!-- Grid row -->
+
+  </div>
+  <!-- Footer Links -->
+
+  <!-- Copyright -->
+  <div class="footer-copyright text-center py-3">© 2021 Copyright:
+    <a href="https://mdbootstrap.com/education/bootstrap/">SmartIkigega.Rwanda</a>
+  </div>
+  <!-- Copyright -->
+
+</footer>
+<!-- Footer -->
+
+  </div>
+</div>
+<!-- Footer -->
+<!-- boostrap js -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+<!-- uikit js -->
+<script src="https://cdn.jsdelivr.net/npm/uikit@3.5.6/dist/js/uikit-icons.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/uikit@3.5.6/dist/js/uikit.min.js"></script>
+<!-- aos js -->
+<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init();
+    </script>
+</body>
+</html>

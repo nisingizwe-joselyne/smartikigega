@@ -1,0 +1,188 @@
+
+{% include 'base.html' %}
+
+<div  class="modald">
+
+  <div class="container-full">
+      <div class="row">
+   
+
+
+            <div class="modald-content my-8 justify-center  flex flex-wrap md:items-center w-full">
+              <div class="bg-white shadow rounded w-full md:w-1/2 z-10">
+                <div class="py-8 text-center text-green font-semibold uppercase">Payment of Next Month</div>
+                <hr class="py-0 my-0 border border-grey-lighter">
+                <div class="py-8">
+
+<!-- Two columns -->
+<div class="flex mb-4">
+  <div class="w-1/2">
+  <div class="p-8">
+    <div class="card p-2">
+    <i class="text-center text-gray-900 font-bold">Maintenance Fees</i>
+    <div>
+      <p class="text-center text-gray-900 font-bold text-2xl ">10 000 <span>RWF</span></p>
+  
+    </div>
+    </div>
+  </div>
+  
+  </div>
+  <div class="w-1/2">
+    
+      <div class="p-8">
+        <div class="card p-2">
+        <i class="text-center text-gray-900 font-bold">Bulky SMS Fees</i>
+        <div>
+          <p class="text-center text-gray-900 font-bold text-2xl ">10 000 <span>RWF</span></p>
+      
+        </div>
+        </div>
+      </div>
+      
+      </div>
+  
+</div>
+                  <div class="flex items-top mt-4">
+                    <div class="w-1/2 text-center font-bold text-2xl text-grey-dark">Total :</div>
+                    <div class="w-1/2 text-center font-bold text-2xl text-grey-dark">20 000 RWF</div>
+                  </div>
+            
+
+
+                  <div class="flex items-top mt-4">
+                    <div class="w-1/2  font-bold text-md text-grey-dark pl-4">
+                      <div class="card pl-8">
+                        <p class="text-lg text-center">Free Account</p>
+                        <p class="text-lg text-green-700"><ion-icon class="text-green-700" name="checkmark-circle-outline"></ion-icon> Register</p>
+                        <p class="text-lg"><ion-icon name="close-circle-outline"></ion-icon></ion-icon> Religion Services</p>
+                        <p class="text-lg"><ion-icon name="close-circle-outline"></ion-icon></ion-icon> List of Members</p>
+                        <p class="text-lg"><ion-icon name="close-circle-outline"></ion-icon></ion-icon> Report</p>
+                        <p class="text-lg text-green-700"><ion-icon name="checkmark-circle-outline"></ion-icon> Recording Temperature</p>
+                        <p class="text-lg"><ion-icon name="close-circle-outline"></ion-icon></ion-icon>Booked List</p>
+                        <p class="text-lg text-green-700"><ion-icon name="checkmark-circle-outline"></ion-icon> Add Volentary</p>
+                        <p class="text-lg text-green-700"><ion-icon name="checkmark-circle-outline"></ion-icon>Edit Account</p>
+                      </div>
+                    
+                    
+                    </div>
+                    <div class="w-1/2  font-bold text-xs text-grey-dark ml-4">
+                      <div class="card pl-8">
+                        <p class="text-lg text-center">Upgrade Fees Account</p>
+                        <p class="text-lg text-green-700"><ion-icon class="text-green-700" name="checkmark-circle-outline"></ion-icon> Register</p>
+                        <p class="text-lg text-green-700"><ion-icon name="checkmark-circle-outline"></ion-icon></ion-icon> Religion Services</p>
+                        <p class="text-lg text-green-700"><ion-icon name="checkmark-circle-outline"></ion-icon></ion-icon> List of Members</p>
+                        <p class="text-lg text-green-700"><ion-icon name="checkmark-circle-outline"></ion-icon></ion-icon> Report</p>
+                        <p class="text-lg text-green-700"><ion-icon name="checkmark-circle-outline"></ion-icon> Recording Temperature</p>
+                        <p class="text-lg text-green-700"><ion-icon name="checkmark-circle-outline"></ion-icon></ion-icon>Booked List</p>
+                        <p class="text-lg text-green-700"><ion-icon name="checkmark-circle-outline"></ion-icon> Add Volentary</p>
+                        <p class="text-lg text-green-700"><ion-icon name="checkmark-circle-outline"></ion-icon>Edit Account</p>
+                      </div>
+                    
+                    </div>
+                  </div>
+
+
+                </div>
+                <a href="{% url 'inside'%}" class="ml-4">Home</a>
+                <a href="#">
+                  <div class="py-8 bg-grey-lighter hover:bg-grey-light text-indigo-darker rounded rounded-t-none text-center uppercase font-bold flex items-center justify-center"><span> Continue Pay 20 000 RWF </span>
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" class="icon fill-current w-4 h-4 ml-2">
+                      <path d="M18.59 13H3a1 1 0 0 1 0-2h15.59l-5.3-5.3a1 1 0 1 1 1.42-1.4l7 7a1 1 0 0 1 0 1.4l-7 7a1 1 0 0 1-1.42-1.4l5.3-5.3z" class="heroicon-ui"></path>
+                    </svg>
+                  </div>
+                </a>
+              </div>
+      
+      
+      
+      
+            </div>
+
+  
+      </div>
+    </div>
+  
+    
+    <script>
+      $(document).ready(function() {
+        $("#example").DataTable({
+         
+        });
+        
+        $(".dataTables_filter input")
+          .attr("placeholder", "Search here...")
+          .css({
+          width: "300px",
+          display: "inline-block",
+          border:"2px solid black",
+          padding:"5px",
+          borderRadius:"5px",
+          });
+        
+        $('[data-toggle="tooltip"]').tooltip();
+        });
+        
+    
+    
+    var modal=document.getElementById('simplemodal');
+    var modalbtn=document.getElementById('modalbtn');
+    var closeBtn=document.getElementById('closeBtn');
+    
+    modalbtn.addEventListener('click',openModal);
+    closeBtn.addEventListener('click',closeModal);
+    window.addEventListener('click', clickout)
+    
+    function openModal(){
+      modal.style.display='block';
+      
+    }
+    function closeModal(){
+        modal.style.display='none';
+        modal.style.animationName='modalclose';
+    }function clickout(e){
+      if (e.target==modal){
+        modal.style.display='none';
+      }
+    }
+    
+    
+    
+    
+    
+    
+    
+    
+    </script>    
+  
+<center>{% include 'footer.html' %}
+</center>
+
+</div>
+</div>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

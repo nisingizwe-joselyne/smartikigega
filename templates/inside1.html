@@ -1,0 +1,381 @@
+{% include 'nav.html' %}
+{% load static %}<!-- Three columns -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="flex shadow-lg">
+    <div class="w-1/6 block md:hidden">
+        <button type="button" id="modalbtn" class="btn block md:hidden" data-toggle="modal" data-placement="left" data-target="#exampleModalLong">
+        <ion-icon class="text-4xl " name="reorder-four-sharp"></ion-icon>
+    </button>
+    
+    <div id="simplemodal" class="modal">
+
+        <div class="modal-content  h-full">
+            <span id="closeBtn" class="closeBtn ml-32 ">
+            <ion-icon class=" text-3xl  ml-20 floart-right mt-4" name="close"></ion-icon></span>
+            <nav class="mt-2">
+              <a class="flex items-center py-2 px-8 block bg-gray-700 text-gray-100 border-r-4 border-gray-100" href="{% url 'inside'%}">
+                <span class="text-white text-2xl"><ion-icon  name="home-outline"></ion-icon> </span>
+        
+                  <span class="mx-4 font-medium">Home</span>
+              </a>
+        
+              <a class="flex items-center mt-5 py-2 px-8 block text-gray-700 border-r-4 border-gray-800 hover:bg-gray-700 hover:text-gray-100 hover:border-gray-100" href="{% url 'user'%}">
+                <ion-icon class="text-2xl" name="people-outline"></ion-icon>
+        
+                  <span class="mx-4 font-medium">Register</span>
+              </a>
+              <a class="flex items-center mt-5 py-2 px-8 block text-gray-700 border-r-4 border-gray-800 hover:bg-gray-700 hover:text-gray-100 hover:border-gray-100" href="{% url 'addservice'%}">
+                <ion-icon class="text-2xl" name="list-outline"></ion-icon>
+        
+        
+                  <span class="mx-4 font-medium">Religion Services</span>
+              </a>
+              <a class="flex items-center mt-5 py-2 px-8 block text-gray-700 border-r-4 border-gray-800 hover:bg-gray-700 hover:text-gray-100 hover:border-gray-100" href="{% url 'report'%}">
+                <ion-icon class="text-2xl" name="list-outline"></ion-icon>
+        
+        
+                  <span class="mx-4 font-medium">Report</span>
+              </a>
+        
+              <a class="flex items-center mt-5 py-2 px-8 block text-gray-700 border-r-4 border-gray-800 hover:bg-gray-700 hover:text-gray-100 hover:border-gray-100" href="{% url 'codes'%}">
+                <ion-icon class="text-2xl" name="search-outline"></ion-icon>
+        
+                  <span class="mx-4 font-medium">Codes</span>
+              </a>
+              <a class="flex items-center mt-5 py-2 px-8 block text-gray-700 border-r-4 border-gray-800 hover:bg-gray-700 hover:text-gray-100 hover:border-gray-100" href="{% url 'work'%}">
+                <ion-icon class="text-2xl" name="person-outline"></ion-icon>
+                <span class="mx-4 font-medium">Users</span>
+            </a>
+
+            <a class="flex items-center mt-5 py-2 px-8 block text-gray-700 border-r-4 border-gray-800 hover:bg-gray-700 hover:text-gray-100 hover:border-gray-100" href="{% url 'allchristian' %}">
+              <ion-icon class="text-2xl" name="people-outline"></ion-icon>
+      
+                <span class="mx-4 font-medium">List of Member</span>
+            </a>
+
+            <a class="flex items-center mt-5 py-2 px-8 block text-gray-700 border-r-4 border-gray-800 hover:bg-gray-700 hover:text-gray-100 hover:border-gray-100" href="{% url 'booked-list/get'%}">
+              <ion-icon class="text-2xl" name="person-outline"></ion-icon>
+              <span class="mx-4 font-medium">Booked List</span>
+          </a>
+        
+            <a class="flex items-center mt-5 py-2 px-8 block text-gray-700 border-r-4 border-gray-800 hover:bg-gray-700 hover:text-gray-100 hover:border-gray-100" href="{% url 'adduser'%}">
+              <ion-icon class="text-2xl" name="person-add-outline"></ion-icon>
+        
+              <span class="mx-4 font-medium">Add User</span>
+          </a>
+
+          <a class="flex items-center mt-5 py-2 px-8 block text-gray-700 border-r-4 border-gray-800 hover:bg-gray-700 hover:text-gray-100 hover:border-gray-100" href="{% url 'editpro'%}">
+            <ion-icon class="text-2xl" name="person-add-outline"></ion-icon>
+      
+            <span class="mx-4 font-medium">Edit User</span>
+        </a>
+
+      
+        
+          <a class="flex items-center mt-5 py-2 px-8 block text-gray-700 border-r-4 border-gray-800 hover:bg-gray-700 hover:text-gray-100 hover:border-gray-100"  href="{% url 'logout'%}" >
+         
+              <ion-icon class="text-2xl text-white" name="log-out-outline"></ion-icon>
+        
+            <span class="mx-4 font-medium">Logout</span>
+        </a>
+          </nav>
+       </div>
+
+</div>
+           </div>
+
+    
+    <div class="w-2/6"> 
+      {% load static %}
+      <img src="{% static 'City Plus.png'%}" class="h-12 w-32 justify-center ml-2 md:ml-12"/>      </div>
+
+
+
+    <div class="w-2/6 block md:hidden">
+
+
+
+      <button type="button" class="float-right btn-group  " role="group" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" > 
+        {% for dt in prof %}
+        <span class="group"><img src="{{dt.image.url}}" class="w-12 h-12 rounded-full  "/>
+        
+        
+      {%endfor%}
+      </button>
+
+
+
+   </div>
+  </div>
+
+
+
+
+  <div class="grid grid-cols-5 h-full ">
+        <div class="w-full  bg-gray-800  sm:mt-0 hidden md:block">
+          <div class="flex items-center justify-center ">
+            {% for dt in prof %}
+            <img src="{{dt.image.url}}" class="w-24 h-24 rounded-full mt-4 "/>
+          
+          {%endfor%}
+          </div>
+        
+          <nav class="mt-2 ">
+              <a class="flex items-center py-2 px-8 block bg-gray-700 text-gray-100 border-r-4 border-gray-100" href="{% url 'inside'%}">
+                <span class="text-white text-2xl"><ion-icon  name="home-outline"></ion-icon> </span>
+        
+                  <span class="mx-4 font-medium">Home</span>
+              </a>
+        
+              <a class="flex items-center mt-2 py-2 px-8 block text-gray-100 border-r-4 border-gray-800 hover:bg-gray-700 hover:text-gray-100 hover:border-gray-100" href="{% url 'user'%}">
+                <ion-icon class="text-2xl" name="people-outline"></ion-icon>
+        
+                  <span class="mx-4 font-medium">Register</span>
+              </a>
+              <a class="flex items-center mt-2 py-2 px-8 block text-gray-100 border-r-4 border-gray-800 hover:bg-gray-700 hover:text-gray-100 hover:border-gray-100" href="{% url 'addservice' %}">
+                <ion-icon class="text-2xl" name="people-outline"></ion-icon>
+        
+                  <span class="mx-4 font-medium">Religion Services</span>
+              </a>
+              <a class="flex items-center mt-2 py-2 px-8 block text-gray-100 border-r-4 border-gray-800 hover:bg-gray-700 hover:text-gray-100 hover:border-gray-100" href="{% url 'allchristian' %}">
+                <ion-icon class="text-2xl" name="people-outline"></ion-icon>
+        
+                  <span class="mx-4 font-medium">List of Member</span>
+              </a>
+        
+              <a class="flex items-center mt-2 py-2 px-8 block text-gray-100 border-r-4 border-gray-800 hover:bg-gray-700 hover:text-gray-100 hover:border-gray-100" href="#">
+                <ion-icon class="text-2xl" name="list-outline"></ion-icon>
+        
+        
+                  <span class="mx-4 font-medium">Report</span>
+              </a>
+        
+              <a class="flex items-center mt-2 py-2 px-8 block text-gray-100 border-r-4 border-gray-800 hover:bg-gray-700 hover:text-gray-100 hover:border-gray-100" href="#">
+                <ion-icon class="text-2xl" name="search-outline"></ion-icon>
+        
+                  <span class="mx-4 font-medium">Codes</span>
+              </a>
+              <a class="flex items-center mt-2 py-2 px-8 block text-gray-100 border-r-4 border-gray-800 hover:bg-gray-700 hover:text-gray-100 hover:border-gray-100" href="{% url 'work'%}">
+                <ion-icon class="text-2xl" name="person-outline"></ion-icon>
+                <span class="mx-4 font-medium">Users</span>
+            </a>
+        
+            <a class="flex items-center mt-2 py-2 px-8 block text-gray-100 border-r-4 border-gray-800 hover:bg-gray-700 hover:text-gray-100 hover:border-gray-100" href="{% url 'booked-list/get'%}">
+
+              <ion-icon class="text-2xl" name="document-text-outline"></ion-icon>
+              <span class="mx-4 font-medium">Booked List</span>
+          </a>
+
+
+            <a class="flex items-center mt-2 py-2 px-8 block text-gray-100 border-r-4 border-gray-800 hover:bg-gray-700 hover:text-gray-100 hover:border-gray-100" href="{% url 'adduser'%}">
+              <ion-icon class="text-2xl" name="person-add-outline"></ion-icon>
+        
+              <span class="mx-4 font-medium">Add User</span>
+
+          </a>
+
+          <a class="flex items-center mt-2 py-2 px-8 block text-gray-100 border-r-4 border-gray-800 hover:bg-gray-700 hover:text-gray-100 hover:border-gray-100" href="{% url 'editpro'%}">
+            
+            <ion-icon class="text-2xl" name="create-outline"></ion-icon>
+            <span class="mx-4 font-medium">Edit User</span>
+        </a>
+
+
+
+          <a class="flex items-center  mt-2 mb-6 py-2 px-8 block text-gray-100 border-r-4 border-gray-800 hover:bg-gray-700 hover:text-gray-100 hover:border-gray-100"  href="{% url 'logout'%}" >
+         
+              <ion-icon class="text-2xl text-white" name="log-out-outline"></ion-icon>
+        
+            <span class="mx-4 font-medium ">Logout</span>
+        </a>
+          </nav>
+        
+        </div>
+  
+        <div class=" col-span-4 w-fulljustify-center">
+
+          <div class="md:ml-2 mt-12">
+
+            <div class="grid grid-cols-3 gap-1 ">
+              <div class="bg-blue-300 text-white w-full rounded-sm mx-4 font-medium text-center font-sans
+              text-2xl
+              shadow-lg
+              ">Member : {{clien}}</div>
+              <div class="bg-red-700 w-full  rounded-sm mx-4 font-medium text-center
+              font-sans
+              text-2xl
+              text-white
+              shadow-lg
+              ">
+                Measure : {{meas}}
+              </div>
+              <div class="bg-green-400 w-full  rounded-sm mx-4 font-medium text-center
+              font-sans
+              text-2xl
+              text-white
+              shadow-lg
+              ">
+                Workers : {{works}}
+              </div>
+            </div>
+
+    
+    
+
+
+          </div>
+
+
+          <div class="container mt-8">
+            <p class="px-4 text-gray-700 text-2xl font-bold ">Recent Harvesting records</p>
+            <table id="example" class="">
+              <thead>
+                <tr>
+                  <th>farmercode</th>
+                  <th>Temperature</th>
+                  <th>Date & time</th>
+                </tr>
+              </thead>
+    
+              <tfoot>
+                <tr>
+                <th>farmercode</th>
+                  <th>Quantity</th>
+                  <th>Date & time</th>
+                </tr>
+              </tfoot>
+    
+              <tbody>
+                            {% for dt in measr%}
+                <tr>
+                  <td class="capitalize">{{dt.farmercode}}</td>
+                  <td >{{dt.Quantity}}</td>
+                  <td>{{dt.date}} {{dt.time}}</td>
+                </tr>
+              {%endfor%}
+              </tbody>
+            </table>
+
+
+
+        </div>
+       <center>{% include 'footer.html' %}</center> 
+      </div>
+      </div>
+
+
+
+
+
+
+ 
+{% if pay %}
+
+<div  class="modald">
+
+  <div class="container-full">
+      <div class="row">
+   
+
+
+            <div class="modald-content my-8 justify-center  flex flex-wrap md:items-center w-full">
+              <div class="bg-white shadow rounded w-full md:w-1/2 z-10">
+                <div class="py-8 text-center text-green font-semibold uppercase">Installation Fees</div>
+                <hr class="py-0 my-0 border border-grey-lighter">
+                <div class="py-8">
+
+<!-- Two columns -->
+<div class="flex mb-4">
+  <div class="w-1/2">
+  <div class="p-8">
+    <div class="card p-2">
+    <i class="text-center text-gray-900 font-bold">Installation fees</i>
+    <div>
+      <p class="text-center text-gray-900 font-bold text-2xl ">{{instal}} <span>RWF</span></p>
+  
+    </div>
+    </div>
+  </div>
+  
+  </div>
+  <div class="w-1/2">
+    
+      <div class="p-8">
+        <div class="card p-2">
+        <i class="text-center text-gray-900 font-bold">Bulk SMS Fees</i>
+        <div>
+          <p class="text-center text-gray-900 font-bold text-2xl ">{{bulk}} <span>RWF</span></p>
+      
+        </div>
+        </div>
+      </div>
+      
+      </div>
+  
+</div>
+                  <div class="flex items-top mt-4">
+                    <div class="w-1/2 text-center font-bold text-2xl text-grey-dark">Total :</div>
+                    <div class="w-1/2 text-center font-bold text-2xl text-grey-dark">{{total}} RWF</div>
+                  </div>
+            
+
+
+                  <div class="flex items-top mt-4">
+             
+                    <div class="w-full  font-bold text-xs text-grey-dark ml-4 mr-4">
+                      <div class="card pl-8">
+                        <p class="text-lg text-center underline">Premium Account</p>
+                        <p class="text-lg text-green-700"><ion-icon class="text-green-700" name="checkmark-circle-outline"></ion-icon> Register</p>
+                        <p class="text-lg text-green-700"><ion-icon name="checkmark-circle-outline"></ion-icon></ion-icon> Services</p>
+                        <p class="text-lg text-green-700"><ion-icon name="checkmark-circle-outline"></ion-icon></ion-icon> List of Members</p>
+                        <p class="text-lg text-green-700"><ion-icon name="checkmark-circle-outline"></ion-icon></ion-icon> Report</p>
+                        <p class="text-lg text-green-700"><ion-icon name="checkmark-circle-outline"></ion-icon> Harvest Recordings</p>
+                        <p class="text-lg text-green-700"><ion-icon name="checkmark-circle-outline"></ion-icon></ion-icon>pending register</p>
+                        <p class="text-lg text-green-700"><ion-icon name="checkmark-circle-outline"></ion-icon> Add Volentary</p>
+                        <p class="text-lg text-green-700"><ion-icon name="checkmark-circle-outline"></ion-icon>Edit Account</p>
+                      </div>
+                    
+                    </div>
+                  </div>
+
+
+                </div>
+          <a href="{% url 'paying'%}">
+                  <div class="py-8 bg-grey-lighter hover:bg-grey-light text-indigo-darker rounded rounded-t-none text-center uppercase font-bold flex items-center justify-center"><span> Continue Pay {{total}} RWF </span>
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" class="icon fill-current w-4 h-4 ml-2">
+                      <path d="M18.59 13H3a1 1 0 0 1 0-2h15.59l-5.3-5.3a1 1 0 1 1 1.42-1.4l7 7a1 1 0 0 1 0 1.4l-7 7a1 1 0 0 1-1.42-1.4l5.3-5.3z" class="heroicon-ui"></path>
+                    </svg>
+                  </div>
+                </a>
+              </div>
+      
+      
+      
+      
+            </div>
+
+  
+      </div>
+    </div>
+  
+    
+    
+{%endif%}

@@ -1,0 +1,370 @@
+{% load static %}
+<!DOCTYPE html>
+
+<label for="district">District</label>
+<!-- Email -->
+<input type="text" id="defaultContactFormLocation" class="form-control mb-4" name="district" placeholder="district">
+<label for="sector">cooperative setor</label>
+<input type="text" id="defaultContactForm" name="Cooperativesector" class="form-control mb-4" placeholder="Cooperativesector">
+<!-- <label for="leadername">Leader Name</label>
+<input type="text" id="defaultContactForm" name="leadername" class="form-control mb-4" placeholder="leadername"> -->
+<label for="phone">Leader phone</label>
+<input type="text" id="defaultContactForm" name="leaderphone" class="form-control mb-4" placeholder="leaderphone">
+<!-- Subject -->
+<label>harvesing type:</label>
+<select name="harvesttype" class="browser-default custom-select mb-4">
+  <option value="" disabled>Choose option</option>
+  <option value="1" selected>maize</option>
+  <option value="2">milk</option>
+  <option value="3">wheat</option>
+  <option value="1" >Rice</option>
+  <option value="2">Potatoes</option>
+  <option value="3">coffee</option>
+  
+</select>
+
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> ikigega system</title>
+    <link rel="icon" type="icon/jpg"  href="{% static 'image/rice.jpg' %}" >
+    <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <!-- UIkit CSS -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/uikit@3.5.7/dist/css/uikit.min.css" />
+
+<!-- UIkit JS -->
+<script src="https://cdn.jsdelivr.net/npm/uikit@3.5.7/dist/js/uikit.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/uikit@3.5.7/dist/js/uikit-icons.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+</head>
+<body  style="background-image:radial-gradient(circle, rgb(170, 221, 250), rgb(198, 243, 232), rgb(248, 225, 250));">
+    <div class=" container bg-pink-200 p-4">
+    <nav class="navbar  bg-gray-500">
+        <a class="navbar-brand w-1/6 text-black-300" href="#">S.Ikigega</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+      
+        <div class="flex gap-6 w-4/6" >
+          <ul style="list-style: none;" class="flex gap-4">
+            <li >
+              <a href="url 'home'" class="text-black-300">Home</a>
+            </li>
+            <li >
+              <a href="url 'about-us'" class="text-black-300">about us</a>
+            </li>
+
+          </ul>
+          <form class="form-inline px-20 ">
+            <input class="form-control mr-sm-2" type="search" placeholder="Search">
+            <button class="btn btn-outline-success my-2 my-sm-0 rounded-full" type="submit">Search</button>
+          </form>
+        </div>
+      </nav>
+      <br>
+      <br>
+      <div class="flex">
+        <div class="w-1/2">
+        <img src="{% static 'image/farmers all.jpg' %}" class="border-solid border-purple border-4 rounded-lg"
+        data-aos="fade-down"
+        data-aos-easing="linear">
+        <h2></h2>
+        <div class="dropdown">
+          <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            categories
+          </button>
+          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+            <a class="dropdown-item" href="#">wheat</a>
+            <a class="dropdown-item" href="#">milk</a>
+            <a class="dropdown-item" href="#">rice</a>
+            <a class="dropdown-item" href="#">coffee</a>
+            <a class="dropdown-item" href="#">fruits</a>
+            <a class="dropdown-item" href="#">maize</a>
+          </div>
+        </div>
+        </div>
+        <div class="w-1/2">
+          <h1 class="text-black text-2xl px-4 font-bold">Smart ikigega short description</h1>
+          <hr>
+            <p class="text-xl px-4 ">
+
+               <span class="font-bold text-purple-500"> we help farmers to store their harvesting data</span> 
+               <span class="font-bold text-black-300">  in digital way as well as helping them to get direct 
+                loan on their phones</span> in three categories :
+                Firstly we help them to get their harvesting record directly on their phone
+                secondly our technology will help them to get direct loan on their phone
+               depending on their harvesting quantity
+               lastly we will help them to get their harvesting insurance.to help them to recover .
+            </p>
+         <div class="px-4"> <img src="{% static 'image/phone.jpg' %}"></div>
+        </div>
+      </div>
+      <br>
+      <div class="row">
+          <div>
+            
+              <p class="text-sm">We are dedicated to help farmers to be 
+                  financially independent.through their harvesting record
+                  We are dedicated to help farmers to be 
+                  financially independent.through their harvesting record
+                  We are dedicated to help farmers to be 
+                  financially independent.through their harvesting record
+              </p>
+          </div>
+      </div>
+      <br>
+          <div class="row px-4 bg-green-300">
+            <div class="w-3/6">
+            <h2 class="text-2xl font-bold">working system</h2>
+            <hr>
+          <p class="text-gray  text-xl">we are the interaction between 
+            farmers and their customers 
+            especiallyfarmers who works in 
+            the cooperatives as we helpingthem 
+            to get direct notification on their phones 
+            after bringing their harvesting
+          to the companies who buy from them .
+           not only interacting between farmers and their customers.
+           but also we will help them to get direct 
+           loan in time they want it through their phones depending 
+           on their harvesting quantity.</p>
+          </div>
+          <div class="w-3/6 px-4">
+           <img src="{% static 'image/rice.jpg' %}" height="100px">
+          </div>
+      </div>
+     
+    </div>
+    <br>
+    <br>
+    <div class="bg-black px-4">
+      <h3 class="text-purple text-2xl text-bold text-center">Follow us for more update</h3>
+   <div class="flex  ">
+   
+     <div class="col-3 py-4 ">
+      <a href="" class="uk-icon-button" uk-icon="twitter"></a>
+     </div>
+     <div class="col-3 py-4">
+      <a href="" class="uk-icon-button" uk-icon="facebook"></a>
+     </div>
+     <div class="col-3 py-4">
+      <a href="" class="uk-icon-button" uk-icon="instagram"></a>
+     </div>
+     <div class="col-3 py-4">
+      <a href="" class="uk-icon-button" uk-icon="google"></a>
+     </div>
+   </div>
+    </div>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init();
+    </script>
+</body>
+
+
+
+
+<!-- working system -->
+
+<div class="mt-10">
+  <dl class="space-y-10 md:space-y-0 md:grid md:grid-cols-2 md:gap-x-8 md:gap-y-10">
+    <div class="flex">
+      <div class="flex-shrink-0">
+        <div class="flex items-center justify-center h-12 w-12 rounded-md bg-indigo-500 text-white">
+          <!-- Heroicon name: outline/globe-alt -->
+          <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true" data-aos="zoom-out-down">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9" />
+          </svg>
+        </div>
+      </div>
+      <div class="ml-4">
+        <dt class="text-lg leading-6 font-medium text-white" data-aos="zoom-out-down">
+          Get farmercode
+        </dt>
+        <dd class="mt-2 text-base text-black" data-aos="zoom-out-down">
+        after being registred in our system you will get personal code as farmercode which will help 
+        to access other services that may helps you to expand your agriculture especially your harvesting  data .
+        with this code also everytime you sold with our system you will get direct notification giving you  data update on your phone
+        </dd>
+      </div>
+    </div>
+
+    <div class="flex">
+      <div class="flex-shrink-0">
+        <div class="flex items-center justify-center h-12 w-12 rounded-md bg-indigo-500 text-white">
+          <!-- Heroicon name: outline/scale -->
+          <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true"data-aos="zoom-out-down" >
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 6l3 1m0 0l-3 9a5.002 5.002 0 006.001 0M6 7l3 9M6 7l6-2m6 2l3-1m-3 1l-3 9a5.002 5.002 0 006.001 0M18 7l3 9m-3-9l-6-2m0-2v2m0 16V5m0 16H9m3 0h3" />
+          </svg>
+        </div>
+      </div>
+      <div class="ml-4">
+        <dt class="text-lg leading-6 font-medium text-white" data-aos="zoom-out-down">
+          Receive harvesting payments digitally
+        </dt>
+        <dd class="mt-2 text-base text-black" data-aos="zoom-out-down">
+          Smart ikigega you will be able to get paid while selling your harvesting
+          and receive money for free  on the provided code while that gotten when registred to our
+          system using their phone.
+        </dd>
+      </div>
+    </div>
+
+    <div class="flex">
+      <div class="flex-shrink-0">
+        <div class="flex items-center justify-center h-12 w-12 rounded-md bg-indigo-500 text-white"  data-aos="zoom-out-down">
+          <!-- Heroicon name: outline/lightning-bolt -->
+          <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
+          </svg>
+        </div>
+      </div>
+      <div class="ml-4">
+        <dt class="text-lg leading-6 font-medium text-white" data-aos="zoom-out-down">
+         Get harvesting insurance
+        </dt>
+        <dd class="mt-2 text-base text-black" data-aos="zoom-out-down">
+          Climate change are the most effective things that happen to the farmers destroying their harvesting
+          here after being our system user you will be able to get the harvesting insurance that can helps to recover
+          without asking helps 
+        </dd>
+      </div>
+    </div>
+
+    <div class="flex">
+      <div class="flex-shrink-0">
+        <div class="flex items-center justify-center h-12 w-12 rounded-md bg-indigo-500 text-white"   data-aos="zoom-out-down">
+          <!-- Heroicon name: outline/annotation -->
+          <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 8h10M7 12h4m1 8l-4-4H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-3l-4 4z" />
+          </svg>
+        </div>
+      </div>
+      <div class="ml-4">
+        <dt class="text-lg leading-6 font-medium text-white" data-aos="zoom-out-down" >
+          Get direct loan on your mobile
+        </dt>
+        <dd class="mt-2 text-base text-black" data-aos="zoom-out-down">
+       while you  are active member of our system you have the right to ask the direct loan on your mobile 
+       depending on your harvesting quantity in a given time.
+        </dd>
+      </div>
+    </div>
+  </dl>
+</div>
+
+
+<!-- harvest kiny -->
+
+<div class="py-12 ">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="lg:text-center">
+      <h2 class="text-base text-indigo-600 font-semibold tracking-wide uppercase" data-aos="zoom-in-down">Uburyo system igufasha</h2>
+      <p class="mt-2 text-3xl leading-8 font-extrabold tracking-tight text-black sm:text-4xl" data-aos="zoom-in-up" >
+      
+      </p>
+      <p class="mt-4 max-w-2xl text-xl text-indigo-500 lg:mx-auto" data-aos="zoom-in-up">
+     Sisitem ya smart ikigega izafasha abahinzi kumenyekanisha umusaruro wabo 
+     kurundi rwego binyuze mu kubarura umusaruro wabo no kwemererwa kwakira amafaranga 
+     yumusaruro wabo bajyanye ku isoko bizwi nka (cashless)
+      </p>
+    </div>
+
+    <div class="mt-10">
+      <dl class="space-y-10 md:space-y-0 md:grid md:grid-cols-2 md:gap-x-8 md:gap-y-10">
+        <div class="flex">
+          <div class="flex-shrink-0">
+            <div class="flex items-center justify-center h-12 w-12 rounded-md bg-indigo-500 text-white">
+              <!-- Heroicon name: outline/globe-alt -->
+              <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true" data-aos="zoom-out-down">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9" />
+              </svg>
+            </div>
+          </div>
+          <div class="ml-4">
+            <dt class="text-lg leading-6 font-medium text-white" data-aos="zoom-out-down">
+              Gira inomero bwite ikuranga
+            </dt>
+            <dd class="mt-2 text-base text-black" data-aos="zoom-out-down">
+            after being registred in our system you will get personal code as farmercode which will help 
+            to access other services that may helps you to expand your agriculture especially your harvesting  data .
+            with this code also everytime you sold with our system you will get direct notification giving you  data update on your phone
+            </dd>
+          </div>
+        </div>
+
+        <div class="flex">
+          <div class="flex-shrink-0">
+            <div class="flex items-center justify-center h-12 w-12 rounded-md bg-indigo-500 text-white">
+              <!-- Heroicon name: outline/scale -->
+              <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true"data-aos="zoom-out-down" >
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 6l3 1m0 0l-3 9a5.002 5.002 0 006.001 0M6 7l3 9M6 7l6-2m6 2l3-1m-3 1l-3 9a5.002 5.002 0 006.001 0M18 7l3 9m-3-9l-6-2m0-2v2m0 16V5m0 16H9m3 0h3" />
+              </svg>
+            </div>
+          </div>
+          <div class="ml-4">
+            <dt class="text-lg leading-6 font-medium text-white" data-aos="zoom-out-down">
+               Kwishyurwa kuri kode
+            </dt>
+            <dd class="mt-2 text-base text-black" data-aos="zoom-out-down">
+              Smart ikigega you will be able to get paid while selling your harvesting
+              and receive money for free  on the provided code while that gotten when registred to our
+              system using their phone.
+            </dd>
+          </div>
+        </div>
+
+        <div class="flex">
+          <div class="flex-shrink-0">
+            <div class="flex items-center justify-center h-12 w-12 rounded-md bg-indigo-500 text-white"  data-aos="zoom-out-down">
+              <!-- Heroicon name: outline/lightning-bolt -->
+              <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
+              </svg>
+            </div>
+          </div>
+          <div class="ml-4">
+            <dt class="text-lg leading-6 font-medium text-white" data-aos="zoom-out-down">
+             Bona Ubwishingizi kumusaruro wae
+            </dt>
+            <dd class="mt-2 text-base text-black" data-aos="zoom-out-down">
+              Climate change are the most effective things that happen to the farmers destroying their harvesting
+              here after being our system user you will be able to get the harvesting insurance that can helps to recover
+              without asking helps 
+            </dd>
+          </div>
+        </div>
+
+        <div class="flex">
+          <div class="flex-shrink-0">
+            <div class="flex items-center justify-center h-12 w-12 rounded-md bg-indigo-500 text-white"   data-aos="zoom-out-down">
+              <!-- Heroicon name: outline/annotation -->
+              <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 8h10M7 12h4m1 8l-4-4H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-3l-4 4z" />
+              </svg>
+            </div>
+          </div>
+          <div class="ml-4">
+            <dt class="text-lg leading-6 font-medium text-white" data-aos="zoom-out-down" >
+              Saba inguzanyo ukoresheje telephone
+            </dt>
+            <dd class="mt-2 text-base text-black" data-aos="zoom-out-down">
+           while you  are active member of our system you have the right to ask the direct loan on your mobile 
+           depending on your harvesting quantity in a given time.
+            </dd>
+          </div>
+        </div>
+      </dl>
+    </div>
+  </div>
+</div>
+
+
+</html>
