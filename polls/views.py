@@ -372,7 +372,7 @@ def digitalapp(request):
                 
                     insert.save()
                     telephone = phone_number[1:]
-                    response = "END Urakoze kwiyandikisha kuri Smart Kigega,Numero y'ibanga yanyu ni: "+str(pin)+". \n Kubindi bisobanuro hamagara https://www.smartkigega.com"
+                    response = "END Urakoze kwiyandikisha kuri Smart Kigega,kode ikuranga  ni: "+str(numb)+". \n Kubindi bisobanuro hamagara https://www.smartkigega.com"
                     
                 except:
                     response = "END Kwiyandikisha byanze"
@@ -622,11 +622,12 @@ def Harvestrecording(request):
         donetime = request.POST['donetime']
         donedate = request.POST['donedate']
         email = request.POST['email']
+        telephone = request.POST['telephone']
         print(code)
 
         if email != None or code !=None:
                 subject='umusaruro wawe muri smart ikigega'
-                message='kuri '+firstname +'\n'+'umusaruro wawe kuwa '+' '+donedate +' '+'ungana'+' '+Quantity +' '+ 'murakoze gukoresha smartikigega'
+                message='kuri '+firstname +'\n'+'ugurishije umusaruro wawe kuwa '+' '+donedate +' '+'ungana'+' '+Quantity +' '+ 'murakoze gukoresha smartikigega'
                 from_email=settings.EMAIL_HOST_USER
                 rt=send_mail(subject,message,from_email,[str(email),],fail_silently=True)
                 # print(rt)
@@ -637,16 +638,15 @@ def Harvestrecording(request):
                         idsn=dt.id
                     print(idsn)
                     coden=Farmers.objects.get(id=int(idsn))
-                    insert = Harvestrecord.objects.create(Quantity=Quantity,code=coden,donetime=donetime,donedate=donedate,email=email,firstname=firstname)
+                    insert = Harvestrecord.objects.create(Quantity=Quantity,code=coden,telephone=telephone,donetime=donetime,donedate=donedate,email=email,firstname=firstname)
                     insert.save()
                     mess=email
                     return render(request,'record.html',{'message':'data submitted successful','mess':mess,'data':select})
-                    # return render(request,'record.html',{'mess':mess})
                   #account_sid = 'AC1b41153cd2a60b01893bb9740d2fd875'
                   #auth_token = 'efa2a032ba78dff3111fce2efafa5940'
                    #client =Client(account_sid, auth_token)
                   #message = client.messages.create(body='your Code is: '+nost,from_='+16305280341',to='+250784447864')
-                  # sendsms = requests.post('http://rslr.connectbind.com:8080/bulksms/bulksms?username=1212-pathos&password=Chance@1&type=0&dlr=1&destination='+str(tel)+'&source=CityPlus&message='+str(mess)+'')
+                  # sendsms = requests.post('http://rslr.connectbind.com:8080/bulksms/bulksms?username=1212-pathos&password=Chance@1&type=0&dlr=1&destination='+str(telephone)+'&source=smartikigega&message='+str(mess)+'')
                   # pass
                   # return render(request,'record.html',{'message':'data submitted successful','data':select})
                   # insert = Harvestrecord(Quantity=Quantity,code=code, donetime=donetime,donedate=donedate,email=email,firstname=firstname)
@@ -655,7 +655,7 @@ def Harvestrecording(request):
                     return render(request,'record.html',{'message':'data  not submitted','data':select})
 
         else: 
-                return render(request,'record.html',{'message':'you have to enter a farmercode to submit','data':select})   
+            return render(request,'record.html',{'message':'you have to enter a farmercode to submit','data':select})   
        
     return render(request,'record.html',{'data':select})
 

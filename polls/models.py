@@ -78,10 +78,11 @@ class Harvestrecord(models.Model):
     code=models.ForeignKey(Farmers, on_delete=models.CASCADE)
     firstname=models.CharField(max_length=255) 
     email=models.CharField(max_length=255)
+    telephone=models.CharField(max_length=255)
     donedate=models.DateField(auto_now=True)
     donetime=models.TimeField(auto_now=True)
     def __str__(self):
-        return self.farmercode  
+        return self.code  
 class EndpointAfripay(models.Model):
     status=models.CharField(max_length=255)
     transaction_ref=models.CharField(max_length=234)
