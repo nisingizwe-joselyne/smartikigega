@@ -344,7 +344,7 @@ def digitalapp(request):
             if text =='':
                 response = "CON Ikaze kuri Smart Kigega, Iyandikishe mu kigega \n"
                 response += '1.Iyandikishe \n'
-                response += '1.Ikigega pay \n'
+                response += '2.Ikigega pay \n'
                 
             elif text =='1':
                 response = "CON Andika amazina yawe \n"
