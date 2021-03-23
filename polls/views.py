@@ -224,14 +224,15 @@ def digitalapp(request):
                 response += '2.momo isanzwe'
             elif text == '1*1':
                 response = 'CON shyiramo code yumuhinzi '+str(level)+' \n'
-                # mycode = str(level[2]
-                # cody=Farmers.objects.filter(code=code)
-                # for dr in cody:
-                #     if mycode = dr:
-            elif num == '1*1' and int(len(level))==2 and str(level[1]) in str(level):    
-                response = 'CON shyiramo ingano yumusaruro mu biro cg litiro '+str(level)+' \n'
-            elif num == '1*1' and int(len(level))==3 and str(level[2]) in str(level):    
-                response = 'CON shyiramo ingano yumusaruro mu biro cg litiro '+str(level)+'\n'     
+                mycode = str(level[2])
+                cody=Farmers.objects.filter(code=mycode)
+                for dr in cody:
+                    if mycode == dr:
+                        response='CON shyiramo ingano yumusaruro mu biro cg litiro '+str(level)+' \n'
+                    else:
+                        response='END code mwashyizemo ntibaho '+str(level)+' \n' 
+            # elif num == '1*1' and int(len(level))==3 and str(level[2]) in str(level):    
+            #     response = 'CON shyiramo ingano yumusaruro mu biro cg litiro '+str(level)+'\n'     
                     # else:
                     #    response = 'END code washyizemo ntibaho '+str(level)+' \n'
         
@@ -249,8 +250,7 @@ def digitalapp(request):
                 response = 'CON umubare wamafaranga  \n'
             elif num == '1*2' and int(len(level))==3 and str(level[4]) in str(level):
                 response = 'CON wahisemo kwishyura'+ str(level[4]) + 'ugiye kwishyura kuri' + str(level[2]) +'shyiramo umubare wibanga wemeze kwishyura  \n'   
-                
-                
+                      
             elif text == '2':
                 response = 'CON  hitamo \n'
                 response += '1.kureba umusaruro mbumbe \n'
@@ -385,15 +385,23 @@ def digitalapp(request):
                 response += '2.ibishyimbo \n'
                 response += '3.ikawa \n'
                 response += '4.amata \n'   
-            elif int(st)== 2  and int(len(level))==4  and   str(level[3]) in str(level): 
+            elif int(st)== 2  and int(len(level))==3  and   str(level[2]) in str(level): 
                 response = "CON shyiramo umubare  wamafaranga ugiye kwishyura \n"   
-            elif int(st)== 2  and int(len(level))==5  and   str(level[4]) in str(level): 
-                response = "CON ugiye kwishyura" +str(level[5])+ 'kuri' +str(level[2]) + "shyiramo umubare wibanga wemeze  \n"
+            elif int(st)== 2  and int(len(level))==4  and   str(level[3]) in str(level): 
+                response = "CON ugiye kwishyura" +str(level[4])+ 'kuri' +str(level[2]) + "shyiramo umubare wibanga wemeze \n"
+            elif int(st)== 2  and int(len(level))==5  and   str(level[4]) in str(level):   
                 code= str(level[2])
-                Quantity=str(level[3]
-                harvesttype=str(level[4]
-                insert=Harvestrecord(code=code,Quantity=Quantity,harvesttype=harvesttype)
-                insert.save()     
+                Quantity=str(level[3])
+                insert =Harvestrecord(code=code,Quantity=Quantity)
+                try:
+                
+                    insert.save()
+                    # telephone = phone_number[1:]
+                    response = "END Urakoze kugura ukoresheje  Smart Kigega wishyuye: "+str(level[4])+"kuri"+str(level[2]) + "\n "
+                    
+                except:
+                    response = "END Kwishyura byanze"
+                     
             else:
 
                     response = "END Invalid choice"    
