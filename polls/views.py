@@ -384,7 +384,7 @@ def digitalapp(request):
                 if cody.exists():
                     response='CON shyiramo ingano yumusaruro mu biro cg litiro '+str(level)+' \n'
                 else:
-                    response='END code mwashyizemo ntibaho '+str(level)+' \n'      
+                    response='END code mwashyizemo ntibaho '+str(level[1])+' \n'      
             # elif int(st)== 2  and int(len(level))==3  and   str(level[2]) in str(level): 
             #     response = "CON hitamo ubwoko bwumusaruro uguze: \n" 
             #     response += '1.umuceri \n'
