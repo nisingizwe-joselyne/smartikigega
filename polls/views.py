@@ -380,7 +380,7 @@ def digitalapp(request):
                 response = "CON shyiramo code yumuhinzi \n"     
             elif int(st)== 2  and int(len(level))==2  and   str(level[1]) in str(level): 
                 mycode = str(level[2])
-                cody=Farmers.objects.filter(number=phone_number,code=mycode)
+                cody=Farmers.objects.all().filter(number=phone_number,code=mycode)
                 if cody.exists():
                     response='CON shyiramo ingano yumusaruro mu biro cg litiro '+str(level)+' \n'
                 else:
