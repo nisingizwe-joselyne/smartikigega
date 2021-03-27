@@ -379,20 +379,26 @@ def digitalapp(request):
             elif text =='2':
                 response = "CON shyiramo code yumuhinzi \n"     
             elif int(st)== 2  and int(len(level))==2  and   str(level[1]) in str(level): 
-                response = "CON shyiramo ingano yumusaruro \n"      
+                mycode = str(level[2])
+                cody=Farmers.objects.filter(number=phone_number,code=mycode)
+                for dr in cody:
+                    if mycode == dr:
+                        response='CON shyiramo ingano yumusaruro mu biro cg litiro '+str(level)+' \n'
+                    else:
+                        response='END code mwashyizemo ntibaho '+str(level)+' \n'      
             # elif int(st)== 2  and int(len(level))==3  and   str(level[2]) in str(level): 
             #     response = "CON hitamo ubwoko bwumusaruro uguze: \n" 
             #     response += '1.umuceri \n'
             #     response += '2.ibishyimbo \n'
             #     response += '3.ikawa \n'
             #     response += '4.amata \n'   
-            elif int(st)== 2  and int(len(level))==3  and   str(level[2]) in str(level): 
-                response = "CON shyiramo umubare  wamafaranga ugiye kwishyura \n"   
             elif int(st)== 2  and int(len(level))==4  and   str(level[3]) in str(level): 
-                response = "CON ugiye kwishyura" +str(level[3])+ 'kuri' +str(level[1]) + "shyiramo umubare wibanga wemeze \n"
-            elif int(st)== 2  and int(len(level))==5  and   str(level[4]) in str(level):   
-                code= str(level[1])
-                Quantity=str(level[2])
+                response = "CON shyiramo umubare  wamafaranga ugiye kwishyura \n"   
+            elif int(st)== 2  and int(len(level))==5  and   str(level[4]) in str(level): 
+                response = "CON ugiye kwishyura" +str(level[4])+ 'kuri' +str(level[2]) + "shyiramo umubare wibanga wemeze \n"
+            elif int(st)== 2  and int(len(level))==6  and   str(level[5]) in str(level):   
+                code= str(level[2])
+                Quantity=str(level[3])
                 insert =Harvestrecord(code=code,Quantity=Quantity)
                 try:
                 
