@@ -226,7 +226,7 @@ def digitalapp(request):
                 response = 'CON shyiramo code yumuhinzi '+str(level)+' \n'
             elif num == '1*1'and int(len(level))==2 and str(level[1]) in str(level):  
                 mycode = str(level[2])
-                cody=Farmers.objects.filter(code=mycode)
+                cody=Farmers.objects.filter(number=phone_number,code=mycode)
                 for dr in cody:
                     if mycode == dr:
                         response='CON shyiramo ingano yumusaruro mu biro cg litiro '+str(level)+' \n'
@@ -361,7 +361,7 @@ def digitalapp(request):
                 pin=str(level[2])
                 district =str(level[3])
                 sector =str(level[4])
-                pincode = make_password(pin)
+                pincode = pin
                 def random_with_N_digits(n):
                     range_start = 10**(n-1)
                     range_end = (10**n)-1
