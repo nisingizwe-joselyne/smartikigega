@@ -381,11 +381,10 @@ def digitalapp(request):
             elif int(st)== 2  and int(len(level))==2  and   str(level[1]) in str(level): 
                 mycode = str(level[2])
                 cody=Farmers.objects.filter(number=phone_number,code=mycode)
-                for dr in cody:
-                    if mycode == dr:
-                        response='CON shyiramo ingano yumusaruro mu biro cg litiro '+str(level)+' \n'
-                    else:
-                        response='END code mwashyizemo ntibaho '+str(level)+' \n'      
+                if cody.exists():
+                    response='CON shyiramo ingano yumusaruro mu biro cg litiro '+str(level)+' \n'
+                else:
+                    response='END code mwashyizemo ntibaho '+str(level)+' \n'      
             # elif int(st)== 2  and int(len(level))==3  and   str(level[2]) in str(level): 
             #     response = "CON hitamo ubwoko bwumusaruro uguze: \n" 
             #     response += '1.umuceri \n'
