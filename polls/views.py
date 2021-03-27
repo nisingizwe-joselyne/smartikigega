@@ -378,7 +378,7 @@ def digitalapp(request):
                     response = "END Kwiyandikisha byanze"
             elif text =='2':
                 response = "CON shyiramo code yumuhinzi \n"     
-            elif int(st)== 2  and int(len(level))==2  and   str(level[1]) in str(level): 
+            elif int(st)== 2  and int(len(level))==2  and  str(level[1]) in str(level): 
                 mycode = str(level[2])
                 cody=Farmers.objects.all().filter(code=mycode)
                 if cody.exists():
