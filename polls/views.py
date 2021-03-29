@@ -48,6 +48,8 @@ def signin(request):
     return render(request,'signin.html')      
 def record(request):
     return render(request,'record.html')
+def recorderadd(request):
+    return render(request,'addrecorder.html')    
     # ussd
 @csrf_exempt
 def digital (request):
@@ -243,9 +245,7 @@ def digitalapp(request):
                 insert=Harvestrecord(code=str(level[2]),Quantity=str(level[3]))
                 insert.save()
             elif text == '1*2':
-                response = 'CON nimero ya mobile : '+str(len(level))+ '\n'
-                insert=Harvestrecord.objects.create(farmercode=str(level[2]))
-                insert.save()
+                response = 'CON nimero ya mobile : '+str(len(level))+ '\n'                
             elif num == '1*2' and int(len(level))==2 and str(level[3]) in str(level):
                 response = 'CON umubare wamafaranga  \n'
             elif num == '1*2' and int(len(level))==3 and str(level[4]) in str(level):
@@ -260,15 +260,24 @@ def digitalapp(request):
                 response = 'CON  shyiramo code yawe ubashe kureba umusaruro :' +str(len(level))+ '\n'
                     
             elif num == '2*1'and int(len(level))==3 and str(level[2]) in str(level):
-                    # insert=Harvestrecord(Quantity=str(level[3]))
-                    # if insert.is_valid():
-                response = 'CON hitamo kureba \n'
-                response += '1.umusaruro wukukwezi\n'
-                response += '2.umusaruro mbumbe wose'
-                    # response = 'CON code mwashyizemo ntibaho : \n'
+                hcode = str(level[2])  
+                hacode =Farmers.objetcs.all(code=hcode)    
+                if hacode.exists():
+                    response = 'CON hitamo kureba \n'
+                    response += '1.umusaruro wukukwezi\n'
+                    response += '2.umusaruro mbumbe wose'
+                else:
+                    response = 'CON code mwashyizemo ntibaho :\n'
                         
             elif text =='2*1*1':
-                response = 'CON umusaruro wa' + str(level[2]) +'wukukwezi ni 360kg'+str(level[3])+'\n'
+                Q=Harvestrecord.abjects.filter(Quantity=hacode)
+                for ha in Q :
+                    idhsn = ha.id
+                qhacode =Harvestrecord.objects.get(id=int(idhsn))
+                if qhacode.exists():
+                    response = 'CON umusaruro wawe wukukwezi ni '+ str(qhacode) +'\n'
+                else:
+                    response = 'CON ntamusaruro mwari mufitemo uku kwezi'+'\n'
             elif text =='2*1*2':
                 response = 'CON umusaruro mbumbe wa' + str(level[2]) + 'ni 3600kg'+str(level[3])+'\n'
             elif text == '2*2':
@@ -602,7 +611,7 @@ def login(request):
         user=auth.authenticate(username=userd,password=pass1)
         if user is not None:
             auth.login(request,user)
-            if User.objects.filter(username=request.user).exists():
+            if Recorder.objects.filter(username=request.user).exists():
                 return redirect('record')
             # elif Active.objects.filter(user=request.user).exists():
             #     return redirect('record')
@@ -615,7 +624,29 @@ def login(request):
             
     else:
         return render(request,'signin.html')
-    return render(request,'signin.html')
+
+
+def loginadmin(request):
+    if request.method=='POST':
+        userd=request.POST['email']
+        pass1=request.POST['password']
+        user=auth.authenticate(username=userd,password=pass1)
+        if user is not None:
+            auth.login(request,user)
+            if User.objects.filter(username=request.user).exists():
+                return redirect('dashboard')
+            # elif Active.objects.filter(user=request.user).exists():
+            #     return redirect('record')
+            else:
+                return render(request,'signin.html',{'message':'make sure if your account is registred' })
+        else:
+            print(userd)
+            print(pass1)
+            return render(request,'signin.html',{'message':'check your username and password' })
+            
+    else:
+        return render(request,'signin.html')
+    return render(request,'signin.html')    
 
 def Harvestrecording(request):
     select = Farmers.objects.all()
@@ -642,10 +673,14 @@ def Harvestrecording(request):
                         idsn=dt.id
                     print(idsn)
                     coden=Farmers.objects.get(id=int(idsn))
-                    insert = Harvestrecord.objects.create(Quantity=Quantity,code=coden,telephone=telephone,donetime=donetime,donedate=donedate,email=email,firstname=firstname)
-                    insert.save()
-                    mess=email
-                    return render(request,'record.html',{'message':'data submitted successful','mess':mess,'data':select})
+                    if coden.exists:
+                        insert = Harvestrecord.objects.create(Quantity=Quantity,code=coden,telephone=telephone,donetime=donetime,donedate=donedate,email=email,firstname=firstname)
+                        insert.save()
+                        mess=email
+                        return render(request,'record.html',{'message':'data submitted successful','mess':mess,'data':select})
+                    else:
+                        return render(request,'record.html',{'message':'code does  not exist'})
+
                   #account_sid = 'AC1b41153cd2a60b01893bb9740d2fd875'
                   #auth_token = 'efa2a032ba78dff3111fce2efafa5940'
                    #client =Client(account_sid, auth_token)
@@ -760,8 +795,6 @@ def prooving(request,pk):
         mess='has been done'
         return redirect('dashboard')
     else:
-
-
         messages.info(request,'This is not complete the profile')
         return redirect('dashboard')
     return render(request,'index.html')   
@@ -903,7 +936,7 @@ def activate(request):
     if request.method=='POST':
         user=request.POST['email']
         password=request.POST['password']
-        user=auth.authenticate(username=user,password=password)
+        user=auth.authenticate(email=user,password=password)
         if user is not None:
             auth.login(request,user)
             if Active.objects.filter(user=request.user).exists():
@@ -912,8 +945,8 @@ def activate(request):
                 Active.objects.create(user=request.user,activate=True).save()
                 return redirect('inside')
         else:
-                messages.info(request,'incorect password')
-                return redirect('activate')
+            messages.info(request,'incorect password')
+            return redirect('activate')
     else:
         return render(request,'activate.html')
 
@@ -938,11 +971,13 @@ def addRecorder(request):
             # zipcod=Zipcodes.objects.all()
             prof=Profilecooperative.objects.filter(cooperativename=str(request.user))
             if request.method=='POST':
+                cooperativename=request.POST['cooperativename']
                 email=request.POST['username']
                 name=request.POST['name']
+                phone=request.POST['phone']
                 rand=random.randint(1111,99999)
                 password=str(name)+str(rand)
-                if User.objects.filter(username=email).exists():
+                if Recorder.objects.filter(username=email).exists():
                     messages.info(request,'Email have already used')
                     return redirect('adduser')
                 else:
@@ -950,9 +985,9 @@ def addRecorder(request):
                     message='Dear '+name +'\n'+'https://smartikigega.herokuapp.com//login/'+'\n'+'Username: '+email+'\n'+'Password: '+password+'\n'+'Thank you are now employed by'+str(request.user)
                     from_email=settings.EMAIL_HOST_USER
                     rt=send_mail(subject,message,from_email,[str(email),],fail_silently=True)
-                    User.objects.create_user(name=name,username=email,password=password).save()
+                    User.objects.create_user(name=name,username=email,password=password,cooperativename=cooperativename,phone=phone).save()
                     Recorder.objects.create(name=str(request.user),user=email).save()
-                    mess='added sucessfully'
+                    mess=' you have been added sucessfully as a recorder'
                     return render(request,'addRecorder.html',{'mess':mess})
             else:
                 return render(request,'addRecorder.html',{prof:'prof'})
@@ -1027,12 +1062,12 @@ def dashboard(request):
     if request.user.is_superuser:
         cooperatives=User.objects.all()
         farmers=Farmers.objects.all()
-        farmers=Farmers.count()
+        # farmers=Farmers.count()
         Record=Harvestrecord.objects.all()
-        Record=Record.count()
-        recorder=recorder.objects.all()
-        recorder=recorder.count()
+        # Record=Record.count()
+        # recorder=recorder.objects.all()
+        # recorder=recorder.count()
 
-        return render(request,'dashboard.html',{'cooperatives':cooperatives,'farmers':farmers,'Record':Record,'recorder':recorder})
+        return render(request,'dashboard.html',{'cooperatives':cooperatives,'farmers':farmers,'Record':Record})
     else:
         return render(request,'index.html')

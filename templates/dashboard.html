@@ -1,4 +1,4 @@
-{% include 'nav.html' %}
+{% include 'base.html' %}
 {% load static %}<!-- Three columns -->
 <div class="flex shadow-lg">
     <div class="w-1/6 block md:hidden">
@@ -6,37 +6,37 @@
         <ion-icon class="text-4xl " name="reorder-four-sharp"></ion-icon>
     </button>
     
-    <div id="simplemodal" class="modal">
-
+    
+<div id="simplemodal" class="modal">
         <div class="modal-content  h-full">
             <span id="closeBtn" class="closeBtn ml-32 ">
             <ion-icon class=" text-3xl  ml-20 floart-right mt-4" name="close"></ion-icon></span>
             <nav class="mt-2">
-              <a class="flex items-center py-2 px-8 block bg-gray-700 text-gray-100 border-r-4 border-gray-100" href="{% url 'dashboard'%}">
+              <a class="flex items-center py-2 px-8 block bg-gray-700 text-gray-100 border-r-4 border-gray-100" href="{% url 'dashboard' %}">
                 <span class="text-white text-2xl"><ion-icon  name="home-outline"></ion-icon> </span>
         
                   <span class="mx-4 font-medium">Home</span>
               </a>
         
-              <a class="flex items-center mt-5 py-2 px-8 block text-gray-700 border-r-4 border-gray-800 hover:bg-gray-700 hover:text-gray-100 hover:border-gray-100" href="{% url 'user'%}">
+              <a class="flex items-center mt-5 py-2 px-8 block text-gray-700 border-r-4 border-gray-800 hover:bg-gray-700 hover:text-gray-100 hover:border-gray-100" href="{% url 'recorderadd' %}">
                 <ion-icon class="text-2xl" name="people-outline"></ion-icon>
         
                   <span class="mx-4 font-medium">add Recorder</span>
               </a>
-              <a class="flex items-center mt-5 py-2 px-8 block text-gray-700 border-r-4 border-gray-800 hover:bg-gray-700 hover:text-gray-100 hover:border-gray-100" href="{% url 'addservice'%}">
+              <a class="flex items-center mt-5 py-2 px-8 block text-gray-700 border-r-4 border-gray-800 hover:bg-gray-700 hover:text-gray-100 hover:border-gray-100" href="{% url 'regfarmpage' %}">
                 <ion-icon class="text-2xl" name="list-outline"></ion-icon>
         
         
                   <span class="mx-4 font-medium">add farmer</span>
               </a>
-              <a class="flex items-center mt-5 py-2 px-8 block text-gray-700 border-r-4 border-gray-800 hover:bg-gray-700 hover:text-gray-100 hover:border-gray-100" href="{% url 'report'%}">
+              <a class="flex items-center mt-5 py-2 px-8 block text-gray-700 border-r-4 border-gray-800 hover:bg-gray-700 hover:text-gray-100 hover:border-gray-100" href="{% url 'dashboard' %}">
                 <ion-icon class="text-2xl" name="list-outline"></ion-icon>
         
         
                   <span class="mx-4 font-medium">Report</span>
               </a>
         
-              <a class="flex items-center mt-5 py-2 px-8 block text-gray-700 border-r-4 border-gray-800 hover:bg-gray-700 hover:text-gray-100 hover:border-gray-100" href="{% url 'codes'%}">
+              <a class="flex items-center mt-5 py-2 px-8 block text-gray-700 border-r-4 border-gray-800 hover:bg-gray-700 hover:text-gray-100 hover:border-gray-100" href="{% url 'regfarmpage'%}">
                 <ion-icon class="text-2xl" name="search-outline"></ion-icon>
         
                   <span class="mx-4 font-medium">Codes</span>
@@ -46,24 +46,21 @@
                 <span class="mx-4 font-medium">Users</span>
             </a>
 
-            <a class="flex items-center mt-5 py-2 px-8 block text-gray-700 border-r-4 border-gray-800 hover:bg-gray-700 hover:text-gray-100 hover:border-gray-100" href="{% url 'allchristian' %}">
+            <a class="flex items-center mt-5 py-2 px-8 block text-gray-700 border-r-4 border-gray-800 hover:bg-gray-700 hover:text-gray-100 hover:border-gray-100" href="{% url 'regfarmpage' %}">
               <ion-icon class="text-2xl" name="people-outline"></ion-icon>
       
                 <span class="mx-4 font-medium">List of Member</span>
             </a>
 
-            <!-- <a class="flex items-center mt-5 py-2 px-8 block text-gray-700 border-r-4 border-gray-800 hover:bg-gray-700 hover:text-gray-100 hover:border-gray-100" href="{% url 'booked-list/get'%}">
-              <ion-icon class="text-2xl" name="person-outline"></ion-icon>
-              <span class="mx-4 font-medium"></span>
-          </a> -->
+           
         
-            <a class="flex items-center mt-5 py-2 px-8 block text-gray-700 border-r-4 border-gray-800 hover:bg-gray-700 hover:text-gray-100 hover:border-gray-100" href="{% url 'adduser'%}">
+            <a class="flex items-center mt-5 py-2 px-8 block text-gray-700 border-r-4 border-gray-800 hover:bg-gray-700 hover:text-gray-100 hover:border-gray-100" href="{% url 'recorderadd'%}">
               <ion-icon class="text-2xl" name="person-add-outline"></ion-icon>
         
               <span class="mx-4 font-medium">Add User</span>
           </a>
 
-          <a class="flex items-center mt-5 py-2 px-8 block text-gray-700 border-r-4 border-gray-800 hover:bg-gray-700 hover:text-gray-100 hover:border-gray-100" href="{% url 'editpro'%}">
+          <a class="flex items-center mt-5 py-2 px-8 block text-gray-700 border-r-4 border-gray-800 hover:bg-gray-700 hover:text-gray-100 hover:border-gray-100" href="{% url 'regfarmpage'%}">
             <ion-icon class="text-2xl" name="person-add-outline"></ion-icon>
       
             <span class="mx-4 font-medium">Edit User</span>
@@ -126,30 +123,30 @@
                   <span class="mx-4 font-medium">Home</span>
               </a>
         
-              <a class="flex items-center mt-2 py-2 px-8 block text-gray-100 border-r-4 border-gray-800 hover:bg-gray-700 hover:text-gray-100 hover:border-gray-100" href="{% url 'farmerreg'%}">
+              <a class="flex items-center mt-2 py-2 px-8 block text-gray-100 border-r-4 border-gray-800 hover:bg-gray-700 hover:text-gray-100 hover:border-gray-100" href="{% url 'regfarmpage'%}">
                 <ion-icon class="text-2xl" name="people-outline"></ion-icon>
         
                   <span class="mx-4 font-medium">Add farmer</span>
               </a>
-              <a class="flex items-center mt-2 py-2 px-8 block text-gray-100 border-r-4 border-gray-800 hover:bg-gray-700 hover:text-gray-100 hover:border-gray-100" href="{% url 'regfarmpage' %}">
+              <a class="flex items-center mt-2 py-2 px-8 block text-gray-100 border-r-4 border-gray-800 hover:bg-gray-700 hover:text-gray-100 hover:border-gray-100" href="{% url 'recorderadd' %}">
                 <ion-icon class="text-2xl" name="people-outline"></ion-icon>
         
                   <span class="mx-4 font-medium">Add Recorder</span>
               </a>
-              <a class="flex items-center mt-2 py-2 px-8 block text-gray-100 border-r-4 border-gray-800 hover:bg-gray-700 hover:text-gray-100 hover:border-gray-100" href="{% url 'farmerreg' %}">
+              <a class="flex items-center mt-2 py-2 px-8 block text-gray-100 border-r-4 border-gray-800 hover:bg-gray-700 hover:text-gray-100 hover:border-gray-100" href="{% url 'recorderadd' %}">
                 <ion-icon class="text-2xl" name="people-outline"></ion-icon>
         
                   <span class="mx-4 font-medium">List of farmers</span>
               </a>
         
-              <a class="flex items-center mt-2 py-2 px-8 block text-gray-100 border-r-4 border-gray-800 hover:bg-gray-700 hover:text-gray-100 hover:border-gray-100" href="{% url 'report'%}">
+              <a class="flex items-center mt-2 py-2 px-8 block text-gray-100 border-r-4 border-gray-800 hover:bg-gray-700 hover:text-gray-100 hover:border-gray-100" href="{% url 'regfarmpage'%}">
                 <ion-icon class="text-2xl" name="list-outline"></ion-icon>
         
         
                   <span class="mx-4 font-medium">Report</span>
               </a>
         
-              <a class="flex items-center mt-2 py-2 px-8 block text-gray-100 border-r-4 border-gray-800 hover:bg-gray-700 hover:text-gray-100 hover:border-gray-100" href="{% url 'codes'%}">
+              <a class="flex items-center mt-2 py-2 px-8 block text-gray-100 border-r-4 border-gray-800 hover:bg-gray-700 hover:text-gray-100 hover:border-gray-100" href="{% url 'dashboard'%}">
                 <ion-icon class="text-2xl" name="search-outline"></ion-icon>
         
                   <span class="mx-4 font-medium">Codes</span>
@@ -158,22 +155,16 @@
                 <ion-icon class="text-2xl" name="person-outline"></ion-icon>
                 <span class="mx-4 font-medium">Recorders</span>
             </a>
-        
-            <a class="flex items-center mt-2 py-2 px-8 block text-gray-100 border-r-4 border-gray-800 hover:bg-gray-700 hover:text-gray-100 hover:border-gray-100" href="{% url 'booked-list/get'%}">
-
-              <ion-icon class="text-2xl" name="document-text-outline"></ion-icon>
-              <span class="mx-4 font-medium">list of loans</span>
-          </a>
 
 
-            <a class="flex items-center mt-2 py-2 px-8 block text-gray-100 border-r-4 border-gray-800 hover:bg-gray-700 hover:text-gray-100 hover:border-gray-100" href="{% url 'adduser'%}">
+            <a class="flex items-center mt-2 py-2 px-8 block text-gray-100 border-r-4 border-gray-800 hover:bg-gray-700 hover:text-gray-100 hover:border-gray-100" href="{% url 'recorderadd'%}">
               <ion-icon class="text-2xl" name="person-add-outline"></ion-icon>
         
               <span class="mx-4 font-medium">Add User</span>
 
           </a>
 
-          <a class="flex items-center mt-2 py-2 px-8 block text-gray-100 border-r-4 border-gray-800 hover:bg-gray-700 hover:text-gray-100 hover:border-gray-100" href="{% url 'editpro'%}">
+          <a class="flex items-center mt-2 py-2 px-8 block text-gray-100 border-r-4 border-gray-800 hover:bg-gray-700 hover:text-gray-100 hover:border-gray-100" href="{% url 'recorderadd'%}">
             
             <ion-icon class="text-2xl" name="create-outline"></ion-icon>
             <span class="mx-4 font-medium">Edit User</span>
@@ -191,7 +182,7 @@
         
         </div>
   
-        <div class=" col-span-4 w-fulljustify-center">
+        <div class=" col-span-4 w-full justify-center">
 
           <div class="md:ml-2 mt-12">
       

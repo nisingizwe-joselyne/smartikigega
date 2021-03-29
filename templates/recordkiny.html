@@ -1,0 +1,122 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recording</title>
+    <link rel="icon" type="icon/jpg"  href="{% static 'image/rice.jpg' %}" >
+    <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <!-- UIkit CSS -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/uikit@3.5.7/dist/css/uikit.min.css" />
+
+<!-- UIkit JS -->
+<script src="https://cdn.jsdelivr.net/npm/uikit@3.5.7/dist/js/uikit.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/uikit@3.5.7/dist/js/uikit-icons.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+</head>
+<style>
+  body {
+  background-image: url("{% static 'image/image3.jpg' %}" );
+  /* opacity: 0.8; */
+  background-repeat: no-repeat;
+  background-size: cover;
+ 
+}
+</style>
+<body>
+  <ul class="nav justify-content-center bg-indigo-600 ">
+    <li class="nav-item">
+      <a class="nav-link active text-white " aria-current="page" href="/">ahabanza</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link text-white" href="{% url 'work' %}">serivisi</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link text-white" href="{% url 'kiny' %}">kiny</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link text-white " href="/" tabindex="-1" aria-disabled="true">english</a>
+    </li>
+  </ul>
+      
+      <!-- end of navbar -->
+
+
+      <!-- form --><div class="container my-5 py-5 z-depth-1">
+
+  <!--Section: Content-->
+  <section class="px-md-5 mx-md-5 text-center text-lg-left dark-grey-text">
+
+
+    <!--Grid row-->
+    <div class="row d-flex justify-content-center">
+
+      <!--Grid column-->
+      <div class="col-md-6">
+
+        <!-- Default form contact -->
+        <p class="alert alert-warning">{{message}}</p>
+        <form action="{% url 'recording' %}" method="POST">
+         <h3 class="font-weight-bold mb-4">Barura</h3>
+
+          <!-- Name -->
+          {%csrf_token %}
+          <!-- <label for="cooperativename">Cooperative Name</label>
+          <input type="text" name="cooperativename" id="defaultContactFormName" class="form-control mb-4" placeholder="cooperativename"> -->
+          <label for="quantity">ibiro/Litiro</label>
+          <!-- Email -->
+         
+         
+          <input type="text" id="defaultContactFormLocation" class="form-control mb-4" name="Quantity" placeholder="quantity">
+          <label for="firstname">Izina</label>
+          <input type="text" id="defaultContactForm" name="firstname" class="form-control mb-4" placeholder="firstname">
+          <label for="code">kode y'umuhinzi</label>
+          <input type="text" id="defaultContactForm" name="code" class="form-control mb-4" placeholder="code">
+          <label for="telephone">telefone</label>
+          <input type="text" id="defaultContactForm" name="telephone" class="form-control mb-4" placeholder="telephone">
+          <label for="email">emeyili</label>
+          <input type="email" id="defaultContactForm" name="email" class="form-control mb-4" placeholder="email">
+          
+          <!-- Subject -->
+          <label for="date">italiki</label>
+          <input type="date" id="defaultContactForm" name="donedate" class="form-control mb-4" placeholder="donedate">
+          <label for="datetime">isaha</label>
+          <input type="text" id="defaultContactForm" name="donetime" class="form-control mb-4" placeholder="donetime">
+
+          <!-- Message -->
+          <div class="form-group">
+
+          <!-- Copy -->
+
+          <!-- Send button -->
+          <button class="btn btn-info btn-block" name="submit" type="submit">Ohereza</button>
+
+        </form>
+    </div>
+</div>
+  
+   
+  <!-- Footer -->
+  <!-- boostrap js -->
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+  <!-- uikit js -->
+  <script src="https://cdn.jsdelivr.net/npm/uikit@3.5.6/dist/js/uikit-icons.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/uikit@3.5.6/dist/js/uikit.min.js"></script>
+  <!-- aos js -->
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+      <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+      <script>
+          AOS.init();
+      </script>
+
+</body>
+</html>
