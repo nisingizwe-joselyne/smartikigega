@@ -10,6 +10,7 @@ urlpatterns=[
     path('cooperative',views.cooperative, name='cooperative'),
     path('work',views.work, name='work'),
     path('signin',views.signin, name='signin'),
+    path('adminsignin',views.adminsignin, name='adminsignin'),
     path('record',views.record, name='record'),
     path('recorderadd',views.recorderadd, name='recorderadd'),
     path('pay',views.pay, name='pay'),

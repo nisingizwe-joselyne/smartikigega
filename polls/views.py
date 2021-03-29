@@ -49,7 +49,9 @@ def signin(request):
 def record(request):
     return render(request,'record.html')
 def recorderadd(request):
-    return render(request,'addrecorder.html')    
+    return render(request,'addrecorder.html')  
+def adminsignin(request):
+    return render(request,'adminsignin.html')       
     # ussd
 @csrf_exempt
 def digital (request):
