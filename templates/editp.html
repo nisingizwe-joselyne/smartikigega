@@ -23,30 +23,30 @@
         
                   <span class="mx-4 font-medium">add Recorder</span>
               </a>
-              <a class="flex items-center mt-5 py-2 px-8 block text-gray-700 border-r-4 border-gray-800 hover:bg-gray-700 hover:text-gray-100 hover:border-gray-100" href="{% url 'cooaddfarmer' %}">
+              <a class="flex items-center mt-5 py-2 px-8 block text-gray-700 border-r-4 border-gray-800 hover:bg-gray-700 hover:text-gray-100 hover:border-gray-100" href="{% url 'regfarmpage' %}">
                 <ion-icon class="text-2xl" name="list-outline"></ion-icon>
         
         
                   <span class="mx-4 font-medium">add farmer</span>
               </a>
-              <!-- <a class="flex items-center mt-5 py-2 px-8 block text-gray-700 border-r-4 border-gray-800 hover:bg-gray-700 hover:text-gray-100 hover:border-gray-100" href="{% url 'dashboard' %}">
+              <a class="flex items-center mt-5 py-2 px-8 block text-gray-700 border-r-4 border-gray-800 hover:bg-gray-700 hover:text-gray-100 hover:border-gray-100" href="{% url 'dashboard' %}">
                 <ion-icon class="text-2xl" name="list-outline"></ion-icon>
         
         
                   <span class="mx-4 font-medium">Report</span>
-              </a> -->
+              </a>
         
-              <!-- <a class="flex items-center mt-5 py-2 px-8 block text-gray-700 border-r-4 border-gray-800 hover:bg-gray-700 hover:text-gray-100 hover:border-gray-100" href="{% url 'regfarmpage'%}">
+              <a class="flex items-center mt-5 py-2 px-8 block text-gray-700 border-r-4 border-gray-800 hover:bg-gray-700 hover:text-gray-100 hover:border-gray-100" href="{% url 'regfarmpage'%}">
                 <ion-icon class="text-2xl" name="search-outline"></ion-icon>
         
                   <span class="mx-4 font-medium">Codes</span>
-              </a> -->
-              <a class="flex items-center mt-5 py-2 px-8 block text-gray-700 border-r-4 border-gray-800 hover:bg-gray-700 hover:text-gray-100 hover:border-gray-100" href="{% url 'members-list/get'%}">
+              </a>
+              <a class="flex items-center mt-5 py-2 px-8 block text-gray-700 border-r-4 border-gray-800 hover:bg-gray-700 hover:text-gray-100 hover:border-gray-100" href="{% url 'work'%}">
                 <ion-icon class="text-2xl" name="person-outline"></ion-icon>
                 <span class="mx-4 font-medium">Users</span>
             </a>
 
-            <a class="flex items-center mt-5 py-2 px-8 block text-gray-700 border-r-4 border-gray-800 hover:bg-gray-700 hover:text-gray-100 hover:border-gray-100" href="{% url 'members-list/get' %}">
+            <a class="flex items-center mt-5 py-2 px-8 block text-gray-700 border-r-4 border-gray-800 hover:bg-gray-700 hover:text-gray-100 hover:border-gray-100" href="{% url 'regfarmpage' %}">
               <ion-icon class="text-2xl" name="people-outline"></ion-icon>
       
                 <span class="mx-4 font-medium">List of Member</span>
@@ -54,13 +54,13 @@
 
            
         
-            <a class="flex items-center mt-5 py-2 px-8 block text-gray-700 border-r-4 border-gray-800 hover:bg-gray-700 hover:text-gray-100 hover:border-gray-100" href="{% url 'addus'%}">
+            <a class="flex items-center mt-5 py-2 px-8 block text-gray-700 border-r-4 border-gray-800 hover:bg-gray-700 hover:text-gray-100 hover:border-gray-100" href="{% url 'recorderadd'%}">
               <ion-icon class="text-2xl" name="person-add-outline"></ion-icon>
         
               <span class="mx-4 font-medium">Add User</span>
           </a>
 
-          <a class="flex items-center mt-5 py-2 px-8 block text-gray-700 border-r-4 border-gray-800 hover:bg-gray-700 hover:text-gray-100 hover:border-gray-100" href="{% url 'editp'%}">
+          <a class="flex items-center mt-5 py-2 px-8 block text-gray-700 border-r-4 border-gray-800 hover:bg-gray-700 hover:text-gray-100 hover:border-gray-100" href="{% url 'regfarmpage'%}">
             <ion-icon class="text-2xl" name="person-add-outline"></ion-icon>
       
             <span class="mx-4 font-medium">Edit User</span>
@@ -123,7 +123,7 @@
                   <span class="mx-4 font-medium">Home</span>
               </a>
         
-              <a class="flex items-center mt-2 py-2 px-8 block text-gray-100 border-r-4 border-gray-800 hover:bg-gray-700 hover:text-gray-100 hover:border-gray-100" href="{% url 'cooaddfarmer'%}">
+              <a class="flex items-center mt-2 py-2 px-8 block text-gray-100 border-r-4 border-gray-800 hover:bg-gray-700 hover:text-gray-100 hover:border-gray-100" href="{% url 'regfarmpage'%}">
                 <ion-icon class="text-2xl" name="people-outline"></ion-icon>
         
                   <span class="mx-4 font-medium">Add farmer</span>
@@ -133,13 +133,13 @@
         
                   <span class="mx-4 font-medium">Add Recorder</span>
               </a>
-              <a class="flex items-center mt-2 py-2 px-8 block text-gray-100 border-r-4 border-gray-800 hover:bg-gray-700 hover:text-gray-100 hover:border-gray-100" href="{% url 'members-list/get' %}">
+              <a class="flex items-center mt-2 py-2 px-8 block text-gray-100 border-r-4 border-gray-800 hover:bg-gray-700 hover:text-gray-100 hover:border-gray-100" href="{% url 'recorderadd' %}">
                 <ion-icon class="text-2xl" name="people-outline"></ion-icon>
         
-                  <span class="mx-4 font-medium">List of members</span>
+                  <span class="mx-4 font-medium">List of farmers</span>
               </a>
         
-              <!-- <a class="flex items-center mt-2 py-2 px-8 block text-gray-100 border-r-4 border-gray-800 hover:bg-gray-700 hover:text-gray-100 hover:border-gray-100" href="{% url 'regfarmpage'%}">
+              <a class="flex items-center mt-2 py-2 px-8 block text-gray-100 border-r-4 border-gray-800 hover:bg-gray-700 hover:text-gray-100 hover:border-gray-100" href="{% url 'regfarmpage'%}">
                 <ion-icon class="text-2xl" name="list-outline"></ion-icon>
         
         
@@ -150,21 +150,21 @@
                 <ion-icon class="text-2xl" name="search-outline"></ion-icon>
         
                   <span class="mx-4 font-medium">Codes</span>
-              </a> -->
-              <a class="flex items-center mt-2 py-2 px-8 block text-gray-100 border-r-4 border-gray-800 hover:bg-gray-700 hover:text-gray-100 hover:border-gray-100" href="{% url 'members-list/get'%}">
+              </a>
+              <a class="flex items-center mt-2 py-2 px-8 block text-gray-100 border-r-4 border-gray-800 hover:bg-gray-700 hover:text-gray-100 hover:border-gray-100" href="{% url 'work'%}">
                 <ion-icon class="text-2xl" name="person-outline"></ion-icon>
-                <span class="mx-4 font-medium">Users</span>
+                <span class="mx-4 font-medium">Recorders</span>
             </a>
 
 
-            <a class="flex items-center mt-2 py-2 px-8 block text-gray-100 border-r-4 border-gray-800 hover:bg-gray-700 hover:text-gray-100 hover:border-gray-100" href="{% url 'addus'%}">
+            <a class="flex items-center mt-2 py-2 px-8 block text-gray-100 border-r-4 border-gray-800 hover:bg-gray-700 hover:text-gray-100 hover:border-gray-100" href="{% url 'recorderadd'%}">
               <ion-icon class="text-2xl" name="person-add-outline"></ion-icon>
         
               <span class="mx-4 font-medium">Add User</span>
 
           </a>
 
-          <a class="flex items-center mt-2 py-2 px-8 block text-gray-100 border-r-4 border-gray-800 hover:bg-gray-700 hover:text-gray-100 hover:border-gray-100" href="{% url 'editp'%}">
+          <a class="flex items-center mt-2 py-2 px-8 block text-gray-100 border-r-4 border-gray-800 hover:bg-gray-700 hover:text-gray-100 hover:border-gray-100" href="{% url 'recorderadd'%}">
             
             <ion-icon class="text-2xl" name="create-outline"></ion-icon>
             <span class="mx-4 font-medium">Edit User</span>
@@ -181,107 +181,72 @@
           </nav>
         
         </div>
+
+
+        <div class="col-span-5 sm:col-sm-5 md:col-span-4  p-2  justify-center">
+
+            <div class="md:ml-64">
   
-        <div class=" col-span-4 w-full justify-center">
-
-          <div class="md:ml-2 mt-12">
-      
-
-
-            <div class="grid grid-cols-3 gap-1 ">
-              <div class="bg-blue-300 text-white w-full rounded-sm mx-4 font-medium text-center font-sans
-              text-2xl
-              shadow-lg
-              ">Members : {{farmers}}</div>
-              <div class="bg-red-700 w-full  rounded-sm mx-4 font-medium text-center
-              font-sans
-              text-2xl
-              text-white
-              shadow-lg
-              ">
-                Records : {{Records}}
-              </div>
-              <div class="bg-green-400 w-full  rounded-sm mx-4 font-medium text-center
-              font-sans
-              text-2xl
-              text-white
-              shadow-lg
-              ">
-                Recorders : {{recorders}}
-              </div>
-            </div>
-
-    
-    
-
-
-          </div>
-
-          {% for message in messages %}
-          {% if message %}
-          <div class="">
-          <div class="w-auto md:mt-12 text-center bg-red-100 border border-red-400 text-red-900 px-4 py-4 rounded " role="alert">
-              <span class="block sm:inline">{{message}}</span>
-            </div>
-          </div>
-          {%endif%}
-          {%endfor%}
-
-          {% if mess %}
-          <div class="">
-          <div class="w-auto md:mt-12 text-center bg-red-100 border border-red-400 text-red-900 px-4 py-4 rounded " role="alert">
-              <span class="block sm:inline">{{mess}}</span>
-            </div>
-          </div>
-          {%endif%}
-          
-          <div class="container mt-8">
-            <p class="px-4 text-gray-700 text-2xl font-bold ">Cooperative</p>
-            <table id="example" class="">
-              <thead>
-                <tr>
-                  <!-- <th>leaderphone</th> -->
-                  <th>Username</th>
-                  <th>Email</th>
-                  <th>Current logged in</th>
-                  <th>Date joined</th>
-                  <!-- <th >Operation</th> -->
-                </tr>
-              </thead>
-    
-              <tfoot>
-                <tr>
-                
-                    <!-- <th>leaderphone</th> -->
-                    <th>Username</th>
-                    <th>Email</th>
-                    <th>Current logged in</th>
-                    <th>Date Doined</th>
-                    <!-- <th >Operation</th> -->
-                </tr>
-              </tfoot>
-    
-              <tbody>
-                            {% for dt in Cooperative%}
-                            {%if dt.name%}
-                            {%else%}
-                <tr>
-                  <td class="capitalize">{{dt.name}}</td>
-                  <td >{{dt.username}}</td>
-                  <td class="capitalize">{{dt.email}}</td>
-                  <td>{{dt.last_login}}</td>
-                  <td>{{dt.date_joined}}</td>
-                  <td><a href="{% url 'proove' dt.id%}" class="bg-green-500 mb-2 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">Proovee</a> </td>
-                </tr>
-                {%endif%}
-              {%endfor%}
-              </tbody>
-            </table>
-
-
+      {% for message in messages %}
+      {% if message %}
+      <div class="">
+      <div class="w-auto md:mt-12 text-center bg-red-100 border border-red-400 text-red-900 px-4 py-4 rounded " role="alert">
+          <span class="block sm:inline">{{message}}</span>
         </div>
-      
       </div>
+      {%endif%}
+      {%endfor%}
+  
+  
+      {% if mess %}
+      <div class="">
+      <div class="w-auto md:mt-12 text-center bg-green-100 border border-green-400 text-green-900 px-4 py-4 rounded " role="alert">
+          <span class="block sm:inline">{{mess}}</span>
+        </div>
       </div>
- 
-
+      {%endif%}
+  
+      <form class="bg-white max-w-lg shadow-md" method="POST" action="{% url 'editpro'%}" >
+          {% csrf_token %}
+            <div class="flex flex-wrap  mb-1 mt-4 ">
+             
+             
+              <div class="w-full px-2  ">
+                <label class="block uppercase  text-gray-700 text-xs block uppercase tracking-wide text-xs font-bold mb-2" for="grid-password">
+               Cooperative Name / Username
+                </label>
+            <input value="{{request.user}}" class="form-control" id="grid-password" name="email" type="text" placeholder="jambo@gmail.com">
+            <div class="w-full px-2">
+                <label class="block uppercase tracking-wide text-xs font-bold block text-gray-700 text-sm font-bold mb-2" for="password">
+                  Current Password
+                </label>
+              
+                <input class="form-control" id="t" name="password" type="password" placeholder="******************">
+               
+              
+              </div>
+                <div class="w-full px-2">
+                    <label class="block uppercase tracking-wide text-xs font-bold block text-gray-700 text-sm font-bold mb-2" for="password">
+                      New Password
+                    </label>
+                    <input  class="form-control" id="password" name="pass1" type="password" placeholder="******************">
+                        </div>
+        </div>
+              <div class="justify-end px-3 py-3 mb-3">
+                  <div class="flex items-center justify-between ">
+                      <button class="bg-red-700 hover:bg-blue-700 float-right  text-white float-right  text-gray-700 mb-6 font-semibold hover:text-blue-700 py-2 mr-12 px-8 border border-blue-500 hover:border-transparent shadow-lg rounded" type="submit">
+                       Update 
+                      </button>
+              </div>
+            </div>
+            
+          </form>
+  
+  
+  </div>
+  
+  
+    </div>
+    <center>{% include 'footer.html' %}
+    </center>
+  </div>    

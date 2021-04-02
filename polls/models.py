@@ -55,6 +55,7 @@ class Farmers(models.Model):
         return self.firstname        
 
 class Regfarmer(models.Model):
+    cooperativename=models.ForeignKey(Cooperative, on_delete=models.CASCADE)
     firstname= models.CharField(max_length=255)
     lastname = models.CharField(max_length=255)
     gender = models.CharField(max_length=255)
@@ -74,6 +75,7 @@ class Insurance(models.Model):
     def __str__(self):
         return self.farmercode  
 class Harvestrecord(models.Model):
+    cooperativename=models.ForeignKey(Cooperative, on_delete=models.CASCADE)
     Quantity=models.CharField(max_length=255)
     code=models.ForeignKey(Farmers, on_delete=models.CASCADE)
     firstname=models.CharField(max_length=255) 

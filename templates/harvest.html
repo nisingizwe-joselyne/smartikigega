@@ -6,18 +6,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title> ikigega system</title>
     <link rel="icon" type="icon/jpg"  href="{% static 'image/rice.jpg' %}" >
-    <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet">
+    <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <link rel="stylesheet", href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css", integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z", crossorigin="anonymous">
     <!-- UIkit CSS -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/uikit@3.5.7/dist/css/uikit.min.css" />
-
+<!-- boostrap -->
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script> 
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
 <!-- UIkit JS -->
 <script src="https://cdn.jsdelivr.net/npm/uikit@3.5.7/dist/js/uikit.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/uikit@3.5.7/dist/js/uikit-icons.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
 
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
 <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 </head>
 <style>
@@ -45,7 +48,7 @@ body {
           <div class="flex items-center flex-grow flex-shrink-0 lg:flex-grow-0">
             <div class="flex items-center justify-between w-full md:w-auto">
               <a href="#">
-                <span class="sr-only">Workflow</span>
+                <span class="sr-only">Ikigega</span>
                 <img class="h-8 w-auto sm:h-10" src="{% static 'image/agribusiness.jpg' %}">
               </a>
               <div class="-mr-2 flex items-center md:hidden">
@@ -59,7 +62,7 @@ body {
               </div>
             </div>
           </div>
-          <div class="hidden md:block md:ml-10 md:pr-4 md:space-x-8">
+          <div class="hidden md:block lg:block md:ml-10 md:pr-4 md:space-x-8">
             <a href="/" class="font-medium text-black hover:text-blue-500">home</a>
             <a href="{% url 'pay' %}" class="font-medium text-black hover:text-blue-500">services</a>
             <a href="{% url 'kiny' %}" class="font-medium text-black hover:text-blue-500">kiny</a> 
@@ -107,7 +110,7 @@ body {
             </div>
           </div>
           <div role="menu" aria-orientation="vertical" aria-labelledby="main-menu">
-            <div class="px-2 pt-2 pb-3 space-y-1" role="none">
+            <div class="block md:hidden lg:hidden px-2 pt-2 pb-3 space-y-1" role="none">
               <a href="/" class="block px-3 py-2 rounded-md text-base font-medium text-black hover:text-blue-500 hover:bg-gray-50" role="menuitem">home</a>
               <a href="{% url 'pay' %}" class="block px-3 py-2 rounded-md text-base font-medium text-black hover:text-blue-500 hover:bg-gray-50" role="menuitem">Srevices</a>
               <a href="{% url 'kiny' %}" class="block px-3 py-2 rounded-md text-base font-medium text-black hover:text-blue-500 hover:bg-gray-50" role="menuitem">kiny</a> 
@@ -124,7 +127,7 @@ body {
       </div>
 
       <main class="mt-10 mx-auto max-w-7xl px-4 sm:mt-12 sm:px-6 md:mt-16 lg:mt-20 lg:px-8 xl:mt-28 ">
-        <div class="sm:text-center lg:text-left shadow-2xl">
+        <div class="hidden md:block lg:block sm:text-center lg:text-left shadow-2xl">
           <h1 class="text-4xl tracking-tight font-extrabold text-gray-900 sm:text-5xl md:text-6xl">
             <span class="block xl:inline px-8" data-aos="zoom-out-down">Welcome to Smart </span>
             <span class="block text-indigo-600 xl:inline px-8"  data-aos="zoom-out-down" > Ikigega platform</span>
@@ -134,6 +137,18 @@ body {
             in digitalized way through harvesting
             management system.
           </p>
+        </div>
+        <div className="block md:hidden lg:hidden">
+          <h1 className="text-4xl tracking-tight font-extrabold text-gray-900 sm:text-5xl md:text-6xl">
+            <span className="block xl:inline">welcome to</span>
+            <span className="block text-indigo-600 xl:inline">smart Ikigega platform</span>
+          </h1>
+          <p className="mt-3 text-base text-gray-500 sm:mt-5 sm:text-lg sm:max-w-xl sm:mx-auto md:mt-5 md:text-xl lg:mx-0">
+       Expanding agriculture on other level
+       in digitalized way through harvesting
+       management system.
+          </p>
+          </div>
           <div class="mt-5 sm:mt-8 sm:flex sm:justify-center lg:justify-start">
             <div class="rounded-md shadow px-8">
               <a href="{% url 'signin' %}" class="w-full flex items-center justify-center  py-3 text-base font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 md:py-4 md:text-lg md:px-10 px-4" data-aos="zoom-out-down">
@@ -152,7 +167,7 @@ body {
             </div>
 
           </div>
-        </div>
+        
       </main>
     </div>
   </div>

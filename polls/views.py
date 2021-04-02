@@ -27,6 +27,10 @@ def welcome(request):
     return render(request,'harvest.html') 
 def kiny(request):
     return render(request,'kiny.html') 
+def editp(request):
+    return render(request,'editp.html')  
+def addus(request):
+    return render(request,'addus.html')        
 def index(request):
     return render(request,'index.html') 
 def cooperative(request):
@@ -51,7 +55,10 @@ def record(request):
 def recorderadd(request):
     return render(request,'addrecorder.html')  
 def adminsignin(request):
-    return render(request,'adminsignin.html')       
+    return render(request,'adminsignin.html')  
+def cooaddfarmer(request):
+    return render(request,'cooaddfarmer.html')    
+
     # ussd
 @csrf_exempt
 def digital (request):
@@ -235,10 +242,7 @@ def digitalapp(request):
                     response='CON shyiramo ingano yumusaruro mu biro cg litiro '+str(level)+' \n'
                 else:
                     response='END code mwashyizemo ntibaho '+str(level[1])+' \n'      
-            # elif num == '1*1' and int(len(level))==3 and str(level[2]) in str(level):    
-            #     response = 'CON shyiramo ingano yumusaruro mu biro cg litiro '+str(level)+'\n'     
-                    # else:
-                    #    response = 'END code washyizemo ntibaho '+str(level)+' \n'
+           
         
             elif num == '1*1' and int(len(level))==3 and str(level[2]) in str(level):
                 response = 'CON shyiramo amafaranga ugiye kwishyura \n' 
@@ -503,6 +507,42 @@ class RecordingAuthToken:
             })
         return JsonResponse({"message":"not registerd as Recorder"},status=400)
 
+
+def editpro(request):
+    tur=request.user
+    pas=User.objects.get(username=tur)
+    prof=Profilecooperative.objects.filter(cooperative=str(tur))
+    cname=pas.username
+    cpassword=pas.password
+    workers=Recorder.objects.filter(cooperativename=cname)
+    farmers=Farmers.objects.filter(cooperativename=cname)
+    Records=Harvestrecord.objects.filter(cooperativename=cname)
+    if request.method=='POST':
+        username=request.POST['email']
+        passw=request.POST['password']
+        pass2=request.POST['pass1']
+        newpass=make_password(pass2)
+        if check_password(passw,cpassword) ==True:
+            pas.username=username
+            pas.password=newpass
+            pas.save()
+            for dt in workers:
+                dt.cooperativename=username
+                dt.save()
+            for dt in farmers:
+                dt.instutename=username
+                dt.save()
+            for dt in Records:
+                dt.instutename=username
+                dt.save()
+            auth.logout(request)
+            return redirect('login')
+        else:
+            messages.info(request,'please enter existing password')
+            return redirect('editpro')
+    else:
+        return render(request,'editpro.html',{'pas':pas,'prof':prof})       
+
 #  def logout(request):
 #         auth.logout(request)
 #     return redirect('/')
@@ -654,6 +694,7 @@ def Harvestrecording(request):
     select = Farmers.objects.all()
     if request.method == 'POST':
         Quantity = request.POST['Quantity']
+        cooperativename = request.POST['cooperativename']
         code = request.POST['code']
         firstname =request.POST['firstname']
         donetime = request.POST['donetime']
@@ -676,7 +717,7 @@ def Harvestrecording(request):
                     print(idsn)
                     coden=Farmers.objects.get(id=int(idsn))
                     if coden.exists:
-                        insert = Harvestrecord.objects.create(Quantity=Quantity,code=coden,telephone=telephone,donetime=donetime,donedate=donedate,email=email,firstname=firstname)
+                        insert = Harvestrecord.objects.create(Quantity=Quantity,code=coden,telephone=telephone,cooperativename=cooperativename,donetime=donetime,donedate=donedate,email=email,firstname=firstname)
                         insert.save()
                         mess=email
                         return render(request,'record.html',{'message':'data submitted successful','mess':mess,'data':select})
@@ -862,10 +903,10 @@ def user(request):
             else:
                 pass
             mess='Dear '+str(firstname) +' '+str(lastname) +'\n'+'your code is : '+str(nost)     
-            return render(request,'user.html',{'site':site,'mess':mess,'register':reg})
+            return render(request,'user.html',{'mess':mess,'register':reg})
 
     else:
-        return render(request,'failed.html',{mess:'not created'})
+        return render(request,'user.html',{mess:'not created'})
         # if prof.exists():
         #     if Payment.objects.filter(chur_name=str(request.user)).exists():
         #         #print('mpwmw')
@@ -981,7 +1022,7 @@ def addRecorder(request):
                 password=str(name)+str(rand)
                 if Recorder.objects.filter(username=email).exists():
                     messages.info(request,'Email have already used')
-                    return redirect('adduser')
+                    return redirect('addus')
                 else:
                     subject='Thank you for Using SmartIkigega '
                     message='Dear '+name +'\n'+'https://smartikigega.herokuapp.com//login/'+'\n'+'Username: '+email+'\n'+'Password: '+password+'\n'+'Thank you are now employed by'+str(request.user)
@@ -993,8 +1034,111 @@ def addRecorder(request):
                     return render(request,'addRecorder.html',{'mess':mess})
             else:
                 return render(request,'addRecorder.html',{prof:'prof'})
-        
 
+def membersli(request):
+    prof=Profilecooperative.objects.filter(cooperativename=str(request.user))
+    Rec=Recorder.objects.filter(cooperativename=str(request.user))
+    Farm=Farmers.objects.filter(cooperativename=str(request.user)).order_by('-id')
+    return render(request,'bookedli.html',{'prof':prof,'Rec':Rec,'Farm':Farm})
+    
+        
+def adduser(request):
+    if str(request.user)=='AnonymousUser':
+            return redirect('index')
+    else:
+        if User.objects.filter(user=str(request.user)):
+                return redirect('addus')
+        else:
+            
+            prof=Profilecooperative.objects.filter(cooperativename=str(request.user))
+            if request.method=='POST':
+                email=request.POST['username']
+                name=request.POST['name']
+                rand=random.randint(1111,99999)
+                passw=str(name)+str(rand)
+                if User.objects.filter(username=email).exists():
+                    messages.info(request,'Email have already used')
+                    return redirect('addus')
+                else:
+                    subject='Thank you for Smart ikigega'
+                    message='Dear '+name+'  ' +'\n'+'https://smartikigega.herokuapp.com/login/'+'\n'+'Username: '+email+'\n'+'Password: '+passw+'\n'+'Thank you are now employed by'+str(request.user)
+                    from_email=settings.EMAIL_HOST_USER
+                    rt=send_mail(subject,message,from_email,[str(email),],fail_silently=True)
+                    User.objects.create_user(name=name,email=email,username=email,password=passw).save()
+                    Recorder.objects.create(cooprativename=str(request.user),user=email).save()
+                    mess='added sucessfully'
+                    return render(request,'addus.html',{'mess':mess})
+            else:
+                return render(request,'addus.html',{'prof':prof})
+
+                # registration of farmers in cooperative
+def CooFarmerreg(request):
+    # ty=Recorder.objects.filter(user=str(request.user))
+    # for tr in ty:
+    #     gy=tr.cooperativename
+    # prof=Profilecooperative.objects.filter(cooperativename=gy)
+    # # zipcod=Zipcodes.objects.all()
+    # lastcode=Farmers.objects.all().order_by('-pub_date')[:1]
+    # lastcodes=lastcode.count()
+    # inst=Recorder.objects.get(user=request.user)
+    # cooperative=inst.cooperativename
+    # for gt in lastcode:
+    #     codf=gt.code
+    def random_with_N_digits(n):
+        range_start = 10**(n-1)
+        range_end = (10**n)-1
+        return randint(range_start, range_end)
+    nost = random_with_N_digits(6)
+    if request.method=='POST':
+        firstname=request.POST['firstname']
+        cooperativename=request.POST['cooperativename']
+        lastname=request.POST['lastname']
+        gender=request.POST['gender']
+        harvesttype=request.POST['harvesttype']
+        tel=request.POST['number']
+        # tel=request.POST['number']
+        telephone =tel[1:]
+        now = datetime.datetime.now()
+        village=request.POST['village']
+        email=request.POST['email']
+        district =request.POST['district']
+        sector = request.POST['sector']
+        cell = request.POST['cell']
+        years=now.year
+        newcode=str(years)+str(1)
+        one=1
+        print(telephone)
+        lastnum=Regfarmer.objects.filter(number=telephone)
+        nums=lastnum.count()
+        print(nums)
+        if nums <= 12:
+            Regfarmer.objects.create(district=district,sector=sector,village=village,cell=cell,email=email,firstname=firstname,lastname=lastname,gender=gender,number=telephone,harvesttype=harvesttype,cooperativename=cooperativename,code= nost).save()
+        
+            mess='Hey '+firstname+'\n Your Code :'+str(nost)
+            if email != None or tel !=None:
+                subject='Thank you for Using smartikigega'
+                message='Dear '+firstname +' '+lastname +'\n'+'your new SmartIkigega code is : '+str(nost)
+                from_email=settings.EMAIL_HOST_USER
+                rt=send_mail(subject,message,from_email,[str(email),],fail_silently=True)
+                #account_sid = 'AC1b41153cd2a60b01893bb9740d2fd875'
+                #auth_token = 'efa2a032ba78dff3111fce2efafa5940'
+                #client =Client(account_sid, auth_token)
+                #message = client.messages.create(body='your Code is: '+nost,from_='+16305280341',to='+250784447864')
+                # sendsms = requests.post('http://rslr.connectbind.com:8080/bulksms/bulksms?username=1212-pathos&password=Chance@1&type=0&dlr=1&destination='+str(tel)+'&source=CityPlus&message='+str(mess)+'')
+                # pass
+            else:
+                pass
+            return render(request,'farmerreg.html',{'mess':mess})
+
+        else:
+            return render(request,'farmerreg.html')
+
+    else:
+
+        return render(request,'farmerreg.html')
+
+
+                # registration of farmers independently
 def Farmerreg(request):
     # ty=Recorder.objects.filter(user=str(request.user))
     # for tr in ty:
@@ -1063,13 +1207,13 @@ def Farmerreg(request):
 def dashboard(request):
     if request.user.is_superuser:
         cooperatives=User.objects.all()
-        farmers=Farmers.objects.all()
-        # farmers=Farmers.count()
+        farmers=Regfarmer.objects.all()
+        farmers=farmers.count()
         Record=Harvestrecord.objects.all()
-        # Record=Record.count()
-        # recorder=recorder.objects.all()
-        # recorder=recorder.count()
+        Records=Record.count()
+        recorder=Recorder.objects.all()
+        recorders=recorder.count()
 
-        return render(request,'dashboard.html',{'cooperatives':cooperatives,'farmers':farmers,'Record':Record})
+        return render(request,'dashboard.html',{'cooperatives':cooperatives,'farmers':farmers,'Records':Records,'recorders':recorders})
     else:
         return render(request,'index.html')
