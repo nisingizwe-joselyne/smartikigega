@@ -1108,11 +1108,11 @@ def CooFarmerreg(request):
         newcode=str(years)+str(1)
         one=1
         print(telephone)
-        lastnum=Regfarmer.objects.filter(number=telephone)
+        lastnum=Regfarmer.objects.filter(telephone=telephone)
         nums=lastnum.count()
         print(nums)
         if nums <= 12:
-            Regfarmer.objects.create(district=district,sector=sector,village=village,cell=cell,email=email,firstname=firstname,lastname=lastname,gender=gender,number=telephone,harvesttype=harvesttype,cooperativename=cooperativename,code= nost).save()
+            Regfarmer.objects.create(district=district,sector=sector,village=village,cell=cell,email=email,firstname=firstname,lastname=lastname,gender=gender,telephone=telephone,harvesttype=harvesttype,cooperativename=cooperativename,code= nost).save()
         
             mess='Hey '+firstname+'\n Your Code :'+str(nost)
             if email != None or tel !=None:
