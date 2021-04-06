@@ -407,9 +407,9 @@ def digitalapp(request):
             #     response += '4.amata \n'   
             elif int(st)== 2  and int(len(level))==3  and   str(level[2]) in str(level): 
                 response = "CON shyiramo umubare  wamafaranga ugiye kwishyura \n"   
-            elif int(st)== 2  and int(len(level))==5  and   str(level[4]) in str(level): 
-                response = "CON ugiye kwishyura" +str(level[4])+ 'kuri' +str(level[2]) + "shyiramo umubare wibanga wemeze \n"
-            elif int(st)== 2  and int(len(level))==6  and   str(level[5]) in str(level):   
+            elif int(st)== 2  and int(len(level))==4  and   str(level[3]) in str(level): 
+                response = "CON ugiye kwishyura" +str(level[3])+ 'kuri' +str(level[2]) + "shyiramo umubare wibanga wemeze \n"
+            elif int(st)== 2  and int(len(level))==5  and   str(level[4]) in str(level):   
                 code= str(level[2])
                 Quantity=str(level[3])
                 insert =Harvestrecord(code=code,Quantity=Quantity)
