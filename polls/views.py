@@ -408,10 +408,10 @@ def digitalapp(request):
             elif int(st)== 2  and int(len(level))==3  and   str(level[2]) in str(level): 
                 response = "CON shyiramo umubare  wamafaranga ugiye kwishyura \n"   
             elif int(st)== 2  and int(len(level))==4  and   str(level[3]) in str(level): 
-                response = "CON ugiye kwishyura" +str(level[3])+ 'kuri' +str(level[2]) + "shyiramo umubare wibanga wemeze \n"
+                response = "CON ugiye kwishyura" +str(level[3])+ 'kuri' +str(level[1]) + "shyiramo umubare wibanga wemeze \n"
             elif int(st)== 2  and int(len(level))==5  and   str(level[4]) in str(level):   
-                code= str(level[2])
-                Quantity=str(level[3])
+                code= str(level[1])
+                Quantity=str(level[2])
                 insert =Harvestrecord(code=code,Quantity=Quantity)
                 try:
                 
