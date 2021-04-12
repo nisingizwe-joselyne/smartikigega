@@ -487,7 +487,7 @@ class RecordingAuthToken:
         print(user)
 
         
-        token, created = Token.objects.get_or_create(user=user)
+        token,created = Token.objects.get_or_create(user=user)
         recording=Recorder.objects.filter(user=user)
 
         for dt in recording:
@@ -662,10 +662,10 @@ def login(request):
         else:
             print(userd)
             print(pass1)
-            return render(request,'signin.html',{'message':'check your username and password' })
+            return render(request,'adminsignin.html',{'message':'check your username and password' })
             
     else:
-        return render(request,'signin.html')
+        return render(request,'adminsignin.html')
 
 
 def loginadmin(request):
@@ -673,22 +673,22 @@ def loginadmin(request):
         userd=request.POST['email']
         pass1=request.POST['password']
         user=auth.authenticate(username=userd,password=pass1)
-        if user is not None:
+        if username is not None:
             auth.login(request,user)
             if User.objects.filter(username=request.user).exists():
                 return redirect('dashboard')
-            # elif Active.objects.filter(user=request.user).exists():
-            #     return redirect('record')
+                # elif Active.objects.filter(user=request.user).exists():
+               #     return redirect('record')
             else:
-                return render(request,'signin.html',{'message':'make sure if your account is registred' })
+                return render(request,'adminsignin.html',{'message':'make sure if your account is registred' })
         else:
             print(userd)
             print(pass1)
-            return render(request,'signin.html',{'message':'check your username and password' })
+            return render(request,'adminsignin.html',{'message':'check your username and password' })
             
     else:
-        return render(request,'signin.html')
-    return render(request,'signin.html')    
+        return render(request,'adminsignin.html')
+        
 
 def Harvestrecording(request):
     select = Farmers.objects.all()
@@ -787,11 +787,9 @@ def registration(request):
                 if passleng>=8:
 
                     if User.objects.filter(username=Name).exists():
-                        messages.info(request,'cooperativename already exist taken')
-                        return redirect('register')
+                        return render(request,'cooperative.html',{'message':'cooperative already exist' })
                     elif User.objects.filter(email=email).exists():
-                        messages.info(request,'Email is already exist taken')
-                        return redirect('register')
+                        return render(request,'cooperative.html',{'message':'email already exist' })
                     else:
                         subject='Verification from smart ikigega'
                         message='This link is for activating your account on smart ikigega'+'\n'+'your Username:  '+Name+'\n'+'https://smartikigega.herokuapp.com/activation/'+email+'/'+signer.sign(email)
@@ -952,14 +950,14 @@ def inside(request):
         works=work.count()
         # num=Contact.objects.filter(user=request.user)
         if prof.exists():
-            if Payment.objects.filter(name=str(user)).exists():
-                return render(request,'inside1.html',{'prof':Profilecooperative,'Farmers':clien,'meas':meas,'works':works,'measr':measr})
-            else:
-                pay=1
-                instal=20000
-                bulk=10000
-                total=instal+bulk
-                return render(request,'inside1.html',{'bulk':bulk,'total':total,'instal':instal,'pay':pay,'prof':prof,'clien':clien,'meas':meas,'works':works,'measr':measr})
+            # if Payment.objects.filter(name=str(user)).exists():
+            return render(request,'inside1.html',{'prof':Profilecooperative,'Farmers':clien,'meas':meas,'works':works,'measr':measr})
+            # else:
+            #     pay=1
+            #     instal=20000
+            #     bulk=10000
+            #     total=instal+bulk
+            #     return render(request,'inside1.html',{'bulk':bulk,'total':total,'instal':instal,'pay':pay,'prof':prof,'clien':clien,'meas':meas,'works':works,'measr':measr})
 
         else:
             return redirect('upload')        
@@ -977,9 +975,9 @@ def upload(request):
             return render(request,'upload.html')       
 def activate(request):
     if request.method=='POST':
-        user=request.POST['email']
+        user=request.POST['username']
         password=request.POST['password']
-        user=auth.authenticate(email=user,password=password)
+        user=auth.authenticate(username=user,password=password)
         if user is not None:
             auth.login(request,user)
             if Active.objects.filter(user=request.user).exists():
@@ -988,8 +986,7 @@ def activate(request):
                 Active.objects.create(user=request.user,activate=True).save()
                 return redirect('inside')
         else:
-            messages.info(request,'incorect password')
-            return redirect('activate')
+            return render(request,'activate.html',{'message':'incorect password and username' })
     else:
         return render(request,'activate.html')
 
