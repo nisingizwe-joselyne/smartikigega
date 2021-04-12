@@ -39,6 +39,7 @@ urlpatterns=[
     path('coofarmerreg/',views.CooFarmerreg,name='coofarmerreg'),
     path('addrecorder/',views.addRecorder,name='addrecorder'),
     path('login/', views.login, name='login'),
+    path('inside/',views.inside,name='inside'),
     path('loginadmin/', views.loginadmin, name='loginadmin'),
     path('logout/', views.logout, name='logout'),
     path('editpro/',views.editpro,name='editpro'),

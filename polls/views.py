@@ -965,7 +965,7 @@ def inside(request):
 def upload(request):
     profiles=Profilecooperative.objects.filter(cooperativename=str(request.user))
     if profiles.exists():
-        return redirect('inside')
+        return redirect('dashboard')
     else:
         if request.method =='POST':
             img=request.FILES['image']
@@ -981,10 +981,10 @@ def activate(request):
         if user is not None:
             auth.login(request,user)
             if Active.objects.filter(user=request.user).exists():
-                return redirect('inside')
+                return redirect('dashboard')
             else:
                 Active.objects.create(user=request.user,activate=True).save()
-                return redirect('inside')
+                return redirect('dashboard')
         else:
             return render(request,'activate.html',{'message':'incorect password and username' })
     else:
