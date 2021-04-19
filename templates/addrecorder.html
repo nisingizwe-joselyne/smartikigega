@@ -5,76 +5,77 @@
         <button type="button" id="modalbtn" class="btn block md:hidden" data-toggle="modal" data-placement="left" data-target="#exampleModalLong">
         <ion-icon class="text-4xl " name="reorder-four-sharp"></ion-icon>
     </button>
-    <div id="simplemodal" class="modal">
-    <div class="modal-content  h-full">
-      <span id="closeBtn" class="closeBtn ml-32 ">
-      <ion-icon class=" text-3xl  ml-20 floart-right mt-4" name="close"></ion-icon></span>
-      <nav class="mt-2">
-        <a class="flex items-center py-2 px-8 block bg-gray-700 text-gray-100 border-r-4 border-gray-100" href="{% url 'dashboard' %}">
-          <span class="text-white text-2xl"><ion-icon  name="home-outline"></ion-icon> </span>
-  
-            <span class="mx-4 font-medium">Home</span>
+    
+    
+<div id="simplemodal" class="modal">
+        <div class="modal-content  h-full">
+            <span id="closeBtn" class="closeBtn ml-32 ">
+            <ion-icon class=" text-3xl  ml-20 floart-right mt-4" name="close"></ion-icon></span>
+            <nav class="mt-2">
+              <a class="flex items-center py-2 px-8 block bg-gray-700 text-gray-100 border-r-4 border-gray-100" href="{% url 'dashboard' %}">
+                <span class="text-white text-2xl"><ion-icon  name="home-outline"></ion-icon> </span>
+        
+                  <span class="mx-4 font-medium">Home</span>
+              </a>
+        
+              <a class="flex items-center mt-5 py-2 px-8 block text-gray-700 border-r-4 border-gray-800 hover:bg-gray-700 hover:text-gray-100 hover:border-gray-100" href="{% url 'recorderadd' %}">
+                <ion-icon class="text-2xl" name="people-outline"></ion-icon>
+        
+                  <span class="mx-4 font-medium">add Recorder</span>
+              </a>
+              <a class="flex items-center mt-5 py-2 px-8 block text-gray-700 border-r-4 border-gray-800 hover:bg-gray-700 hover:text-gray-100 hover:border-gray-100" href="{% url 'cooaddfarmer' %}">
+                <ion-icon class="text-2xl" name="list-outline"></ion-icon>
+        
+        
+                  <span class="mx-4 font-medium">add farmer</span>
+              </a>
+              <!-- <a class="flex items-center mt-5 py-2 px-8 block text-gray-700 border-r-4 border-gray-800 hover:bg-gray-700 hover:text-gray-100 hover:border-gray-100" href="{% url 'dashboard' %}">
+                <ion-icon class="text-2xl" name="list-outline"></ion-icon>
+        
+        
+                  <span class="mx-4 font-medium">Report</span>
+              </a> -->
+        
+              <!-- <a class="flex items-center mt-5 py-2 px-8 block text-gray-700 border-r-4 border-gray-800 hover:bg-gray-700 hover:text-gray-100 hover:border-gray-100" href="{% url 'regfarmpage'%}">
+                <ion-icon class="text-2xl" name="search-outline"></ion-icon>
+        
+                  <span class="mx-4 font-medium">Codes</span>
+              </a> -->
+              <a class="flex items-center mt-5 py-2 px-8 block text-gray-700 border-r-4 border-gray-800 hover:bg-gray-700 hover:text-gray-100 hover:border-gray-100" href="{% url 'members-list/get'%}">
+                <ion-icon class="text-2xl" name="person-outline"></ion-icon>
+                <span class="mx-4 font-medium">Users</span>
+            </a>
+
+            <a class="flex items-center mt-5 py-2 px-8 block text-gray-700 border-r-4 border-gray-800 hover:bg-gray-700 hover:text-gray-100 hover:border-gray-100" href="{% url 'members-list/get' %}">
+              <ion-icon class="text-2xl" name="people-outline"></ion-icon>
+      
+                <span class="mx-4 font-medium">List of Member</span>
+            </a>
+
+           
+        
+            <a class="flex items-center mt-5 py-2 px-8 block text-gray-700 border-r-4 border-gray-800 hover:bg-gray-700 hover:text-gray-100 hover:border-gray-100" href="{% url 'addus'%}">
+              <ion-icon class="text-2xl" name="person-add-outline"></ion-icon>
+        
+              <span class="mx-4 font-medium">Add User</span>
+          </a>
+
+          <a class="flex items-center mt-5 py-2 px-8 block text-gray-700 border-r-4 border-gray-800 hover:bg-gray-700 hover:text-gray-100 hover:border-gray-100" href="{% url 'editp'%}">
+            <ion-icon class="text-2xl" name="person-add-outline"></ion-icon>
+      
+            <span class="mx-4 font-medium">Edit User</span>
         </a>
-  
-        <a class="flex items-center mt-5 py-2 px-8 block text-gray-700 border-r-4 border-gray-800 hover:bg-gray-700 hover:text-gray-100 hover:border-gray-100" href="{% url 'recorderadd' %}">
-          <ion-icon class="text-2xl" name="people-outline"></ion-icon>
-  
-            <span class="mx-4 font-medium">add Recorder</span>
+
+      
+        
+          <a class="flex items-center mt-5 py-2 px-8 block text-gray-700 border-r-4 border-gray-800 hover:bg-gray-700 hover:text-gray-100 hover:border-gray-100"  href="{% url 'logout'%}" >
+         
+              <ion-icon class="text-2xl text-white" name="log-out-outline"></ion-icon>
+        
+            <span class="mx-4 font-medium">Logout</span>
         </a>
-        <a class="flex items-center mt-5 py-2 px-8 block text-gray-700 border-r-4 border-gray-800 hover:bg-gray-700 hover:text-gray-100 hover:border-gray-100" href="{% url 'regfarmpage' %}">
-          <ion-icon class="text-2xl" name="list-outline"></ion-icon>
-  
-  
-            <span class="mx-4 font-medium">add farmer</span>
-        </a>
-        <a class="flex items-center mt-5 py-2 px-8 block text-gray-700 border-r-4 border-gray-800 hover:bg-gray-700 hover:text-gray-100 hover:border-gray-100" href="{% url 'dashboard' %}">
-          <ion-icon class="text-2xl" name="list-outline"></ion-icon>
-  
-  
-            <span class="mx-4 font-medium">Report</span>
-        </a>
-  
-        <a class="flex items-center mt-5 py-2 px-8 block text-gray-700 border-r-4 border-gray-800 hover:bg-gray-700 hover:text-gray-100 hover:border-gray-100" href="{% url 'regfarmpage'%}">
-          <ion-icon class="text-2xl" name="search-outline"></ion-icon>
-  
-            <span class="mx-4 font-medium">Codes</span>
-        </a>
-        <a class="flex items-center mt-5 py-2 px-8 block text-gray-700 border-r-4 border-gray-800 hover:bg-gray-700 hover:text-gray-100 hover:border-gray-100" href="{% url 'work'%}">
-          <ion-icon class="text-2xl" name="person-outline"></ion-icon>
-          <span class="mx-4 font-medium">Users</span>
-      </a>
-
-      <a class="flex items-center mt-5 py-2 px-8 block text-gray-700 border-r-4 border-gray-800 hover:bg-gray-700 hover:text-gray-100 hover:border-gray-100" href="{% url 'regfarmpage' %}">
-        <ion-icon class="text-2xl" name="people-outline"></ion-icon>
-
-          <span class="mx-4 font-medium">List of Member</span>
-      </a>
-
-     
-  
-      <a class="flex items-center mt-5 py-2 px-8 block text-gray-700 border-r-4 border-gray-800 hover:bg-gray-700 hover:text-gray-100 hover:border-gray-100" href="{% url 'recorderadd'%}">
-        <ion-icon class="text-2xl" name="person-add-outline"></ion-icon>
-  
-        <span class="mx-4 font-medium">Add User</span>
-    </a>
-
-    <a class="flex items-center mt-5 py-2 px-8 block text-gray-700 border-r-4 border-gray-800 hover:bg-gray-700 hover:text-gray-100 hover:border-gray-100" href="{% url 'regfarmpage'%}">
-      <ion-icon class="text-2xl" name="person-add-outline"></ion-icon>
-
-      <span class="mx-4 font-medium">Edit User</span>
-  </a>
-
-
-  
-    <a class="flex items-center mt-5 py-2 px-8 block text-gray-700 border-r-4 border-gray-800 hover:bg-gray-700 hover:text-gray-100 hover:border-gray-100"  href="{% url 'logout'%}" >
-   
-        <ion-icon class="text-2xl text-white" name="log-out-outline"></ion-icon>
-  
-      <span class="mx-4 font-medium">Logout</span>
-  </a>
-    </nav>
- </div>
-
+          </nav>
+       </div>
 
 </div>
            </div>
@@ -107,79 +108,79 @@
 
 
   <div class="grid grid-cols-5 h-full ">
-    <div class="w-full  bg-gray-800  sm:mt-0 hidden md:block">
-      <div class="flex items-center justify-center ">
-        {% for dt in prof %}
-        <img src="{{dt.image.url}}" class="w-24 h-24 rounded-full mt-4 "/>
-      
-      {%endfor%}
-      </div>
-    
-      <nav class="mt-2 ">
-          <a class="flex items-center py-2 px-8 block bg-gray-700 text-gray-100 border-r-4 border-gray-100" href="{% url 'dashboard'%}">
-            <span class="text-white text-2xl"><ion-icon  name="home-outline"></ion-icon> </span>
-    
-              <span class="mx-4 font-medium">Home</span>
+        <div class="w-full  bg-gray-800  sm:mt-0 hidden md:block">
+          <div class="flex items-center justify-center ">
+            {% for dt in prof %}
+            <img src="{{dt.image.url}}" class="w-24 h-24 rounded-full mt-4 "/>
+          
+          {%endfor%}
+          </div>
+        
+          <nav class="mt-2 ">
+              <a class="flex items-center py-2 px-8 block bg-gray-700 text-gray-100 border-r-4 border-gray-100" href="{% url 'dashboard'%}">
+                <span class="text-white text-2xl"><ion-icon  name="home-outline"></ion-icon> </span>
+        
+                  <span class="mx-4 font-medium">Home</span>
+              </a>
+        
+              <a class="flex items-center mt-2 py-2 px-8 block text-gray-100 border-r-4 border-gray-800 hover:bg-gray-700 hover:text-gray-100 hover:border-gray-100" href="{% url 'cooaddfarmer'%}">
+                <ion-icon class="text-2xl" name="people-outline"></ion-icon>
+        
+                  <span class="mx-4 font-medium">Add farmer</span>
+              </a>
+              <a class="flex items-center mt-2 py-2 px-8 block text-gray-100 border-r-4 border-gray-800 hover:bg-gray-700 hover:text-gray-100 hover:border-gray-100" href="{% url 'recorderadd' %}">
+                <ion-icon class="text-2xl" name="people-outline"></ion-icon>
+        
+                  <span class="mx-4 font-medium">Add Recorder</span>
+              </a>
+              <a class="flex items-center mt-2 py-2 px-8 block text-gray-100 border-r-4 border-gray-800 hover:bg-gray-700 hover:text-gray-100 hover:border-gray-100" href="{% url 'members-list/get' %}">
+                <ion-icon class="text-2xl" name="people-outline"></ion-icon>
+        
+                  <span class="mx-4 font-medium">List of members</span>
+              </a>
+        
+              <!-- <a class="flex items-center mt-2 py-2 px-8 block text-gray-100 border-r-4 border-gray-800 hover:bg-gray-700 hover:text-gray-100 hover:border-gray-100" href="{% url 'regfarmpage'%}">
+                <ion-icon class="text-2xl" name="list-outline"></ion-icon>
+        
+        
+                  <span class="mx-4 font-medium">Report</span>
+              </a>
+        
+              <a class="flex items-center mt-2 py-2 px-8 block text-gray-100 border-r-4 border-gray-800 hover:bg-gray-700 hover:text-gray-100 hover:border-gray-100" href="{% url 'dashboard'%}">
+                <ion-icon class="text-2xl" name="search-outline"></ion-icon>
+        
+                  <span class="mx-4 font-medium">Codes</span>
+              </a> -->
+              <a class="flex items-center mt-2 py-2 px-8 block text-gray-100 border-r-4 border-gray-800 hover:bg-gray-700 hover:text-gray-100 hover:border-gray-100" href="{% url 'members-list/get'%}">
+                <ion-icon class="text-2xl" name="person-outline"></ion-icon>
+                <span class="mx-4 font-medium">Users</span>
+            </a>
+
+
+            <a class="flex items-center mt-2 py-2 px-8 block text-gray-100 border-r-4 border-gray-800 hover:bg-gray-700 hover:text-gray-100 hover:border-gray-100" href="{% url 'addus'%}">
+              <ion-icon class="text-2xl" name="person-add-outline"></ion-icon>
+        
+              <span class="mx-4 font-medium">Add User</span>
+
           </a>
-    
-          <a class="flex items-center mt-2 py-2 px-8 block text-gray-100 border-r-4 border-gray-800 hover:bg-gray-700 hover:text-gray-100 hover:border-gray-100" href="{% url 'regfarmpage'%}">
-            <ion-icon class="text-2xl" name="people-outline"></ion-icon>
-    
-              <span class="mx-4 font-medium">Add farmer</span>
-          </a>
-          <a class="flex items-center mt-2 py-2 px-8 block text-gray-100 border-r-4 border-gray-800 hover:bg-gray-700 hover:text-gray-100 hover:border-gray-100" href="{% url 'recorderadd' %}">
-            <ion-icon class="text-2xl" name="people-outline"></ion-icon>
-    
-              <span class="mx-4 font-medium">Add Recorder</span>
-          </a>
-          <a class="flex items-center mt-2 py-2 px-8 block text-gray-100 border-r-4 border-gray-800 hover:bg-gray-700 hover:text-gray-100 hover:border-gray-100" href="{% url 'recorderadd' %}">
-            <ion-icon class="text-2xl" name="people-outline"></ion-icon>
-    
-              <span class="mx-4 font-medium">List of farmers</span>
-          </a>
-    
-          <a class="flex items-center mt-2 py-2 px-8 block text-gray-100 border-r-4 border-gray-800 hover:bg-gray-700 hover:text-gray-100 hover:border-gray-100" href="{% url 'regfarmpage'%}">
-            <ion-icon class="text-2xl" name="list-outline"></ion-icon>
-    
-    
-              <span class="mx-4 font-medium">Report</span>
-          </a>
-    
-          <a class="flex items-center mt-2 py-2 px-8 block text-gray-100 border-r-4 border-gray-800 hover:bg-gray-700 hover:text-gray-100 hover:border-gray-100" href="{% url 'dashboard'%}">
-            <ion-icon class="text-2xl" name="search-outline"></ion-icon>
-    
-              <span class="mx-4 font-medium">Codes</span>
-          </a>
-          <a class="flex items-center mt-2 py-2 px-8 block text-gray-100 border-r-4 border-gray-800 hover:bg-gray-700 hover:text-gray-100 hover:border-gray-100" href="{% url 'work'%}">
-            <ion-icon class="text-2xl" name="person-outline"></ion-icon>
-            <span class="mx-4 font-medium">Recorders</span>
+
+          <a class="flex items-center mt-2 py-2 px-8 block text-gray-100 border-r-4 border-gray-800 hover:bg-gray-700 hover:text-gray-100 hover:border-gray-100" href="{% url 'editp'%}">
+            
+            <ion-icon class="text-2xl" name="create-outline"></ion-icon>
+            <span class="mx-4 font-medium">Edit User</span>
         </a>
 
 
-        <a class="flex items-center mt-2 py-2 px-8 block text-gray-100 border-r-4 border-gray-800 hover:bg-gray-700 hover:text-gray-100 hover:border-gray-100" href="{% url 'recorderadd'%}">
-          <ion-icon class="text-2xl" name="person-add-outline"></ion-icon>
-    
-          <span class="mx-4 font-medium">Add User</span>
 
-      </a>
-
-      <a class="flex items-center mt-2 py-2 px-8 block text-gray-100 border-r-4 border-gray-800 hover:bg-gray-700 hover:text-gray-100 hover:border-gray-100" href="{% url 'recorderadd'%}">
+          <a class="flex items-center  mt-2 mb-6 py-2 px-8 block text-gray-100 border-r-4 border-gray-800 hover:bg-gray-700 hover:text-gray-100 hover:border-gray-100"  href="{% url 'logout'%}" >
+         
+              <ion-icon class="text-2xl text-white" name="log-out-outline"></ion-icon>
         
-        <ion-icon class="text-2xl" name="create-outline"></ion-icon>
-        <span class="mx-4 font-medium">Edit User</span>
-    </a>
-
-
-
-      <a class="flex items-center  mt-2 mb-6 py-2 px-8 block text-gray-100 border-r-4 border-gray-800 hover:bg-gray-700 hover:text-gray-100 hover:border-gray-100"  href="{% url 'logout'%}" >
-     
-          <ion-icon class="text-2xl text-white" name="log-out-outline"></ion-icon>
-    
-        <span class="mx-4 font-medium ">Logout</span>
-    </a>
-      </nav>
-    
-    </div>
+            <span class="mx-4 font-medium ">Logout</span>
+        </a>
+          </nav>
+        
+        </div>
   
     <div class="col-span-5 sm:col-sm-5 md:col-span-4  p-2 justify-center">
         
@@ -189,16 +190,16 @@
   
             <!-- Name -->
             {%csrf_token %}
-            <label for="cooperativename">Cooperative name</label>
-            <input type="text" name="cooperativename" class="form-control mb-4" placeholder="cooperativename">
+            <!-- <label for="cooperativename">Cooperative name</label>
+            <input type="text" name="cooperativename" class="form-control mb-4" placeholder="cooperativename"> -->
             <label for="name">Recorder Name</label>
             <input type="text" name="name" id="defaultContactFormName" class="form-control mb-4" placeholder="recordername">
             <label for="email">Email</label>
-            <input type="email" name="email" id="defaultContactFormName" class="form-control mb-4" placeholder="email">
+            <input type="email" name="Email" icd="defaultContactFormName" class="form-control mb-4" placeholder="email">
             <label for="telephone">phone</label>
             <input type="text" name="phone" id="defaultContactFormName" class="form-control mb-4" placeholder="telephone">
-            <!-- <label for="gender">Gender</label>
-            <input type="text" name="gender" id="defaultContactFormName" class="form-control mb-4" placeholder="gender"> -->
+            <!-- <label for="password">Password</label>
+            <input type="password" name="password" id="defaultContactFormName" class="form-control mb-4" placeholder="password"> -->
             <!-- <label for="dateofbirth">Date of birth</label>
             <input type="date" name="dateofbirth" id="defaultContactFormName" class="form-control mb-4" placeholder="dateofbirth">
             <label for="district">District</label>

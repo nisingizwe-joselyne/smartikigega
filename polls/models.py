@@ -5,9 +5,9 @@ from django.contrib.auth.models import User,auth
 
 
 class Cooperative(models.Model):
-    user=models.ForeignKey(User, on_delete=models.CASCADE)
-    name=models.CharField(max_length=255)
+    username=models.CharField(max_length=255)
     email=models.CharField(max_length=255) 
+    password=models.CharField(max_length=255) 
     # leaderphone=models.CharField(max_length=255)
     # harvesttype=models.CharField(max_length=255)
     # email=models.CharField(max_length=255)
@@ -16,21 +16,19 @@ class Cooperative(models.Model):
     # district=models.CharField(max_length=255) 
     # Cooperativesector=models.CharField(max_length=255) 
     def __str__(self):
-        return self.name
+        return self.username
 
 class Payment(models.Model):
     name=models.CharField(max_length=255,null=False,blank=False)
     pay_date=models.DateField(auto_now=True)
     pay_time=models.TimeField(auto_now=True)
 class Recorder(models.Model):
-    user=models.ForeignKey(User, on_delete=models.CASCADE)
-    cooperativename=models.ForeignKey(Cooperative, on_delete=models.CASCADE)
     phone = models.CharField(max_length=255)
     name = models.CharField(max_length=255)
-    username = models.CharField(max_length=255)
+    email = models.CharField(max_length=255)
     password = models.CharField(max_length=255)
     def __str__(self):
-        return self.username  
+        return self.name  
 class Active(models.Model):
     user=models.ForeignKey(User, on_delete=models.CASCADE)
     activate=models.FloatField(default=False)
@@ -46,16 +44,35 @@ class Farmers(models.Model):
     harvesttype = models.CharField(max_length=255)
     dateofbirth = models.CharField(max_length=255)
     number = models.CharField(max_length=255)
-    Cooperative=models.CharField(max_length=255,default='')
+    Cooperative=models.CharField(max_length=255)
     code=models.CharField(max_length=255)
     pincode=models.CharField(max_length=255)
     sector=models.CharField(max_length=255) 
     cell=models.CharField(max_length=255) 
     def __str__(self):
-        return self.firstname        
+        return self.firstname       
+
+class Allfarmers(models.Model):
+    firstname= models.CharField(max_length=255)
+    lastname= models.CharField(max_length=255)
+    gender = models.CharField(max_length=255)
+    district = models.CharField(max_length=255)
+    village = models.CharField(max_length=255)
+    email = models.CharField(max_length=255)
+    country = models.CharField(max_length=255)
+    harvesttype = models.CharField(max_length=255)
+    dateofbirth = models.CharField(max_length=255)
+    number = models.CharField(max_length=255)
+    Cooperative=models.CharField(max_length=255)
+    telephone = models.CharField(max_length=255)
+    farmercode=models.CharField(max_length=255)
+    pincode=models.CharField(max_length=255)
+    sector=models.CharField(max_length=255) 
+    cell=models.CharField(max_length=255) 
+    def __str__(self):
+        return self.firstname              
 
 class Regfarmer(models.Model):
-    cooperativename=models.ForeignKey(Cooperative, on_delete=models.CASCADE)
     firstname= models.CharField(max_length=255)
     lastname = models.CharField(max_length=255)
     gender = models.CharField(max_length=255)
@@ -77,7 +94,7 @@ class Insurance(models.Model):
 class Harvestrecord(models.Model):
     cooperativename=models.ForeignKey(Cooperative, on_delete=models.CASCADE)
     Quantity=models.CharField(max_length=255)
-    code=models.ForeignKey(Farmers, on_delete=models.CASCADE)
+    farmercode=models.ForeignKey(Regfarmer, on_delete=models.CASCADE)
     firstname=models.CharField(max_length=255) 
     email=models.CharField(max_length=255)
     telephone=models.CharField(max_length=255)

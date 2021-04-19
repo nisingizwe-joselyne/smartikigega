@@ -46,8 +46,7 @@ def work(request):
 
 def pay(request):
     return render(request,'pay.html')    
-# def register(request):
-#     return render(request,'register.html')
+ 
 def signin(request):
     return render(request,'signin.html')      
 def record(request):
@@ -653,19 +652,17 @@ def login(request):
         user=auth.authenticate(username=userd,password=pass1)
         if user is not None:
             auth.login(request,user)
-            if Recorder.objects.filter(username=request.user).exists():
-                return redirect('record')
-            # elif Active.objects.filter(user=request.user).exists():
-            #     return redirect('record')
+            if Cooperative.objects.filter(username=request.user).exists():
+                return redirect('dashboard')
+            elif Recorder.objects.filter(name=request.user).exists():
+                return redirect('record')    
             else:
                 return render(request,'signin.html',{'message':'make sure if your account is registred' })
         else:
-            print(userd)
-            print(pass1)
-            return render(request,'adminsignin.html',{'message':'check your username and password' })
+            return render(request,'signin.html',{'message':'you are not registred ' })
             
     else:
-        return render(request,'adminsignin.html')
+        return render(request,'signin.html')
 
 
 def loginadmin(request):
@@ -673,17 +670,17 @@ def loginadmin(request):
         userd=request.POST['email']
         pass1=request.POST['password']
         user=auth.authenticate(username=userd,password=pass1)
-        if username is not None:
+        if user is not None:
             auth.login(request,user)
-            if User.objects.filter(username=request.user).exists():
-                return redirect('dashboard')
-                # elif Active.objects.filter(user=request.user).exists():
-               #     return redirect('record')
+            if Cooperative.objects.filter(username=request.user).exists():
+                return redirect('dashboard')     
+            elif Recorder.objects.filter(name=request.user).exists():
+                return redirect('record')        
             else:
-                return render(request,'adminsignin.html',{'message':'make sure if your account is registred' })
+                return render(request,'adminsignin.html',{'message':'make sure if your account is registred'})
         else:
-            print(userd)
-            print(pass1)
+            # print(userd)
+            # print(pass1)
             return render(request,'adminsignin.html',{'message':'check your username and password' })
             
     else:
@@ -691,33 +688,32 @@ def loginadmin(request):
         
 
 def Harvestrecording(request):
-    select = Farmers.objects.all()
+    select = Allfarmers.objects.all()
     if request.method == 'POST':
         Quantity = request.POST['Quantity']
         cooperativename = request.POST['cooperativename']
-        code = request.POST['code']
+        farmercode = request.POST['farmercode']
         firstname =request.POST['firstname']
         donetime = request.POST['donetime']
         donedate = request.POST['donedate']
         email = request.POST['email']
         telephone = request.POST['telephone']
-        print(code)
-
-        if email != None or code !=None:
+        print(farmercode)
+        if email != None or farmercode !=None:
                 subject='umusaruro wawe muri smart ikigega'
                 message='kuri '+firstname +'\n'+'ugurishije umusaruro wawe kuwa '+' '+donedate +' '+'ungana'+' '+Quantity +' '+ 'murakoze gukoresha smartikigega'
                 from_email=settings.EMAIL_HOST_USER
                 rt=send_mail(subject,message,from_email,[str(email),],fail_silently=True)
                 # print(rt)
                 if rt == True:
-                    codes=Farmers.objects.filter(code=code)
+                    codes=Allfarmers.objects.filter(farmercode=farmercode)
                     print(codes.count())
                     for dt in codes:
                         idsn=dt.id
                     print(idsn)
-                    coden=Farmers.objects.get(id=int(idsn))
-                    if coden.exists:
-                        insert = Harvestrecord.objects.create(Quantity=Quantity,code=coden,telephone=telephone,cooperativename=cooperativename,donetime=donetime,donedate=donedate,email=email,firstname=firstname)
+                    coden=Allfarmers.objects.get(id=int(idsn))
+                    if coden.exists():
+                        insert = Harvestrecord.objects.create(Quantity=Quantity,coden=farmercode,telephone=telephone,cooperativename=cooperativename,donetime=donetime,donedate=donedate,email=email,firstname=firstname)
                         insert.save()
                         mess=email
                         return render(request,'record.html',{'message':'data submitted successful','mess':mess,'data':select})
@@ -800,6 +796,8 @@ def registration(request):
                         if rt==True:
                             user=User.objects.create_user(email=email,username=Name,password=password1,)
                             user.save()
+                            cooperative=Cooperative.objects.create(email=email,password=password1,username=Name)
+                            cooperative.save()
                             mess=email
                             return render(request,'cooperative.html',{'message':'succesful registred','mess':mess })
             
@@ -1005,28 +1003,26 @@ def addRecorder(request):
     if str(request.user)=='AnonymousUser':
             return redirect('index')
     else:
-        if Recorder.objects.filter(user=str(request.user)):
-                return redirect('recorder')
+        if Recorder.objects.filter(email=(request.user)):
+            return redirect('recorder')
         else:
             # zipcod=Zipcodes.objects.all()
             prof=Profilecooperative.objects.filter(cooperativename=str(request.user))
             if request.method=='POST':
-                cooperativename=request.POST['cooperativename']
-                email=request.POST['username']
+                Email=request.POST['Email']
                 name=request.POST['name']
                 phone=request.POST['phone']
                 rand=random.randint(1111,99999)
                 password=str(name)+str(rand)
-                if Recorder.objects.filter(username=email).exists():
-                    messages.info(request,'Email have already used')
-                    return redirect('addus')
+                if Recorder.objects.filter(email=Email).exists():
+                    return render(request,'addRecorder.html',{'message':'email already used'})
                 else:
-                    subject='Thank you for Using SmartIkigega '
-                    message='Dear '+name +'\n'+'https://smartikigega.herokuapp.com//login/'+'\n'+'Username: '+email+'\n'+'Password: '+password+'\n'+'Thank you are now employed by'+str(request.user)
+                    subject='comfirmation to become a recorder '
+                    message='Dear '+name +'\n'+'https://smartikigega.herokuapp.com//login/'+'\n'+'Username: '+Email+'\n'+'Password: '+password+'\n'+'Thank you are now recorder by'+str(request.user)
                     from_email=settings.EMAIL_HOST_USER
-                    rt=send_mail(subject,message,from_email,[str(email),],fail_silently=True)
-                    User.objects.create_user(name=name,username=email,password=password,cooperativename=cooperativename,phone=phone).save()
-                    Recorder.objects.create(name=str(request.user),user=email).save()
+                    rt=send_mail(subject,message,from_email,[str(Email),],fail_silently=True)
+                    User.objects.create_user(username=name,email=Email,password=password).save()
+                    Recorder.objects.create(name=name,email=Email,password=password,phone=phone).save()
                     mess=' you have been added sucessfully as a recorder'
                     return render(request,'addRecorder.html',{'mess':mess})
             else:
@@ -1034,9 +1030,9 @@ def addRecorder(request):
 
 def membersli(request):
     prof=Profilecooperative.objects.filter(cooperativename=str(request.user))
-    Rec=Recorder.objects.filter(cooperativename=str(request.user))
-    Farm=Farmers.objects.filter(cooperativename=str(request.user)).order_by('-id')
-    return render(request,'bookedli.html',{'prof':prof,'Rec':Rec,'Farm':Farm})
+    Rec=Harvestrecord.objects.filter(name=str(request.user))
+    Farm=Regfarmer.objects.filter(farmercode=str(request.user)).order_by('-id')
+    return render(request,'member.html',{'prof':prof,'Rec':Rec,'Farm':Farm})
     
         
 def adduser(request):
@@ -1044,9 +1040,8 @@ def adduser(request):
             return redirect('index')
     else:
         if User.objects.filter(user=str(request.user)):
-                return redirect('addus')
+            return redirect('addus')
         else:
-            
             prof=Profilecooperative.objects.filter(cooperativename=str(request.user))
             if request.method=='POST':
                 email=request.POST['username']
@@ -1088,10 +1083,9 @@ def CooFarmerreg(request):
     nost = random_with_N_digits(6)
     if request.method=='POST':
         firstname=request.POST['firstname']
-        cooperativename=request.POST['cooperativename']
         lastname=request.POST['lastname']
         gender=request.POST['gender']
-        harvesttype=request.POST['harvesttype']
+        # harvesttype=request.POST['harvesttype']
         tel=request.POST['number']
         # tel=request.POST['number']
         telephone =tel[1:]
@@ -1099,8 +1093,8 @@ def CooFarmerreg(request):
         village=request.POST['village']
         email=request.POST['email']
         district =request.POST['district']
-        sector = request.POST['sector']
-        cell = request.POST['cell']
+        # sector = request.POST['sector']
+        # cell = request.POST['cell']
         years=now.year
         newcode=str(years)+str(1)
         one=1
@@ -1109,11 +1103,11 @@ def CooFarmerreg(request):
         nums=lastnum.count()
         print(nums)
         if nums <= 12:
-            Regfarmer.objects.create(district=district,sector=sector,village=village,cell=cell,email=email,firstname=firstname,lastname=lastname,gender=gender,telephone=telephone,harvesttype=harvesttype,cooperativename=cooperativename,code= nost).save()
-        
+            Regfarmer.objects.create(district=district,village=village,email=email,firstname=firstname,lastname=lastname,gender=gender,telephone=telephone,farmercode= nost).save()
+            Allfarmers.objects.create(district=district,village=village,email=email,firstname=firstname,lastname=lastname,gender=gender,telephone=telephone,farmercode= nost).save()
             mess='Hey '+firstname+'\n Your Code :'+str(nost)
             if email != None or tel !=None:
-                subject='Thank you for Using smartikigega'
+                subject='Registration succesfull in smartikigega'
                 message='Dear '+firstname +' '+lastname +'\n'+'your new SmartIkigega code is : '+str(nost)
                 from_email=settings.EMAIL_HOST_USER
                 rt=send_mail(subject,message,from_email,[str(email),],fail_silently=True)
@@ -1176,7 +1170,7 @@ def Farmerreg(request):
         print(nums)
         if nums <= 12:
             Farmers.objects.create(district=district,sector=sector,village=village,cell=cell,email=email,firstname=firstname,lastname=lastname,gender=gender,number=telephone,harvesttype=harvesttype,code= nost).save()
-        
+            Allfarmers.objects.create(district=district,village=village,email=email,firstname=firstname,lastname=lastname,gender=gender,telephone=telephone,farmercode= nost).save() 
             mess='Hey '+firstname+'\n Your Code :'+str(nost)
             if email != None or tel !=None:
                 subject='Thank you for Using smartikigega'
@@ -1202,7 +1196,7 @@ def Farmerreg(request):
         return render(request,'farmerreg.html')
 
 def dashboard(request):
-    if request.user.is_superuser:
+    if request.user.is_active:
         cooperatives=User.objects.all()
         farmers=Regfarmer.objects.all()
         farmers=farmers.count()
@@ -1210,7 +1204,6 @@ def dashboard(request):
         Records=Record.count()
         recorder=Recorder.objects.all()
         recorders=recorder.count()
-
         return render(request,'dashboard.html',{'cooperatives':cooperatives,'farmers':farmers,'Records':Records,'recorders':recorders})
     else:
         return render(request,'index.html')
