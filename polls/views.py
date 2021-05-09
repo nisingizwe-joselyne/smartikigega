@@ -346,7 +346,7 @@ def digitalapp(request):
                 if cody.exists():
                     response='CON shyiramo kode yumuhinzi ubashe kubarura'+str(level)+' \n'
                     hinz = str(level[3])
-                    umuhinzi=Allfarmers.objects.all().filter(farmercode=mycode)
+                    umuhinzi=Allfarmers.objects.all().filter(farmercode=hinz)
                     if umuhinzi.exists():
                         response='CON shyiramo ingano yumusaruro mu biro cg litiro'+str(level)+' \n'
                     else:
@@ -391,7 +391,8 @@ def digitalapp(request):
                     range_end = (10**n)-1
                     return randint(range_start, range_end)
                 numb = random_with_N_digits(5)
-                insert =Farmers(number=phone_number,code=numb,sector=sector,district=district, firstname=str(level[1]),pincode=pin)
+                insert =Farmers(number=phone_number,farmercode=numb,sector=sector,district=district, firstname=str(level[1]),pincode=pin)
+                insert =Allfarmers(number=phone_number,farmercode=numb,sector=sector,district=district, firstname=str(level[1]),pincode=pin)
                 try:
                 
                     insert.save()
@@ -402,7 +403,7 @@ def digitalapp(request):
                     response = "END Kwiyandikisha byanze"
             elif text =='2':
                 response = "CON shyiramo code yumuhinzi \n"     
-            elif int(st)== 2  and int(len(level))==2  and  str(level[1]) in str(level): 
+            elif int(st)== 2 and int(len(level))==2  and  str(level[1]) in str(level): 
                 mycode = str(level[1])
                 cody=Allfarmers.objects.all().filter(farmercode=mycode)
                 if cody.exists():
