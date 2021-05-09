@@ -214,7 +214,7 @@ def digitalapp(request):
         num = text[:3]
         st =text[:1]
      
-        farmers=Farmers.objects.all().filter(number=phone_number).order_by('-id')
+        farmers=Allfarmers.objects.all().filter(number=phone_number).order_by('-id')
         for users in farmers:
             phoneuser = users.number
             fullname = users.firstname
@@ -224,8 +224,9 @@ def digitalapp(request):
             if text =='':
                 response = "CON Murakaza neza kurubuga rw'abahinzi Smart Ikigega \n"
                 response += '1.Ikigega pay \n'
-                response += '2.ibijyanye numusaruro \n'
+                response += '2.umusaruro wanjye \n'
                 response += '3.Kubarura umusaruro \n'
+                response += '4.ikigega loan'
             elif text == '1':
                 response = 'CON kwishyura \n'
                 response += '1.uri mukigega \n'
@@ -234,13 +235,11 @@ def digitalapp(request):
                 response = 'CON shyiramo code yumuhinzi '+str(level)+' \n'
             elif num == '1*1'and int(len(level))==2 and str(level[1]) in str(level):  
                 mycode = str(level[2])
-                cody=Farmers.objects.all().filter(code=mycode)
+                cody=Allfarmers.objects.all().filter(farmercode=mycode)
                 if cody.exists():
                     response='CON shyiramo ingano yumusaruro mu biro cg litiro '+str(level)+' \n'
                 else:
                     response='END code mwashyizemo ntibaho '+str(level[1])+' \n'      
-           
-        
             elif num == '1*1' and int(len(level))==3 and str(level[2]) in str(level):
                 response = 'CON shyiramo amafaranga ugiye kwishyura' +str(level)+ '\n' 
             elif num == '1*1' and int(len(level))==4 and str(level[3]) in str(level):
@@ -256,15 +255,14 @@ def digitalapp(request):
                       
             elif text == '2':
                 response = 'CON  hitamo \n'
-                response += '1.kureba umusaruro mbumbe \n'
-                response += '2.ubwishingizi bwumusaruro \n'
-                response += '3.ikigega Loan'
+                response += '1.kureba ingano yumusaruro \n'
+                response += '2.ubwishingizi bwumusaruro '
             elif text == '2*1':
-                response = 'CON  shyiramo code yawe ubashe kureba umusaruro :' +str(len(level))+ '\n'
+                response = 'CON shyiramo code yawe ubashe kureba umusaruro :' +str(len(level))+ '\n'
                     
             elif num == '2*1'and int(len(level))==3 and str(level[2]) in str(level):
                 hcode = str(level[2])  
-                hacode =Farmers.objetcs.all(code=hcode)    
+                hacode =Allfarmers.objetcs.all(farmercode=hcode)    
                 if hacode.exists():
                     response = 'CON hitamo kureba \n'
                     response += '1.umusaruro wukukwezi\n'
@@ -285,15 +283,20 @@ def digitalapp(request):
                 response = 'CON umusaruro mbumbe wa' + str(level[2]) + 'ni 3600kg'+str(level[3])+'\n'
             elif text == '2*2':
                 response = 'CON  ubwishingizi bw \n'
-                response += '1.umwaka umwe \n'
-                response += '2.imyaka itanu  \n'
-                response += '3.imyaka icumi '   
+                response += '1.imyaka itanu \n'
+                response += '2.imyaka icumi '   
             elif text == '2*2*1':
                 response = 'CON  shyiramo code yawe ubashe kwinjira mu bwishingizi bwumwaka umwe:' +str(len(level))+ '\n'
-            elif num == '2*2*1'and int(len(level))==4 and str(level[3]) in str(level):
-                response = 'CON kwiyandikisha gusaba ubwishingizi bwumwaka byagenze neza murahabwa igisubizo mu masaha macye'+str(len(level))+'\n'   
-                    #  insert=Insurance.objects.filter(farmercode=str(level[4])) 
-                    #  insert.save()     
+                mycode = str(level[3])
+                cody=Allfarmers.objects.all().filter(farmercode=mycode)
+                if cody.exists():
+                    response='CON ubusabe bwawe bwakiriwe murahabwa igisubizo mukanya'+str(level)+' \n'
+                else:
+                    response='END code mwashyizemo ntibaho'+str(level[1])+' \n'     
+            # elif num == '2*2*1'and int(len(level))==4 and str(level[3]) in str(level):
+            #     response = 'CON kwiyandikisha gusaba ubwishingizi bwumwaka byagenze neza murahabwa igisubizo mu masaha macye'+str(len(level))+'\n'   
+            #         #  insert=Insurance.objects.filter(farmercode=str(level[4])) 
+            #         #  insert.save()     
 
             elif text == '2*2*2':
                 response = 'CON  shyiramo code yawe ubashe kwinjira mubwishingizi bwimyaka itanu :' +str(len(level))+ '\n'
@@ -336,8 +339,20 @@ def digitalapp(request):
 
             # elif num == '3*2' and int(len(level))==5 and str(level[4]) in str(level):  
             #     response = 'CON  ubusabe bwawe bwo kwiyandikisha mukigega bwakiriwe urahabwa igisubizo mu gihe gito \n'
-            elif text == '4':
+            elif text == '3':
                 response = 'CON  shyiramo code yawe ubashe kubarura :' +str(len(level))+ '\n'
+                mycode = str(level[2])
+                cody=Recorder.objects.all().filter(password=mycode)
+                if cody.exists():
+                    response='CON shyiramo kode yumuhinzi ubashe kubarura'+str(level)+' \n'
+                    hinz = str(level[3])
+                    umuhinzi=Allfarmers.objects.all().filter(farmercode=mycode)
+                    if umuhinzi.exists():
+                        response='CON shyiramo ingano yumusaruro mu biro cg litiro'+str(level)+' \n'
+                    else:
+                        response='END code mwashyizemo ntibaho '+str(level[1])+' \n'     
+                else:
+                    response='END kode mwashyizemo ntibaho'+str(level[1])+' \n'     
             elif num == '4'and int(len(level))==2 and str(level[1]) in str(level):  
                 response = 'CON  shyiramo izina rya cooperative \n'  
                     # insert=Cooperative.objects.filter(name=str(level[2]))  
@@ -389,7 +404,7 @@ def digitalapp(request):
                 response = "CON shyiramo code yumuhinzi \n"     
             elif int(st)== 2  and int(len(level))==2  and  str(level[1]) in str(level): 
                 mycode = str(level[1])
-                cody=Farmers.objects.all().filter(code=mycode)
+                cody=Allfarmers.objects.all().filter(farmercode=mycode)
                 if cody.exists():
                     response='CON shyiramo ingano yumusaruro mu biro cg litiro '+str(level)+' \n'
                 else:
@@ -651,11 +666,13 @@ def login(request):
             if Cooperative.objects.filter(username=request.user).exists():
                 return redirect('dashboard')
             elif Recorder.objects.filter(name=request.user).exists():
-                return redirect('record')    
+                return redirect('record')
+            elif user.is_superuser:
+                return redirect('record')     
             else:
                 return render(request,'signin.html',{'message':'make sure if your account is registred' })
         else:
-            return render(request,'signin.html',{'message':'you are not registred ' })
+            return render(request,'signin.html',{'message':'you are not registred as recorder ' })
             
     else:
         return render(request,'signin.html')
@@ -671,7 +688,9 @@ def loginadmin(request):
             if Cooperative.objects.filter(username=request.user).exists():
                 return redirect('dashboard')     
             elif Recorder.objects.filter(name=request.user).exists():
-                return redirect('record')        
+                return redirect('record') 
+            elif user.is_superuser:
+                return redirect('dashboard')           
             else:
                 return render(request,'adminsignin.html',{'message':'make sure if your account is registred'})
         else:
@@ -684,7 +703,7 @@ def loginadmin(request):
         
 
 def Harvestrecording(request):
-    select = Allfarmers.objects.all()
+    select =Allfarmers.objects.all()
     if request.method == 'POST':
         Quantity = request.POST['Quantity']
         cooperativename = request.POST['cooperativename']
@@ -695,26 +714,26 @@ def Harvestrecording(request):
         email = request.POST['email']
         telephone = request.POST['telephone']
         print(farmercode)
-        if email != None or farmercode !=None:
-                subject='umusaruro wawe muri smart ikigega'
-                message='kuri '+firstname +'\n'+'ugurishije umusaruro wawe kuwa '+' '+donedate +' '+'ungana'+' '+Quantity +' '+ 'murakoze gukoresha smartikigega'
-                from_email=settings.EMAIL_HOST_USER
-                rt=send_mail(subject,message,from_email,[str(email),],fail_silently=True)
+        if email !=None or farmercode !=None:
+            subject='umusaruro wawe muri smart ikigega'
+            message='kuri '+firstname +'\n'+'ugurishije umusaruro wawe kuwa '+' '+donedate +' '+'ungana'+' '+Quantity +' '+ 'murakoze gukoresha smartikigega'
+            from_email=settings.EMAIL_HOST_USER
+            rt=send_mail(subject,message,from_email,[str(email),],fail_silently=True)
                 # print(rt)
-                if rt == True:
-                    codes=Allfarmers.objects.filter(farmercode=farmercode)
-                    print(codes.count())
-                    for dt in codes:
-                        idsn=dt.id
-                    print(idsn)
-                    coden=Allfarmers.objects.get(id=int(idsn))
-                    if coden.exists():
-                        insert = Harvestrecord.objects.create(Quantity=Quantity,coden=farmercode,telephone=telephone,cooperativename=cooperativename,donetime=donetime,donedate=donedate,email=email,firstname=firstname)
-                        insert.save()
-                        mess=email
-                        return render(request,'record.html',{'message':'data submitted successful','mess':mess,'data':select})
-                    else:
-                        return render(request,'record.html',{'message':'code does  not exist'})
+            if rt == True:
+                codes=Allfarmers.objects.filter(farmercode=farmercode)
+                print(codes.count())
+                for dt in codes:
+                    idsn=dt.id
+                print(idsn)
+                coden=Allfarmers.objects.get(id=int(idsn))
+                if coden.exists():
+                    insert = Harvestrecord.objects.create(Quantity=Quantity,coden=farmercode,telephone=telephone,cooperativename=cooperativename,donetime=donetime,donedate=donedate,email=email,firstname=firstname)
+                    insert.save()
+                    mess=email
+                    return render(request,'record.html',{'message':'data submitted successful','mess':mess,'data':select})
+                else:
+                    return render(request,'record.html',{'message':'code does  not exist'})
 
                   #account_sid = 'AC1b41153cd2a60b01893bb9740d2fd875'
                   #auth_token = 'efa2a032ba78dff3111fce2efafa5940'
@@ -725,8 +744,8 @@ def Harvestrecording(request):
                   # return render(request,'record.html',{'message':'data submitted successful','data':select})
                   # insert = Harvestrecord(Quantity=Quantity,code=code, donetime=donetime,donedate=donedate,email=email,firstname=firstname)
                   # insert.save()
-                else:
-                    return render(request,'record.html',{'message':'data  not submitted','data':select})
+            else:
+                return render(request,'record.html',{'message':'data  not submitted','data':select})
 
         else: 
             return render(request,'record.html',{'message':'you have to enter a farmercode to submit','data':select})   
@@ -1026,7 +1045,7 @@ def addRecorder(request):
 
 def membersli(request):
     prof=Profilecooperative.objects.filter(cooperativename=str(request.user))
-    Rec=Harvestrecord.objects.filter(name=str(request.user))
+    Rec=Harvestrecord.objects.filter(name=str(request.firstname))
     Farm=Regfarmer.objects.filter(farmercode=str(request.user)).order_by('-id')
     return render(request,'member.html',{'prof':prof,'Rec':Rec,'Farm':Farm})
     
