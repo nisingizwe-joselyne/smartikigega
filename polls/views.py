@@ -391,7 +391,7 @@ def digitalapp(request):
                     range_end = (10**n)-1
                     return randint(range_start, range_end)
                 numb = random_with_N_digits(5)
-                insert =Farmers(number=phone_number,farmercode=numb,sector=sector,district=district, firstname=str(level[1]),pincode=pin)
+                # insert =Farmers(number=phone_number,farmercode=numb,sector=sector,district=district, firstname=str(level[1]),pincode=pin)
                 insert =Allfarmers(number=phone_number,farmercode=numb,sector=sector,district=district, firstname=str(level[1]),pincode=pin)
                 try:
                 
