@@ -240,7 +240,7 @@ def digitalapp(request):
                     response='CON shyiramo ingano yumusaruro mu biro cg litiro '+str(level)+' \n'
                 else:
                     response='END code mwashyizemo ntibaho '+str(level[1])+' \n'      
-            elif num == '1*1' and int(len(level))==3 and str(level[2]) in str(level):
+            elif num == '1*1' and int(len(level))==4 and str(level[3]) in str(level):
                 response = 'CON shyiramo amafaranga ugiye kwishyura' +str(level)+ '\n' 
             elif num == '1*1' and int(len(level))==4 and str(level[3]) in str(level):
                 response = 'CON  wahisemo kwishyura'+ str(level[3]) + 'ugiye kwishyura kuri' + str(level[2]) +'shyiramo umubare wibanga wemeze kwishyura  \n'
@@ -416,7 +416,7 @@ def digitalapp(request):
             #     response += '2.ibishyimbo \n'
             #     response += '3.ikawa \n'
             #     response += '4.amata \n'   
-            elif int(st)== 2  and int(len(level))==3  and   str(level[2]) in str(level): 
+            elif int(st)== 2  and int(len(level))==4  and   str(level[3]) in str(level): 
                 response = "CON shyiramo umubare  wamafaranga ugiye kwishyura" +str(level)+ "\n"   
             elif int(st)== 2  and int(len(level))==4  and   str(level[3]) in str(level): 
                 response = "CON ugiye kwishyura" +str(level[3])+ 'kuri' +str(level[1]) + "shyiramo umubare wibanga wemeze \n"
