@@ -240,10 +240,12 @@ def digitalapp(request):
                     response='CON shyiramo ingano yumusaruro mu biro cg litiro '+str(level)+' \n'
                 else:
                     response='END code mwashyizemo ntibaho '+str(level[1])+' \n'      
+            elif num == '1*1' and int(len(level))==3 and str(level[2]) in str(level):
+                response='CON shyiramo ingano yumusaruro mu biro cg litiro '+str(level)+' \n'
             elif num == '1*1' and int(len(level))==4 and str(level[3]) in str(level):
-                response = 'CON shyiramo amafaranga ugiye kwishyura' +str(level)+ '\n' 
-            elif num == '1*1' and int(len(level))==4 and str(level[3]) in str(level):
-                response = 'CON  wahisemo kwishyura'+ str(level[3]) + 'ugiye kwishyura kuri' + str(level[2]) +'shyiramo umubare wibanga wemeze kwishyura  \n'
+                 response = 'CON shyiramo amafaranga ugiye kwishyura' +str(level)+ '\n' 
+            elif num == '1*1' and int(len(level))==5 and str(level[4]) in str(level):
+                response = 'CON  wahisemo kwishyura'+ str(level[4]) + 'ugiye kwishyura kuri' + str(level[2]) +'shyiramo umubare wibanga wemeze kwishyura  \n'
                 insert=Harvestrecord(code=str(level[2]),Quantity=str(level[3]))
                 insert.save()
             elif text == '1*2':
