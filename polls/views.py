@@ -452,7 +452,7 @@ def digitalapp(request):
 
 
 
-        return HttpResponse(response)
+         return HttpResponse(response)
     
     return HttpResponse('Testing smart')   
 
