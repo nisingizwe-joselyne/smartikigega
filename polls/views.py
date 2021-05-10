@@ -246,7 +246,7 @@ def digitalapp(request):
                  response = 'CON shyiramo amafaranga ugiye kwishyura' +str(level)+ '\n' 
             elif num == '1*1' and int(len(level))==5 and str(level[4]) in str(level):
                 response = 'CON  wahisemo kwishyura'+ str(level[4]) + 'ugiye kwishyura kuri' + str(level[2]) +'shyiramo umubare wibanga wemeze kwishyura  \n'
-                insert=Harvestrecord(code=str(level[2]),Quantity=str(level[3]))
+                insert=Harvestrecord(farmercode=str(level[2]),Quantity=str(level[3]))
                 insert.save()
             elif text == '1*2':
                 response = 'CON nimero ya mobile : '+str(len(level))+ '\n'                
@@ -280,7 +280,7 @@ def digitalapp(request):
                 if qhacode.exists():
                     response = 'CON umusaruro wawe wukukwezi ni '+ str(qhacode) +'\n'
                 else:
-                    response = 'CON ntamusaruro mwari mufitemo uku kwezi'+'\n'
+                    response = 'CON ntamusaruro mufitemo uku kwezi'+'\n'
             elif text =='2*1*2':
                 response = 'CON umusaruro mbumbe wa' + str(level[2]) + 'ni 3600kg'+str(level[3])+'\n'
             elif text == '2*2':
