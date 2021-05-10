@@ -246,8 +246,15 @@ def digitalapp(request):
                  response = 'CON shyiramo amafaranga ugiye kwishyura' +str(level)+ '\n' 
             elif num == '1*1' and int(len(level))==5 and str(level[4]) in str(level):
                 response = 'CON  wahisemo kwishyura'+ str(level[4]) + 'ugiye kwishyura kuri' + str(level[2]) +'shyiramo umubare wibanga wemeze kwishyura  \n'
+            elif num == '1*1' and int(len(level))==6  and   str(level[5]) in str(level):    
                 insert=Harvestrecord(farmercode=str(level[2]),Quantity=str(level[3]))
-                insert.save()
+
+                try:
+                    insert.save()
+                    # telephone = phone_number[1:]
+                    response = "END Urakoze kugura ukoresheje  Smart Kigega wishyuye: "+str(level[4])+"kuri"+str(level[2]) + "\n "
+                except:
+                    response = "END Kwishyura byanze"
             elif text == '1*2':
                 response = 'CON nimero ya mobile : '+str(len(level))+ '\n'                
             elif num == '1*2' and int(len(level))==2 and str(level[3]) in str(level):
@@ -350,11 +357,11 @@ def digitalapp(request):
                     hinz = str(level[3])
                     umuhinzi=Allfarmers.objects.all().filter(farmercode=hinz)
                     if umuhinzi.exists():
-                        response='CON shyiramo ingano yumusaruro mu biro cg litiro'+str(level)+' \n'
+                        response='CON ingano yumusaruro'+str(level)+' \n'
                     else:
                         response='END code mwashyizemo ntibaho '+str(level[1])+' \n'     
                 else:
-                    response='END kode mwashyizemo ntibaho'+str(level[1])+' \n'     
+                    response='END ntabwo mwanditse nkumubaruzi'+str(level[1])+' \n'     
             elif num == '4'and int(len(level))==2 and str(level[1]) in str(level):  
                 response = 'CON  shyiramo izina rya cooperative \n'  
                     # insert=Cooperative.objects.filter(name=str(level[2]))  
@@ -418,14 +425,16 @@ def digitalapp(request):
             #     response += '2.ibishyimbo \n'
             #     response += '3.ikawa \n'
             #     response += '4.amata \n'   
+            elif int(st)== 2  and int(len(level))==3  and   str(level[2]) in str(level): 
+                response = "CON shyiramo ingano yumusaruro mu biro cg litiro" +str(level)+ "\n"  
             elif int(st)== 2  and int(len(level))==4  and   str(level[3]) in str(level): 
-                response = "CON shyiramo umubare  wamafaranga ugiye kwishyura" +str(level)+ "\n"   
-            elif int(st)== 2  and int(len(level))==4  and   str(level[3]) in str(level): 
-                response = "CON ugiye kwishyura" +str(level[3])+ 'kuri' +str(level[1]) + "shyiramo umubare wibanga wemeze \n"
+                response = "CON shyiramo amafaranga ugiye kwishyura" +str(level)+ "\n"      
+            elif int(st)== 2  and int(len(level))==5  and   str(level[4]) in str(level): 
+                response = "CON ugiye kwishyura" +str(level[4])+ 'kuri' +str(level[1]) + "shyiramo umubare wibanga wemeze \n"
             elif int(st)== 2  and int(len(level))==5  and   str(level[4]) in str(level):   
-                code= str(level[1])
-                Quantity=str(level[2])
-                insert =Harvestrecord(code=code,Quantity=Quantity)
+               farmercode= str(level[1])
+                Quantity=str(level[3])
+                insert =Harvestrecord(code=farmercode,Quantity=Quantity)
                 try:
                 
                     insert.save()
