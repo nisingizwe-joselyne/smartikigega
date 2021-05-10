@@ -433,26 +433,24 @@ def digitalapp(request):
                 response = "CON ugiye kwishyura" +str(level[4])+ 'kuri' +str(level[1]) + "shyiramo umubare wibanga wemeze \n"
             elif int(st)== 2  and int(len(level))==5  and   str(level[4]) in str(level):   
                farmercode= str(level[1])
-                Quantity=str(level[3])
-                insert =Harvestrecord(code=farmercode,Quantity=Quantity)
-                try:
-                
-                    insert.save()
+               Quantity=str(level[3])
+               insert =Harvestrecord(code=farmercode,Quantity=Quantity)
+               try:
+                   insert.save()
                     # telephone = phone_number[1:]
-                    response = "END Urakoze kugura ukoresheje  Smart Kigega wishyuye: "+str(level[4])+"kuri"+str(level[2]) + "\n "
+                   response = "END Urakoze kugura ukoresheje  Smart Kigega wishyuye: "+str(level[4])+"kuri"+str(level[2]) + "\n "
                     
-                except:
-                    response = "END Kwishyura byanze"
-                     
+               except:
+                   response = "END Kwishyura byanze"
             else:
 
-                    response = "END Invalid choice"    
+                response = "END Invalid choice"    
 
         
 
 
 
-         return HttpResponse(response)
+        return HttpResponse(response)
     
     return HttpResponse('Testing smart')   
 
