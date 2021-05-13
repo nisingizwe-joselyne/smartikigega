@@ -22,13 +22,16 @@ class Payment(models.Model):
     name=models.CharField(max_length=255,null=False,blank=False)
     pay_date=models.DateField(auto_now=True)
     pay_time=models.TimeField(auto_now=True)
+
 class Recorder(models.Model):
-    phone = models.CharField(max_length=255)
-    name = models.CharField(max_length=255)
+   
     email = models.CharField(max_length=255)
     password = models.CharField(max_length=255)
+    regCooperative=models.ForeignKey(User, on_delete=models.CASCADE)
     def __str__(self):
-        return self.name  
+        return self.name 
+
+
 class Active(models.Model):
     user=models.ForeignKey(User, on_delete=models.CASCADE)
     activate=models.FloatField(default=False)
@@ -82,7 +85,7 @@ class Regfarmer(models.Model):
     country = models.CharField(max_length=255)
     dateofbirth = models.CharField(max_length=255)
     telephone = models.CharField(max_length=255)
-    regCooperative=models.CharField(max_length=255)
+    regCooperative=models.ForeignKey(User, on_delete=models.CASCADE)
     farmercode=models.CharField(max_length=255)
     def __str__(self):
         return self.firstname
@@ -91,17 +94,26 @@ class Insurance(models.Model):
     insurancetype = models.CharField(max_length=255,choices=(('imyaka15','imyaka15'),('imyaka10','imyaka10'),('imyaka itanu','imyaka itanu'),('umwaka umwe','umwaka umwe'),))
     def __str__(self):
         return self.farmercode  
+
+
+
 class Harvestrecord(models.Model):
-    cooperativename=models.ForeignKey(Cooperative, on_delete=models.CASCADE)
+    recorder=models.ForeignKey(Recorder, on_delete=models.CASCADE)
+    regCooperative=models.ForeignKey(User, on_delete=models.CASCADE)
     Quantity=models.CharField(max_length=255)
-    farmercode=models.ForeignKey(Regfarmer, on_delete=models.CASCADE)
+    farmercode=models.CharField(max_length=255)
     firstname=models.CharField(max_length=255) 
     email=models.CharField(max_length=255)
     telephone=models.CharField(max_length=255)
     donedate=models.DateField(auto_now=True)
     donetime=models.TimeField(auto_now=True)
-    def __str__(self):
-        return self.code  
+
+
+
+
+
+
+ 
 class EndpointAfripay(models.Model):
     status=models.CharField(max_length=255)
     transaction_ref=models.CharField(max_length=234)
