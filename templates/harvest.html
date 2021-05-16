@@ -92,20 +92,17 @@
           <a href="{% url 'work' %}" class="  text-gray-700 font-medium hover:text-gray-900 hover:no-underline">About</a>
          </div>
          <div class="w-1/4">
-          <a href="/" class="  text-gray-700 font-medium hover:text-gray-900 hover:no-underline">Engish</a>
-         </div>
-         <div class="w-1/4">
-          <a href="{% url 'kiny' %}" class="  text-gray-700 font-medium hover:text-gray-900 hover:no-underline ">kiny</a>
+          <a href="{% url 'adminsignin' %}" class="  text-gray-700 font-medium hover:text-gray-900 hover:no-underline "> Sign In</a>
          </div>
          
         </div>
       </div>
       <div class="w-2/6"></div>
       <div class="w-2/6">
-        <div class="w-full  px-2 py-3">
-        <a href="{% url 'adminsignin' %}"class=" float-right hover:bg-white py-2 text-gray-700 font-medium hover:text-gray-900 hover:no-underline border-2 border-gray-100 px-4 rounded">Sign in</a>
+        <div class="w-full gap-2 px-2 py-3">
+        <a href="{% url 'loanpage' %}"class=" float-right hover:bg-white py-2 text-gray-700 font-medium hover:text-gray-900 hover:no-underline border-2 border-gray-100 px-4 rounded">Ikigega Loan</a>
+        <a href="{% url 'insurancepage' %}"class=" float-right hover:bg-white py-2 text-gray-700 font-medium hover:text-gray-900 hover:no-underline border-2 border-gray-100 px-4 rounded">Insurance</a>
       </div>
-
       </div>
   </div>
 </div>
@@ -120,16 +117,15 @@
         </div>
         <div class="w-full py-1">
         <a href="{% url 'work' %}" class=" py-4 text-gray-700 font-medium hover:text-gray-900 hover:no-underline">About</a></div>
-        <div class="w-full py-1">
-        <a href="/" class=" py-4 text-gray-700 font-medium hover:text-gray-900 hover:no-underline">Engish</a>
-      </div>
+        
       <div class="w-full py-1">
-        <a href="{% url 'kiny' %}" class=" py-4 text-gray-700 font-medium hover:text-gray-900 hover:no-underline ">kiny</a>
+        <a href="{% url 'adminsignin' %}" class=" py-4 text-gray-700 font-medium hover:text-gray-900 hover:no-underline ">Signin</a>
       </div>
     </div>
-    <div class="navbar-nav ml-auto bg-blue hover:bg-white rounded">
-      <a href="{% url 'adminsignin' %}"class="py-2 text-gray-700 font-medium hover:text-gray-900 hover:no-underline border-2 border-gray-100 px-4 rounded">Sign in</a>
-
+    <div class="navbar-nav">
+       <div><a href="{% url 'loanpage' %}"class=" float-right hover:bg-white py-2 text-gray-700 font-medium hover:text-gray-900 hover:no-underline border-2 border-gray-100 px-4 rounded">Ikigega Loan</a></div> 
+       <br/>
+      <div><a href="{% url 'insurancepage' %}"class=" float-right hover:bg-white py-2 text-gray-700 font-medium hover:text-gray-900 hover:no-underline border-2 border-gray-100 px-4 rounded">Insurance</a></div> 
     </div>
 </div>
 

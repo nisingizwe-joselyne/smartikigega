@@ -24,12 +24,13 @@ class Payment(models.Model):
     pay_time=models.TimeField(auto_now=True)
 
 class Recorder(models.Model):
-   
     email = models.CharField(max_length=255)
+    phone = models.CharField(max_length=255)
     password = models.CharField(max_length=255)
+    username = models.CharField(max_length=255)
     regCooperative=models.ForeignKey(User, on_delete=models.CASCADE)
     def __str__(self):
-        return self.name 
+        return self.username 
 
 
 class Active(models.Model):
@@ -129,7 +130,9 @@ class sites(models.Model):
         return self.sitename
 class Loan(models.Model):
     farmercode = models.ForeignKey(Regfarmer, on_delete=models.CASCADE)
-    loan_amount= models.CharField(max_length=255)
+    amount= models.CharField(max_length=255)
+    firstname= models.CharField(max_length=255)
+    telephone= models.CharField(max_length=255)
     def __str__(self):
         return self.farmercode
 
@@ -149,7 +152,7 @@ class Payharvest(models.Model):
 #         return self.name
 
 class Profilecooperative(models.Model):
-    farmers=models.ForeignKey(User, on_delete=models.CASCADE)
+    farmers=models.ForeignKey(Allfarmers, on_delete=models.CASCADE)
     image=models.ImageField(upload_to=' cooperative Logo',null=True,blank=True)
     cooperativename=models.CharField(max_length=255)
     activate_on=models.DateField(auto_now=True)

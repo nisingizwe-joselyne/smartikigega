@@ -41,12 +41,12 @@
         
                   <span class="mx-4 font-medium">Codes</span>
               </a> -->
-              <a class="flex items-center mt-5 py-2 px-8 block text-gray-700 border-r-4 border-gray-800 hover:bg-gray-700 hover:text-gray-100 hover:border-gray-100" href="{% url 'members-list/get'%}">
+              <a class="flex items-center mt-5 py-2 px-8 block text-gray-700 border-r-4 border-gray-800 hover:bg-gray-700 hover:text-gray-100 hover:border-gray-100" href="{% url 'recorders'%}">
                 <ion-icon class="text-2xl" name="person-outline"></ion-icon>
                 <span class="mx-4 font-medium">List of recorders</span>
             </a>
 
-            <a class="flex items-center mt-5 py-2 px-8 block text-gray-700 border-r-4 border-gray-800 hover:bg-gray-700 hover:text-gray-100 hover:border-gray-100" href="{% url 'members-list/get' %}">
+            <a class="flex items-center mt-5 py-2 px-8 block text-gray-700 border-r-4 border-gray-800 hover:bg-gray-700 hover:text-gray-100 hover:border-gray-100" href="{% url 'farmers' %}">
               <ion-icon class="text-2xl" name="people-outline"></ion-icon>
       
                 <span class="mx-4 font-medium">List of Farmers</span>
@@ -107,8 +107,8 @@
 
 
 
-  <div class="grid grid-cols-5 h-full ">
-        <div class="w-full  bg-gray-800  sm:mt-0 hidden md:block">
+  <div class="grid grid-cols-5 h-full py-6 ">
+        <div class="w-full  bg-indigo-300  sm:mt-0 hidden md:block">
           <div class="flex items-center justify-center ">
             {% for dt in prof %}
             <img src="{{dt.image.url}}" class="w-24 h-24 rounded-full mt-4 "/>
@@ -117,7 +117,7 @@
           </div>
         
           <nav class="mt-2 ">
-              <a class="flex items-center py-2 px-8 block bg-gray-700 text-gray-100 border-r-4 border-gray-100" href="{% url 'dashboard'%}">
+              <a class="flex items-center py-2 px-8 block text-gray-100 border-r-4 border-gray-100" href="{% url 'dashboard'%}">
                 <span class="text-white text-2xl"><ion-icon  name="home-outline"></ion-icon> </span>
         
                   <span class="mx-4 font-medium">Home</span>
@@ -133,7 +133,7 @@
         
                   <span class="mx-4 font-medium">Add Recorder</span>
               </a>
-              <a class="flex items-center mt-2 py-2 px-8 block text-gray-100 border-r-4 border-gray-800 hover:bg-gray-700 hover:text-gray-100 hover:border-gray-100" href="{% url 'members-list/get' %}">
+              <a class="flex items-center mt-2 py-2 px-8 block text-gray-100 border-r-4 border-gray-800 hover:bg-gray-700 hover:text-gray-100 hover:border-gray-100" href="{% url 'farmers' %}">
                 <ion-icon class="text-2xl" name="people-outline"></ion-icon>
         
                   <span class="mx-4 font-medium">List of Farmers</span>
@@ -151,7 +151,7 @@
         
                   <span class="mx-4 font-medium">Codes</span>
               </a> -->
-              <a class="flex items-center mt-2 py-2 px-8 block text-gray-100 border-r-4 border-gray-800 hover:bg-gray-700 hover:text-gray-100 hover:border-gray-100" href="{% url 'members-list/get'%}">
+              <a class="flex items-center mt-2 py-2 px-8 block text-gray-100 border-r-4 border-gray-800 hover:bg-gray-700 hover:text-gray-100 hover:border-gray-100" href="{% url 'recorders'%}">
                 <ion-icon class="text-2xl" name="person-outline"></ion-icon>
                 <span class="mx-4 font-medium">Recorders</span>
             </a>
@@ -164,11 +164,11 @@
 
           </a> -->
 
-          <a class="flex items-center mt-2 py-2 px-8 block text-gray-100 border-r-4 border-gray-800 hover:bg-gray-700 hover:text-gray-100 hover:border-gray-100" href="{% url 'editp'%}">
+          <!-- <a class="flex items-center mt-2 py-2 px-8 block text-gray-100 border-r-4 border-gray-800 hover:bg-gray-700 hover:text-gray-100 hover:border-gray-100" href="{% url 'editp'%}">
             
             <ion-icon class="text-2xl" name="create-outline"></ion-icon>
             <span class="mx-4 font-medium">Edit User</span>
-        </a>
+        </a> -->
 
 
 
@@ -192,14 +192,15 @@
               <div class="bg-blue-300 text-white w-full rounded-sm mx-4 font-medium text-center font-sans
               text-2xl
               shadow-lg
-              ">Farmers : {{farmers}}</div>
+              "><a href="{% url 'farmers' %}">Farmers : {{farmers}}</a></div>
               <div class="bg-red-700 w-full  rounded-sm mx-4 font-medium text-center
               font-sans
               text-2xl
               text-white
               shadow-lg
-              ">
+              "><a href="{% url 'farmers' }">
                 Records : {{Records}}
+              </a>
               </div>
               <div class="bg-green-400 w-full  rounded-sm mx-4 font-medium text-center
               font-sans
@@ -207,7 +208,9 @@
               text-white
               shadow-lg
               ">
+              <a href="{% url 'recorders' %}">
                 Recorders : {{recorders}}
+              </a>
               </div>
             </div>
 
@@ -235,19 +238,19 @@
           </div>
           {%endif%}
           
-          <div class="container mt-8">
+          <!-- <div class="container mt-8">
             <p class="px-4 text-gray-700 text-2xl font-bold ">Cooperative</p>
             <table id="example" class="">
               <thead>
-                <tr>
+                <tr> -->
                   <!-- <th>leaderphone</th> -->
-                  <th>Username</th>
+                  <!-- <th>Username</th>
                   <th>Email</th>
                   <th>Current logged in</th>
-                  <th>Date joined</th>
+                  <th>Date joined</th> -->
                   <!-- <th >Operation</th> -->
-                </tr>
-              </thead>
+                <!-- </tr>
+              </thead> -->
     
               <!-- <tfoot>
                 <tr> -->
@@ -260,7 +263,7 @@
                     <!-- <th >Operation</th> -->
                 <!-- </tr>
               </tfoot> -->
-    
+<!--     
               <tbody>
                             {% for dt in User %}
                             {%if dt.name%}
@@ -279,9 +282,17 @@
             </table>
 
 
-        </div>
+        </div> -->
       
       </div>
       </div>
  
+      <div id="google_translate_element"></div>
 
+      <script type="text/javascript">
+      function googleTranslateElementInit() {
+        new google.translate.TranslateElement({pageLanguage: 'en'}, 'google_translate_element');
+      }
+      </script>
+      
+      <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>

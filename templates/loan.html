@@ -1,11 +1,10 @@
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
-<head>
+  <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Registration</title>
+    <title> ikigega system</title>
     <link rel="icon" type="icon/jpg"  href="{% static 'image/rice.jpg' %}" >
     <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
@@ -20,25 +19,127 @@
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
 <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </head>
-<body style="background-image:radial-gradient(circle, rgb(200, 229, 248), rgb(181, 238, 195), rgb(238, 174, 247));">
+<style>
 
-    <ul class="nav justify-content-center">
-        <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="/">home</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="{% url 'work' %}">Features</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">partners</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link " href="{% url 'cooperative' %}" tabindex="-1" aria-disabled="true">Register</a>
-        </li>
-      </ul>
-      
+/* body {
+  background-image: url("{% static 'image/tea.jpeg' %}" );
+  opacity: 0.8;
+  background-repeat: no-repeat;
+  background-size: cover;
+ 
+} */
+
+/* .topnav .icon {
+  display: none;
+} */
+/* width */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #888;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+</style>
+
+<script>
+  $(document).ready(function(){
+    $("#open").click(function(){
+      $("#show").toggle();
+    });
+  });
+  </script>
+<body >
+<!-- navbar -->
+<div class="bg-indigo-300 fixed-top shadow">
+<nav class="flex w-full px-2">
+  <a href="/" class="py-2">
+      <img src="{% static 'image/agribusiness.jpg' %}" class="w-32 rounded" alt="Ikigega">
+  </a>
   
+  <button type="button"  class="w-full block md:hidden lg:hidden" id="open">
+    <svg xmlns="http://www.w3.org/2000/svg" width="66" height="66" fill="currentColor" class="float-right bi bi-filter-right" viewBox="0 0 16 16">
+      <path d="M14 10.5a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0 0 1h3a.5.5 0 0 0 .5-.5zm0-3a.5.5 0 0 0-.5-.5h-7a.5.5 0 0 0 0 1h7a.5.5 0 0 0 .5-.5zm0-3a.5.5 0 0 0-.5-.5h-11a.5.5 0 0 0 0 1h11a.5.5 0 0 0 .5-.5z"/>
+    </svg>
+  </button>
+
+
+
+  <div class="hidden md:block lg:block w-full  " >
+    <div class="flex flex-wrap w-full">
+      <div class="w-2/6  ">
+<div class="flex gap-8 px-3  py-4 ">
+         <div class="w-1/4 " >
+
+          <a href="/" class="  text-gray-700 font-medium hover:text-gray-900 hover:no-underline">Home</a>
+         </div> 
+         <div  class="w-1/4">
+
+          <a href="{% url 'work' %}" class="  text-gray-700 font-medium hover:text-gray-900 hover:no-underline">About</a>
+         </div>
+         <div class="w-1/4">
+          <a href="/" class="  text-gray-700 font-medium hover:text-gray-900 hover:no-underline">Engish</a>
+         </div>
+         <div class="w-1/4">
+          <a href="{% url 'kiny' %}" class="  text-gray-700 font-medium hover:text-gray-900 hover:no-underline ">kiny</a>
+         </div>
+         
+        </div>
+      </div>
+      <div class="w-2/6"></div>
+      <div class="w-2/6">
+        <div class="w-full  px-2 py-3">
+        <a href="{% url 'adminsignin' %}"class=" float-right hover:bg-white py-2 text-gray-700 font-medium hover:text-gray-900 hover:no-underline border-2 border-gray-100 px-4 rounded">Sign in</a>
+      </div>
+
+      </div>
+  </div>
+</div>
+
+
+</nav>
+
+  <div class="hidden md:hidden lg:hidden  w-full" id="show"  >
+    <div class=" gap-8 px-2 mb-4 ">
+      <div class="w-full py-1"> 
+        <a href="/" class=" w-full md:w-auto py-4 text-gray-700 font-medium hover:text-gray-900 hover:no-underline">Home</a>
+        </div>
+        <div class="w-full py-1">
+        <a href="{% url 'work' %}" class=" py-4 text-gray-700 font-medium hover:text-gray-900 hover:no-underline">About</a></div>
+        <div class="w-full py-1">
+        <a href="/" class=" py-4 text-gray-700 font-medium hover:text-gray-900 hover:no-underline">Engish</a>
+      </div>
+      <div class="w-full py-1">
+        <a href="{% url 'kiny' %}" class=" py-4 text-gray-700 font-medium hover:text-gray-900 hover:no-underline ">kiny</a>
+      </div>
+    </div>
+    <div class="navbar-nav ml-auto bg-blue hover:bg-white rounded">
+      <a href="{% url 'adminsignin' %}"class="py-2 text-gray-700 font-medium hover:text-gray-900 hover:no-underline border-2 border-gray-100 px-4 rounded">Sign in</a>
+
+    </div>
+</div>
+
+
+
+
+
+
+</div>
+
     <!--
   This example requires Tailwind CSS v2.0+ 
   
@@ -58,39 +159,33 @@
 <div class="min-h-screen flex items-center justify-center bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
     <div class="max-w-md w-full space-y-8">
       <div>
-        <img class="mx-auto h-12 w-auto" src="{% static 'image/agribusiness.jpg' %}" alt="Workflow">
+        <div class="flex-shrink-0">
+          <div class="flex items-center justify-center h-12 w-12 rounded-md bg-indigo-500 text-white">
+            
+            <svg class="h-6 w-30 " xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 6l3 1m0 0l-3 9a5.002 5.002 0 006.001 0M6 7l3 9M6 7l6-2m6 2l3-1m-3 1l-3 9a5.002 5.002 0 006.001 0M18 7l3 9m-3-9l-6-2m0-2v2m0 16V5m0 16H9m3 0h3" />
+            </svg>
+          </div>
+        </div>
         <h2 class="mt-6 text-center text-3xl font-extrabold text-gray-900">
-          Sign in to start recording
+          Loan Requesting
         </h2>
-        
+        <p class="alert alert-warning">{{message}}</p>
       </div>
-      <form class="mt-8 space-y-6" action="#" method="POST">
+      <form class="mt-8 space-y-6" action="{% url 'loanrequest' %}" method="POST">
         <input type="hidden" name="remember" value="true">
         <div class="rounded-md shadow-sm -space-y-px">
           <div>
             <label for="farmercode" class="sr-only">farmercode</label>
-            <input id="farmercode" name="farmercode" type="text" autocomplete="Farmercode" required class="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" placeholder="Email address">
+            <input id="farmercode" name="farmercode" type="text" autocomplete="Farmercode" required class="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" placeholder="Farmercode">
           </div>
           <div>
-            <label for="amount" class="sr-only">amount</label>
-            <input id="amount" name="amount" type="amount" autocomplete="current-amount" required class="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" placeholder="Password">
+            <label for="farmercode" class="sr-only">Amount</label>
+            <input id="amount" name="amount" type="text" autocomplete="amount" required class="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" placeholder="amount">
           </div>
         </div>
-  
-        <!-- <div class="flex items-center justify-between">
-          <div class="flex items-center">
-            <input id="remember_me" name="remember_me" type="checkbox" class="h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300 rounded">
-            <label for="remember_me" class="ml-2 block text-sm text-gray-900">
-              Remember me
-            </label>
-          </div>
-  
-          <div class="text-sm">
-            <a href="{% url 'record' %}" class="font-medium text-indigo-600 hover:text-indigo-500">
-              Forgot your password?
-            </a>
-          </div>
-        </div> -->
+         
+       
   
         <div>
           <button type="submit" class="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">

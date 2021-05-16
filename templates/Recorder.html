@@ -1,5 +1,8 @@
 {% include 'base.html' %}
 {% load static %}<!-- Three columns -->
+<br/>
+<br/>
+<br/>
 <div class="flex shadow-lg">
     <div class="w-1/6 block md:hidden">
         <button type="button" id="modalbtn" class="btn block md:hidden" data-toggle="modal" data-placement="left" data-target="#exampleModalLong">
@@ -11,8 +14,9 @@
         <div class="modal-content  h-full">
             <span id="closeBtn" class="closeBtn ml-32 ">
             <ion-icon class=" text-3xl  ml-20 floart-right mt-4" name="close"></ion-icon></span>
+            
             <nav class="mt-2">
-              <a class="flex items-center py-2 px-8 block bg-gray-700 text-gray-100 border-r-4 border-gray-100" href="{% url 'dashboard' %}">
+              <a class="flex items-center py-2 px-8 block bg-blue-300 text-gray-100 border-r-4 border-gray-100" href="{% url 'dashboard' %}">
                 <span class="text-white text-2xl"><ion-icon  name="home-outline"></ion-icon> </span>
         
                   <span class="mx-4 font-medium">Home</span>
@@ -41,30 +45,23 @@
         
                   <span class="mx-4 font-medium">Codes</span>
               </a> -->
-              <a class="flex items-center mt-5 py-2 px-8 block text-gray-700 border-r-4 border-gray-800 hover:bg-gray-700 hover:text-gray-100 hover:border-gray-100" href="{% url 'members-list/get'%}">
+              <a class="flex items-center mt-5 py-2 px-8 block text-gray-700 border-r-4 border-gray-800 hover:bg-gray-700 hover:text-gray-100 hover:border-gray-100" href="{% url 'recorders'%}">
                 <ion-icon class="text-2xl" name="person-outline"></ion-icon>
                 <span class="mx-4 font-medium">Users</span>
             </a>
 
-            <a class="flex items-center mt-5 py-2 px-8 block text-gray-700 border-r-4 border-gray-800 hover:bg-gray-700 hover:text-gray-100 hover:border-gray-100" href="{% url 'members-list/get' %}">
+            <a class="flex items-center mt-5 py-2 px-8 block text-gray-700 border-r-4 border-gray-800 hover:bg-gray-700 hover:text-gray-100 hover:border-gray-100" href="{% url 'farmers' %}">
               <ion-icon class="text-2xl" name="people-outline"></ion-icon>
       
-                <span class="mx-4 font-medium">List of Member</span>
+                <span class="mx-4 font-medium">List of farmers</span>
             </a>
 
-           
-        
-            <a class="flex items-center mt-5 py-2 px-8 block text-gray-700 border-r-4 border-gray-800 hover:bg-gray-700 hover:text-gray-100 hover:border-gray-100" href="{% url 'addus'%}">
-              <ion-icon class="text-2xl" name="person-add-outline"></ion-icon>
-        
-              <span class="mx-4 font-medium">Add User</span>
-          </a>
-
+<!-- 
           <a class="flex items-center mt-5 py-2 px-8 block text-gray-700 border-r-4 border-gray-800 hover:bg-gray-700 hover:text-gray-100 hover:border-gray-100" href="{% url 'editp'%}">
             <ion-icon class="text-2xl" name="person-add-outline"></ion-icon>
       
             <span class="mx-4 font-medium">Edit User</span>
-        </a>
+        </a> -->
 
       
         
@@ -81,7 +78,7 @@
            </div>
 
     
-    <div class="w-2/6"> 
+    <!-- <div class="w-2/6"> 
       {% load static %}
       <img src="{% static 'image/wheat.jpg'%}" class="h-12 w-32 justify-center ml-2 md:ml-12"/>      </div>
 
@@ -101,7 +98,7 @@
 
 
 
-   </div>
+   </div> -->
   </div>
 
 
@@ -157,7 +154,7 @@
             </a>
 
 
-            <a class="flex items-center mt-2 py-2 px-8 block text-gray-100 border-r-4 border-gray-800 hover:bg-gray-700 hover:text-gray-100 hover:border-gray-100" href="{% url 'addus'%}">
+            <!-- <a class="flex items-center mt-2 py-2 px-8 block text-gray-100 border-r-4 border-gray-800 hover:bg-gray-700 hover:text-gray-100 hover:border-gray-100" href="{% url 'addus'%}">
               <ion-icon class="text-2xl" name="person-add-outline"></ion-icon>
         
               <span class="mx-4 font-medium">Add User</span>
@@ -168,7 +165,7 @@
             
             <ion-icon class="text-2xl" name="create-outline"></ion-icon>
             <span class="mx-4 font-medium">Edit User</span>
-        </a>
+        </a> -->
 
 
 
@@ -181,69 +178,73 @@
           </nav>
         
         </div>
-        <!-- end sidenav -->
-     
-        <div class="col-span-5 sm:col-sm-5 md:col-span-4  p-6 mr-6">
+  
+    <div class=" col-span-4 w-full justify-center">
+        <div class="container mt-8">
+            <p class="px-4 text-gray-700 text-2xl font-bold ">Farmers List</p>
+            <table id="example" class="">
+              <thead>
+                <tr>
+                   <th>Cooperative</th>
+                    <th>Name</th>
+                    <th>email</th>
+                    <th>Telphone</th>
+                    <th>Password</th>
+                </tr>
+              </thead>
+    
+              <!-- <tfoot>
+                <tr>
+                  <th>Recorder</th>
+                  <th>Firstname</th>
+                  <th>Code</th>
+                  <th>Telephone</th>
+                  <th>Quantity</th>
+                  <th>Date </th>
+                  <th>Time</th>
+                                  </tr>
+              </tfoot> -->
+    
+              <tbody>
+                            {% for dt in Rec %}
+                <tr>
+                  <td class="capitalize"> {{dt.regCooperative}}</td>
+                  <td class="capitalize"> {{dt.name}}</td>
+                  <td >{{dt.email}} </td>
+                  <td class="capitalize">{{dt.phone}}</td>
+                  <td>{{dt.Password}}</td>
+                  <!-- <td>{{dt.sector}}</td>
+                  <td>{{dt.gender}}</td> -->
+                
+                </tr>
+              {%endfor%}
+              </tbody>
+            </table>
 
-          <div class="md:ml-64 bg-indigo-100 ">
-     
-      <div class=""><h1 class="mx-4 font-medium mb-4 ml-64 py-6">adding recorder</h1></div>
 
-      {% for message in messages %}
-      {% if message %}
-      <div class="">
-      <div class="max-w-lg md:mt-12 text-center bg-red-100 border border-red-400 text-red-900 px-4 py-4 rounded " role="alert">
-        <span class="block sm:inline">{{message}}</span>
-      </div>
-      </div>
-      {%endif%}
-      {%endfor%}
-      
-      
-      {% if mess %}
-      <div class="">
-      <div class="max-w-lg md:mt-12 text-center bg-green-100 border border-green-400 text-green-900 px-4 py-4 rounded " role="alert">
-        <span class="block sm:inline">{{mess}}</span>
-      </div>
-      </div>
-      {%endif%}
-        
-          
-          <form action="{% url 'addrecorder' %}" method="POST">
-          
-  
-            <!-- Name -->
-            {%csrf_token %}
-            <!-- <label for="cooperativename">Cooperative name</label>
-            <input type="text" name="cooperativename" class="form-control mb-4" placeholder="cooperativename"> -->
-            <label for="name">Recorder Name</label>
-            <input type="text" name="username" id="defaultContactFormName" class="form-control mb-4" placeholder="recordername">
-            <label for="email">Email</label>
-            <input type="email" name="Email" icd="defaultContactFormName" class="form-control mb-4" placeholder="email">
-            <label for="telephone">phone</label>
-            <input type="text" name="phone" id="defaultContactFormName" class="form-control mb-4" placeholder="telephone">
-            <!-- <label for="password">Password</label>
-            <input type="password" name="password" id="defaultContactFormName" class="form-control mb-4" placeholder="password"> -->
-            <!-- <label for="dateofbirth">Date of birth</label>
-            <input type="date" name="dateofbirth" id="defaultContactFormName" class="form-control mb-4" placeholder="dateofbirth">
-            <label for="district">District</label>
-            <input type="text" name="district" id="defaultContactFormName" class="form-control mb-4" placeholder="district">
-            <label for="village">Village</label>
-            <input type="text" name="Village" id="defaultContactFormName" class="form-control mb-4" placeholder="village">
-            -->
-          
-  
-            <!-- Message -->
-            <div class="form-group">
-  
-            <!-- Copy -->
-  
-            <!-- Send button -->
-            <button class="btn btn-info btn-block" name="submit" type="submit">Add</button>
-  
-          </form>
-      
-      
-      </div>
- 
 
+
+    
+
+
+
+
+
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+        </div>

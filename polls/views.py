@@ -27,6 +27,10 @@ def welcome(request):
     return render(request,'harvest.html') 
 def kiny(request):
     return render(request,'kiny.html') 
+def loanpage(request):
+    return render(request,'loan.html')  
+def insurancepage(request):
+    return render(request,'insurance.html')        
 def editp(request):
     return render(request,'editp.html')  
 def addus(request):
@@ -59,8 +63,6 @@ def recorderadd(request):
 def adminsignin(request):
     return render(request,'adminsignin.html')  
 def cooaddfarmer(request):
-
-
     return render(request,'cooaddfarmer.html')    
 
     # ussd
@@ -460,21 +462,51 @@ def digitalapp(request):
     return HttpResponse('Testing smart')   
 
 
+def Loanrequesting(request):
+    select =Allfarmers.objects.all()
+    if request.method == 'POST':
+        amount = request.POST['amount']
+        farmercode = request.POST['farmercode']
+        print(farmercode)
+        codes=Allfarmers.objects.filter(farmercode=farmercode)
+        for dt in codes:
+            tel=dt.telephone
+            fname=dt.firstname
+            email=dt.email
+      
+                # print(rt)
+            if amount !=None or farmercode !=None:
+                if codes.count()>0:
+                    Havst=Harvestrecord.objects.filter(farmercode=farmercode)
+                    if Havst.count()>0:
+                               subject='Inguzanyo muri smart ikigega'
+                               message='kuri '+fname +'\n'+'ubusabe bwawe bwinguzanyo '+' '+str(datetime.datetime.now()) +' '+'ingana'+' '+amount +' '+ 'Bwakiriwe urahabwa ubutumwa bubyemeza mukanya'
+                               from_email=settings.EMAIL_HOST_USER
+                               rt=send_mail(subject,message,from_email,[str(email),],fail_silently=True)
+                               insert=Loan.objects.create(amount=amount,farmercode=farmercode,telephone=tel,email=email,firstname=fname)
+                               insert.save()
+                               mess=email
+                               return render(request,'loan.html',{'message':'data submitted successful','mess':mess,'data':select})
+                    else:
+                       return render(request,'loan.html',{'message':'U are not allowed to take loan '})           
+                else:
+                    return render(request,'loan.html',{'message':'code does  not exist'})
 
-def LoanRequest(request):
-    if request.method=='GET':
-        reg=Loan.objects.all()
-        serializer=LoanSerializer(reg,many=True)
-        return JsonResponse(serializer.data,safe=False)
-        
-    elif request.method=='POST':
-        data=JSONParser().parse(request)
-        serializer=LoanSerializer(data=data)
-        if serializer.is_valid():
-            serializer.save()
-            return JsonResponse({'message':'data submited successful'},status=201)
-        return JsonResponse(serializer.errors,status=400)
+                  #account_sid = 'AC1b41153cd2a60b01893bb9740d2fd875'
+                  #auth_token = 'efa2a032ba78dff3111fce2efafa5940'
+                   #client =Client(account_sid, auth_token)
+                  #message = client.messages.create(body='your Code is: '+nost,from_='+16305280341',to='+250784447864')
+                  # sendsms = requests.post('http://rslr.connectbind.com:8080/bulksms/bulksms?username=1212-pathos&password=Chance@1&type=0&dlr=1&destination='+str(telephone)+'&source=smartikigega&message='+str(mess)+'')
+                  # pass
+                  # return render(request,'record.html',{'message':'data submitted successful','data':select})
+                  # insert = Harvestrecord(Quantity=Quantity,code=code, donetime=donetime,donedate=donedate,email=email,firstname=firstname)
+                  # insert.save()
+            else:
+                return render(request,'loan.html',{'message':'the farmercode must be filled','data':select})
 
+    else: 
+        return render(request,'loan.html',{'message':'you have to enter a farmercode to ask loan','data':select})   
+    return render(request,'loan.html',{'data':select})
 def InsuranceRequest(request):
     if request.method=='GET':
         reg=Insurance.objects.all()
@@ -501,6 +533,52 @@ def Harvestpay(request):
             return JsonResponse({'message':'successfull','data':serializer.data}, status=201)
         return JsonResponse(serializer.errors, status=400)
       
+    #   insurancerequest
+def Insurancerequesting(request):
+    select =Allfarmers.objects.all()
+    if request.method == 'POST':
+        insurance = request.POST['insurance']
+        farmercode = request.POST['farmercode']
+        print(farmercode)
+        codes=Allfarmers.objects.filter(farmercode=farmercode)
+        for dt in codes:
+            tel=dt.telephone
+            fname=dt.firstname
+            email=dt.email
+      
+                # print(rt)
+            if insurance !=None or farmercode !=None:
+                if codes.count()>0:
+                    Havst=Harvestrecord.objects.filter(farmercode=farmercode)
+                    if Havst.count()>0:
+                               subject='Inguzanyo muri smart ikigega'
+                               message='kuri '+fname +'\n'+'ubusabe bwawe bwubwishingizi '+' '+str(datetime.datetime.now()) +' '+'bwa'+' '+insurance+' '+ 'Bwakiriwe urahabwa ubutumwa bubyemeza mukanya'
+                               from_email=settings.EMAIL_HOST_USER
+                               rt=send_mail(subject,message,from_email,[str(email),],fail_silently=True)
+                               insert=Loan.objects.create(insurance=insurance,farmercode=farmercode,telephone=tel,email=email,firstname=fname)
+                               insert.save()
+                               mess=email
+                               return render(request,'insurance.html',{'message':'data submitted successful','mess':mess,'data':select})
+                    else:
+                       return render(request,'insurance.html',{'message':'U are not allowed to take loan '})           
+                else:
+                    return render(request,'insurance.html',{'message':'code does  not exist'})
+
+                  #account_sid = 'AC1b41153cd2a60b01893bb9740d2fd875'
+                  #auth_token = 'efa2a032ba78dff3111fce2efafa5940'
+                   #client =Client(account_sid, auth_token)
+                  #message = client.messages.create(body='your Code is: '+nost,from_='+16305280341',to='+250784447864')
+                  # sendsms = requests.post('http://rslr.connectbind.com:8080/bulksms/bulksms?username=1212-pathos&password=Chance@1&type=0&dlr=1&destination='+str(telephone)+'&source=smartikigega&message='+str(mess)+'')
+                  # pass
+                  # return render(request,'record.html',{'message':'data submitted successful','data':select})
+                  # insert = Harvestrecord(Quantity=Quantity,code=code, donetime=donetime,donedate=donedate,email=email,firstname=firstname)
+                  # insert.save()
+            else:
+                return render(request,'insurance.html',{'message':'the farmercode must be filled','data':select})
+
+    else: 
+        return render(request,'insurance.html',{'message':'you have to enter a farmercode to get insurance','data':select})   
+    return render(request,'insurance.html',{'data':select})
 
 # techer login
 class RecordingAuthToken:
@@ -673,14 +751,14 @@ class CustomAuthToken(ObtainAuthToken):
 
 def login(request):
     if request.method=='POST':
-        userd=request.POST['email']
+        userd=request.POST['username']
         pass1=request.POST['password']
         user=auth.authenticate(username=userd,password=pass1)
         if user is not None:
             auth.login(request,user)
             if Cooperative.objects.filter(username=request.user).exists():
                 return redirect('dashboard')
-            elif Recorder.objects.filter(email=request.user).exists():
+            elif Recorder.objects.filter(username=request.user).exists():
                 return redirect('record')
             elif user.is_superuser:
                 return redirect('record')     
@@ -695,23 +773,23 @@ def login(request):
 
 def loginadmin(request):
     if request.method=='POST':
-        userd=request.POST['email']
+        userd=request.POST['username']
         pass1=request.POST['password']
         user=auth.authenticate(username=userd,password=pass1)
         if user is not None:
             auth.login(request,user)
             if Cooperative.objects.filter(username=request.user).exists():
                 return redirect('dashboard')     
-            elif Recorder.objects.filter(email=request.user).exists():
+            elif Recorder.objects.filter(username=request.user).exists():
                 return redirect('record') 
             elif user.is_superuser:
                 return redirect('dashboard')           
             else:
                 return render(request,'adminsignin.html',{'message':'make sure if your account is registred'})
         else:
-            # print(userd)
-            # print(pass1)
-            return render(request,'adminsignin.html',{'message':'check your username and password' })
+            print(userd)
+            print(pass1)
+            return render(request,'adminsignin.html',{'message':'invalid credentials' })
             
     else:
         return render(request,'adminsignin.html')
@@ -771,22 +849,6 @@ def Harvestrecording(request):
        
     return render(request,'record.html',{'data':select})
 
-# @requires_csrf_token
-# def registerEndpoint(request):
-#     """
-#     List all code snippets, or create a new snippet.
-#     """
-#     if request.method == 'GET':
-#         reg = Cooperativesreg.objects.all()
-#         serializer = RegisterSerializer(reg, many=True)
-#         return JsonResponse(serializer.data, safe=False)
-#     elif request.method == 'POST':
-#         data = JSONParser().parse(request) #request data
-#         serializer = RegisterSerializer(data=data)
-#         if serializer.is_valid():
-#             serializer.save()
-#             return JsonResponse({'message':'sucecesful registred', 'data':serializer.data}, status=201)
-#         return JsonResponse(serializer.errors, status=400)
 
 def registration(request):
     if request.method=='POST':
@@ -1022,16 +1084,7 @@ def activate(request):
     else:
         return render(request,'activate.html')
 
-def Record(request):
-    if str(request.user)=='AnonymousUser':
-        return redirect('index')
-    else:
-        if Recorder.objects.filter(user=str(request.user)):
-            return redirect('Recorder')
-        else:
-            prof=Profilecooperative.objects.filter(cooperativename=str(request.user))
-            ty=Recorder.objects.filter(cooperativename=str(request.user))
-            return render(request,'recorders.html',{'ty':ty,'prof':prof})        
+    
 
 def addRecorder(request):
     if str(request.user)=='AnonymousUser':
@@ -1041,35 +1094,53 @@ def addRecorder(request):
             return redirect('recorder')
         else:
             # zipcod=Zipcodes.objects.all()
-            prof=Profilecooperative.objects.filter(cooperativename=str(request.user))
+            coop=Cooperative.objects.filter(username=str(request.user))
             if request.method=='POST':
                 Email=request.POST['Email']
-                name=request.POST['name']
+                username=request.POST['username']
                 phone=request.POST['phone']
                 rand=random.randint(1111,99999)
-                password=str(name)+str(rand)
+                password=str(username)+str(rand)
                 if Recorder.objects.filter(email=Email).exists():
                     return render(request,'addRecorder.html',{'message':'email already used'})
                 else:
                     subject='comfirmation to become a recorder '
-                    message='Dear '+name +'\n'+'https://smartikigega.herokuapp.com//login/'+'\n'+'Username: '+Email+'\n'+'Password: '+password+'\n'+'Thank you are now recorder by'+str(request.user)
+                    message='Dear '+username +'\n'+'https://smartikigega.herokuapp.com/singin/'+'\n'+'Username: '+Email+'\n'+'Password: '+password+'\n'+'Thank you are now recorder by'+str(request.user)
                     from_email=settings.EMAIL_HOST_USER
                     rt=send_mail(subject,message,from_email,[str(Email),],fail_silently=True)
-                    rec=User.objects.create_user(username=name,email=Email,password=password)
-                    rec.save()
-                    Recorder.objects.create(email="Recorder",regCooperative=rec,password=str(request.user)).save()
-                    mess=' you have been added sucessfully as a recorder'
-                    return render(request,'addRecorder.html',{'message':'successfully added as recorder'})
+                    if rt == True:
+                        user=User.objects.create_user(email=Email,username=username,password=password)
+                        user.save()
+                        Recorder.objects.create(email=Email,username=username,phone=phone,password=password,regCooperative=request.user).save()
+                        mess='succesfully added a recorder'
+                        return render(request,'addRecorder.html',{'message':'successfully added as recorder','mess':mess})
+                    else:
+                        return render(request,'addRecorder.html',{'message':'check if your email is correct'})
             else:
-                return render(request,'addRecorder.html',{prof:'prof'})
+                return render(request,'addRecorder.html',{coop:'prof'})
 
 def membersli(request):
-    prof=Profilecooperative.objects.filter(cooperativename=str(request.user))
-    Rec=Recorder.objects.filter(name=str(request.firstname))
+    prof=Cooperative.objects.filter(username=str(request.user))
+    Rec=Recorder.objects.filter(name=str(request.user)).order_by('-id')
     Farm=Regfarmer.objects.filter(farmercode=str(request.user)).order_by('-id')
     return render(request,'member.html',{'prof':prof,'Rec':Rec,'Farm':Farm})
-    
-        
+
+    # farmers list
+def farmersli(request):
+    prof=Cooperative.objects.filter(username=str(request.user))
+    Farm=Regfarmer.objects.filter().order_by('-id')
+    return render(request,'member.html',{'prof':prof,'farm':Farm}) 
+
+    # farmers list
+def recordersli(request):
+    prof=Cooperative.objects.filter(username=str(request.user))
+    Rec=Recorder.objects.filter().order_by('-id')
+    return render(request,'Recorder.html',{'prof':prof,'Rec':Rec})     
+
+def harvestli(request):
+    prof=Cooperative.objects.filter(username=str(request.user))
+    hinz=Harvestrecord.objects.filter().order_by('-id')
+    return render(request,'member.html',{'prof':prof,'Rec':hinz})      
 def adduser(request):
     if str(request.user)=='AnonymousUser':
             return redirect('index')
@@ -1088,11 +1159,11 @@ def adduser(request):
                     return redirect('addus')
                 else:
                     subject='Thank you for Smart ikigega'
-                    message='Dear '+name+'  ' +'\n'+'https://smartikigega.herokuapp.com/login/'+'\n'+'Username: '+email+'\n'+'Password: '+passw+'\n'+'Thank you are now employed by'+str(request.user)
+                    message='Dear '+name+'  ' +'\n'+'https://smartikigega.herokuapp.com/signin/'+'\n'+'Username: '+email+'\n'+'Password: '+passw+'\n'+'Thank you are now employed by'+str(request.user)
                     from_email=settings.EMAIL_HOST_USER
                     rt=send_mail(subject,message,from_email,[str(email),],fail_silently=True)
                     User.objects.create_user(name=name,email=email,username=email,password=passw).save()
-                    Recorder.objects.create(cooprativename=str(request.user),user=email).save()
+                    Recorder.objects.create(cooperativename=str(request.user),user=email).save()
                     mess='added sucessfully'
                     return render(request,'addus.html',{'mess':mess})
             else:
@@ -1164,7 +1235,7 @@ def CooFarmerreg(request):
         return render(request,'farmerreg.html')
 
 
-                # registration of farmers independently
+     # registration of farmers independently
 def Farmerreg(request):
     # ty=Recorder.objects.filter(user=str(request.user))
     # for tr in ty:
@@ -1227,7 +1298,6 @@ def Farmerreg(request):
             return render(request,'farmerreg.html')
 
     else:
-
         return render(request,'farmerreg.html')
 
 def dashboard(request):
@@ -1235,10 +1305,12 @@ def dashboard(request):
         cooperatives=User.objects.all()
         farmers=Regfarmer.objects.filter(regCooperative=request.user)
         farmers=farmers.count()
-        Record=Harvestrecord.objects.all()
+        Record=Harvestrecord.objects.filter(regCooperative=request.user)
         Records=Record.count()
-        recorder=Recorder.objects.all()
+        recorder=Recorder.objects.filter(regCooperative=request.user)
         recorders=recorder.count()
         return render(request,'dashboard.html',{'cooperatives':cooperatives,'farmers':farmers,'Records':Records,'recorders':recorders})
     else:
         return render(request,'index.html')
+
+        
