@@ -503,9 +503,6 @@ def Loanrequesting(request):
                   # insert.save()
             else:
                 return render(request,'loan.html',{'message':'the farmercode must be filled','data':select})
-
-    else: 
-        return render(request,'loan.html',{'message':'you have to enter a farmercode to ask loan','data':select})   
     return render(request,'loan.html',{'data':select})
 def InsuranceRequest(request):
     if request.method=='GET':
@@ -551,7 +548,7 @@ def Insurancerequesting(request):
                 if codes.count()>0:
                     Havst=Harvestrecord.objects.filter(farmercode=farmercode)
                     if Havst.count()>0:
-                               subject='Inguzanyo muri smart ikigega'
+                               subject='ubwishingizi muri smart ikigega'
                                message='kuri '+fname +'\n'+'ubusabe bwawe bwubwishingizi '+' '+str(datetime.datetime.now()) +' '+'bwa'+' '+insurance+' '+ 'Bwakiriwe urahabwa ubutumwa bubyemeza mukanya'
                                from_email=settings.EMAIL_HOST_USER
                                rt=send_mail(subject,message,from_email,[str(email),],fail_silently=True)
@@ -580,35 +577,6 @@ def Insurancerequesting(request):
         return render(request,'insurance.html',{'message':'you have to enter a farmercode to get insurance','data':select})   
     return render(request,'insurance.html',{'data':select})
 
-# techer login
-class RecordingAuthToken:
-    def post(self, request, *args, **kwargs):
-        serializer = self.serializer_class(data=request.data,context={'request': request})
-        serializer.is_valid(raise_exception=True)
-        user = serializer.validated_data['user']
-        auth.login(request,user)
-        print(user)
-
-        
-        token,created = Token.objects.get_or_create(user=user)
-        recording=Recorder.objects.filter(user=user)
-
-        for dt in recording:
-            record=dt.name
-
-        if Recorder.objects.filter(user=user).exists():
-            print('Recorder')
-            return Response({
-            'token': token.key,
-            'user_id': user.pk,
-            'email': user.email,
-            'Recorder':token.key,
-            'username':user.username,
-            'first_name':user.first_name,
-            'last_name':user.last_name,
-            'name':record,
-            })
-        return JsonResponse({"message":"not registerd as Recorder"},status=400)
 
 
 def editpro(request):
@@ -797,21 +765,20 @@ def loginadmin(request):
 
 def Harvestrecording(request):
     select =Allfarmers.objects.all()
-    st=Recorder.objects.get(id=request.user.id)
-    # prin("hfyfhfy")
-    print(st)
+    # st=Recorder.objects.filter(id= str(request.user.id))
+    # # prin("hfyfhfy")
+    # print(st)
     if request.method == 'POST':
         Quantity = request.POST['Quantity']
         farmercode = request.POST['farmercode']
-        
-
+        # regCooperative=request.POST['regCooperative']
         print(farmercode)
         codes=Allfarmers.objects.filter(farmercode=farmercode)
         for dt in codes:
             tel=dt.telephone
             fname=dt.firstname
             email=dt.email
-        if email !=None or farmercode !=None:
+        if Quantity !=None or farmercode !=None:
             subject='umusaruro wawe muri smart ikigega'
             message='kuri '+fname +'\n'+'ugurishije umusaruro wawe kuwa '+' '+str(datetime.datetime.now()) +' '+'ungana'+' '+Quantity +' '+ 'murakoze gukoresha smartikigega'
             from_email=settings.EMAIL_HOST_USER
@@ -825,7 +792,7 @@ def Harvestrecording(request):
               
 
                 if codes.count()>0:
-                    insert = Harvestrecord.objects.create(regCooperative=st,recorder=request.user,Quantity=Quantity,farmercode=farmercode,telephone=tel,email=email,firstname=fname)
+                    insert = Harvestrecord.objects.create(Quantity=Quantity,farmercode=farmercode,telephone=tel,email=email,firstname=fname)
                     insert.save()
                     mess=email
                     return render(request,'record.html',{'message':'data submitted successful','mess':mess,'data':select})
@@ -933,72 +900,7 @@ def prooving(request,pk):
         messages.info(request,'This is not complete the profile')
         return redirect('dashboard')
     return render(request,'index.html')   
-def user(request):
-    if str(request.user)=='AnonymousUser':
-        return redirect('index')
-    else:
-         return redirect('dashboard')
-        # if Recorder.objects.filter(user=str(request.user)):
-            # return redirect('dashboard')
-        # else:
-        #     site=sites.objects.all()
-    lastcode=Regfarmer.objects.all().order_by('-pub_date')[:1]
-    lastcodes=lastcode.count()
-    prof=Profilecooperative.objects.filter(cooperative=str(request.user))
- 
-    reg = Regfarmer.objects.all().filter(cooperative=request.user).order_by('-id')
-    if request.method=='POST':
-        firstname=request.POST['firstname']
-        lastname=request.POST['lastname']
-        email=request.POST['email']
-        # resi=request.POST['resi']
-        gender=request.POST['gender']
-        site=25
-        tel=request.POST['telephone']
-        telephone =tel[1:]
-        # now= datetime.datetime.now()
-        # froms=request.POST['from']
-        # temp=request.POST['temp']
-        dateofbirth=request.POST['dateofbirth']
-        district =request.POST['district']
-        village = request.POST['village']
-        # Cooperativesreg = request.POST['cell']
 
-        # years= now.year
-        newcode=str(tel)+str(lastname)+str(1)
-        one=1
-        # if lastcodes ==0:
-        lastnum=Regfarmer.objects.filter(telephone=telephone)
-        nums=lastnum.count()
-        print(nums)
-        if nums <= 10:
-            def random_with_N_digits(n):
-                range_start = 10**(n-1)
-                range_end = (10**n)-1
-                return randint(range_start, range_end)
-            nost = random_with_N_digits(6)
-            Regfarmer.objects.create(district=district,village=village,email=email,dateofbirth=dateofbirth,firstname=firstname,lastname=lastname,gender=gender,telephone=telephone,code= nost, Cooperative=str(request.user),user=request.user).save()
-
-            mess='Dear '+str(firstname) +' '+str(lastname) +'\n'+'your  new Smart ikigaga code is : '+str(nost)
-
-            if email != None or tel !=None:
-                subject='Thank you for using smart ikigega'
-                message='Dear '+str(firstname) +' '+str(lastname) +'\n'+'your code is : '+str(nost)
-                from_email=settings.EMAIL_HOST_USER
-                rt=send_mail(subject,message,from_email,[str(email),],fail_silently=True)
-                #account_sid = 'AC1b41153cd2a60b01893bb9740d2fd875'
-                #auth_token = 'efa2a032ba78dff3111fce2efafa5940'
-                #client =Client(account_sid, auth_token)
-                #message = client.messages.create(body='your Code is: '+nost,from_='+16305280341',to='+250784447864')
-                sendsms = requests.post('http://rslr.connectbind.com:8080/bulksms/bulksms?username=1212-pathos&password=Chance@1&type=0&dlr=1&destination='+str(telephone)+'&source=CityPlus&message='+str(mess)+'')
-                pass
-            else:
-                pass
-            mess='Dear '+str(firstname) +' '+str(lastname) +'\n'+'your code is : '+str(nost)     
-            return render(request,'user.html',{'mess':mess,'register':reg})
-
-    else:
-        return render(request,'user.html',{mess:'not created'})
         # if prof.exists():
         #     if Payment.objects.filter(chur_name=str(request.user)).exists():
         #         #print('mpwmw')
@@ -1140,7 +1042,7 @@ def recordersli(request):
 def harvestli(request):
     prof=Cooperative.objects.filter(username=str(request.user))
     hinz=Harvestrecord.objects.filter().order_by('-id')
-    return render(request,'member.html',{'prof':prof,'Rec':hinz})      
+    return render(request,'harvestrecord.html',{'prof':prof,'Rec':hinz})      
 def adduser(request):
     if str(request.user)=='AnonymousUser':
             return redirect('index')
@@ -1231,7 +1133,6 @@ def CooFarmerreg(request):
             return render(request,'farmerreg.html')
 
     else:
-
         return render(request,'farmerreg.html')
 
 

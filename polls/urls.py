@@ -49,6 +49,7 @@ urlpatterns=[
     path('members-list/get',views.membersli, name='members-list/get'),
     path('farmers-list/get',views.farmersli, name='farmers'),
     path('recoders-list/get',views.recordersli, name='recorders'),
+    path('recods-list/get',views.harvestli, name='records'),
     path('adduser/',views.adduser,name='adduser'),
     path('user-login/', CustomAuthToken.as_view()),
     # path('<int:id>deleteInfos', views.delreg, name='deleteInfos'),

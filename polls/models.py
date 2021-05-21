@@ -95,9 +95,6 @@ class Insurance(models.Model):
     insurancetype = models.CharField(max_length=255,choices=(('imyaka15','imyaka15'),('imyaka10','imyaka10'),('imyaka itanu','imyaka itanu'),('umwaka umwe','umwaka umwe'),))
     def __str__(self):
         return self.farmercode  
-
-
-
 class Harvestrecord(models.Model):
     recorder=models.ForeignKey(Recorder, on_delete=models.CASCADE)
     regCooperative=models.ForeignKey(User, on_delete=models.CASCADE)
@@ -108,9 +105,8 @@ class Harvestrecord(models.Model):
     telephone=models.CharField(max_length=255)
     donedate=models.DateField(auto_now=True)
     donetime=models.TimeField(auto_now=True)
-
-
-
+    def __str__(self):
+        return self.firstname 
 
 
 

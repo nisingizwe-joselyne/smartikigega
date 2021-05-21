@@ -29,18 +29,7 @@
         
                   <span class="mx-4 font-medium">add farmer</span>
               </a>
-              <!-- <a class="flex items-center mt-5 py-2 px-8 block text-gray-700 border-r-4 border-gray-800 hover:bg-gray-700 hover:text-gray-100 hover:border-gray-100" href="{% url 'dashboard' %}">
-                <ion-icon class="text-2xl" name="list-outline"></ion-icon>
-        
-        
-                  <span class="mx-4 font-medium">Report</span>
-              </a> -->
-        
-              <!-- <a class="flex items-center mt-5 py-2 px-8 block text-gray-700 border-r-4 border-gray-800 hover:bg-gray-700 hover:text-gray-100 hover:border-gray-100" href="{% url 'regfarmpage'%}">
-                <ion-icon class="text-2xl" name="search-outline"></ion-icon>
-        
-                  <span class="mx-4 font-medium">Codes</span>
-              </a> -->
+           
               <a class="flex items-center mt-5 py-2 px-8 block text-gray-700 border-r-4 border-gray-800 hover:bg-gray-700 hover:text-gray-100 hover:border-gray-100" href="{% url 'recorders'%}">
                 <ion-icon class="text-2xl" name="person-outline"></ion-icon>
                 <span class="mx-4 font-medium">List of recorders</span>
@@ -54,11 +43,7 @@
 
            
         
-            <!-- <a class="flex items-center mt-5 py-2 px-8 block text-gray-700 border-r-4 border-gray-800 hover:bg-gray-700 hover:text-gray-100 hover:border-gray-100" href="{% url 'addus'%}">
-              <ion-icon class="text-2xl" name="person-add-outline"></ion-icon>
-        
-              <span class="mx-4 font-medium">Add User</span>
-          </a> -->
+           
 
           <a class="flex items-center mt-5 py-2 px-8 block text-gray-700 border-r-4 border-gray-800 hover:bg-gray-700 hover:text-gray-100 hover:border-gray-100" href="{% url 'editp'%}">
             <ion-icon class="text-2xl" name="person-add-outline"></ion-icon>
@@ -139,37 +124,11 @@
                   <span class="mx-4 font-medium">List of Farmers</span>
               </a>
         
-              <!-- <a class="flex items-center mt-2 py-2 px-8 block text-gray-100 border-r-4 border-gray-800 hover:bg-gray-700 hover:text-gray-100 hover:border-gray-100" href="{% url 'regfarmpage'%}">
-                <ion-icon class="text-2xl" name="list-outline"></ion-icon>
-        
-        
-                  <span class="mx-4 font-medium">Report</span>
-              </a>
-        
-              <a class="flex items-center mt-2 py-2 px-8 block text-gray-100 border-r-4 border-gray-800 hover:bg-gray-700 hover:text-gray-100 hover:border-gray-100" href="{% url 'dashboard'%}">
-                <ion-icon class="text-2xl" name="search-outline"></ion-icon>
-        
-                  <span class="mx-4 font-medium">Codes</span>
               </a> -->
               <a class="flex items-center mt-2 py-2 px-8 block text-gray-100 border-r-4 border-gray-800 hover:bg-gray-700 hover:text-gray-100 hover:border-gray-100" href="{% url 'recorders'%}">
                 <ion-icon class="text-2xl" name="person-outline"></ion-icon>
                 <span class="mx-4 font-medium">Recorders</span>
             </a>
-
-<!-- 
-            <a class="flex items-center mt-2 py-2 px-8 block text-gray-100 border-r-4 border-gray-800 hover:bg-gray-700 hover:text-gray-100 hover:border-gray-100" href="{% url 'addus'%}">
-              <ion-icon class="text-2xl" name="person-add-outline"></ion-icon>
-        
-              <span class="mx-4 font-medium">Add User</span>
-
-          </a> -->
-
-          <!-- <a class="flex items-center mt-2 py-2 px-8 block text-gray-100 border-r-4 border-gray-800 hover:bg-gray-700 hover:text-gray-100 hover:border-gray-100" href="{% url 'editp'%}">
-            
-            <ion-icon class="text-2xl" name="create-outline"></ion-icon>
-            <span class="mx-4 font-medium">Edit User</span>
-        </a> -->
-
 
 
           <a class="flex items-center  mt-2 mb-6 py-2 px-8 block text-gray-100 border-r-4 border-gray-800 hover:bg-gray-700 hover:text-gray-100 hover:border-gray-100"  href="{% url 'logout'%}" >
@@ -198,7 +157,7 @@
               text-2xl
               text-white
               shadow-lg
-              "><a href="{% url 'farmers' }">
+              "><a href="{% url 'records' %}">
                 Records : {{Records}}
               </a>
               </div>
@@ -208,7 +167,7 @@
               text-white
               shadow-lg
               ">
-              <a href="{% url 'recorders' %}">
+              <a href="{% url 'records' %}">
                 Recorders : {{recorders}}
               </a>
               </div>
@@ -238,51 +197,7 @@
           </div>
           {%endif%}
           
-          <!-- <div class="container mt-8">
-            <p class="px-4 text-gray-700 text-2xl font-bold ">Cooperative</p>
-            <table id="example" class="">
-              <thead>
-                <tr> -->
-                  <!-- <th>leaderphone</th> -->
-                  <!-- <th>Username</th>
-                  <th>Email</th>
-                  <th>Current logged in</th>
-                  <th>Date joined</th> -->
-                  <!-- <th >Operation</th> -->
-                <!-- </tr>
-              </thead> -->
-    
-              <!-- <tfoot>
-                <tr> -->
-                
-                    <!-- <th>leaderphone</th> -->
-                    <!-- <th>Username</th>
-                    <th>Email</th>
-                    <th>Current logged in</th>
-                    <th>Date joined</th> -->
-                    <!-- <th >Operation</th> -->
-                <!-- </tr>
-              </tfoot> -->
-<!--     
-              <tbody>
-                            {% for dt in User %}
-                            {%if dt.name%}
-                            {%else%}
-                <tr>
-                  <td class="capitalize">{{dt.name}}</td>
-                  <td >{{dt.username}}</td>
-                  <td class="capitalize">{{dt.email}}</td>
-                  <td>{{dt.last_login}}</td>
-                  <td>{{dt.date_joined}}</td>
-                  <td><a href="{% url 'proove' dt.id%}" class="bg-green-500 mb-2 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">Proovee</a> </td>
-                </tr>
-                {%endif%}
-              {%endfor%}
-              </tbody>
-            </table>
-
-
-        </div> -->
+      
       
       </div>
       </div>

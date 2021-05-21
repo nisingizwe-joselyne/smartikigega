@@ -181,15 +181,16 @@
   
     <div class=" col-span-4 w-full justify-center">
         <div class="container mt-8">
-            <p class="px-4 text-gray-700 text-2xl font-bold ">Farmers List</p>
+            <p class="px-4 text-gray-700 text-2xl font-bold ">Recent harvest Records</p>
             <table id="example" class="">
               <thead>
                 <tr>
-                   <th>Cooperative</th>
-                    <th>Name</th>
-                    <th>email</th>
-                    <th>Telphone</th>
-                    <th>Password</th>
+                   <th>Recorder</th>
+                    <th>Farmercode</th>
+                    <th>Quantity</th>
+                    <th>Telephone</th>
+                    <th>Date</th>
+                    <th>Time</th>
                 </tr>
               </thead>
     
@@ -206,15 +207,15 @@
               </tfoot> -->
     
               <tbody>
-                            {% for dt in Rec %}
+                            {% for dt in hinz %}
                 <tr>
-                  <td class="capitalize"> {{dt.regCooperative}}</td>
-                  <td class="capitalize"> {{dt.name}}</td>
-                  <td >{{dt.email}} </td>
-                  <td class="capitalize">{{dt.phone}}</td>
-                  <td>{{dt.Password}}</td>
-                  <!-- <td>{{dt.sector}}</td>
-                  <td>{{dt.gender}}</td> -->
+                  <td class="capitalize"> {{dt.recorder}}</td>
+                  <td class="capitalize"> {{dt.farmercode}}</td>
+                  <td >{{dt.Quantity}} </td>
+                  <td class="capitalize">{{dt.telephone}}</td>
+                  <td>{{dt.donedate}}</td>
+                  <td>{{dt.donetime}}</td>
+                  <!-- <td>{{dt.gender}}</td> -->
                 
                 </tr>
               {%endfor%}
