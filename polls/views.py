@@ -797,10 +797,11 @@ def loginadmin(request):
 
 def Harvestrecording(request):
     select =Allfarmers.objects.all()
-    st=Recorder.objects.get(id=request.user.id)
-    # prin("hfyfhfy")
+    st=Recorder.objects.get(regCooperative=request.user)
     print(st)
+   
     if request.method == 'POST':
+
         Quantity = request.POST['Quantity']
         farmercode = request.POST['farmercode']
         
@@ -818,14 +819,8 @@ def Harvestrecording(request):
             rt=send_mail(subject,message,from_email,[str(email),],fail_silently=True)
                 # print(rt)
             if rt == True:
-
-        
-
-
-              
-
                 if codes.count()>0:
-                    insert = Harvestrecord.objects.create(regCooperative=st,recorder=request.user,Quantity=Quantity,farmercode=farmercode,telephone=tel,email=email,firstname=fname)
+                    insert = Harvestrecord.objects.create(regCooperative=request.user,recorder=st,Quantity=Quantity,farmercode=farmercode,telephone=tel,email=email,firstname=fname)
                     insert.save()
                     mess=email
                     return render(request,'record.html',{'message':'data submitted successful','mess':mess,'data':select})

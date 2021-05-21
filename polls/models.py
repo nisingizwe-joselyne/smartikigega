@@ -37,6 +37,7 @@ class Active(models.Model):
     user=models.ForeignKey(User, on_delete=models.CASCADE)
     activate=models.FloatField(default=False)
     pub_date=models.DateTimeField(auto_now_add=True)
+    
 class Farmers(models.Model):
     firstname= models.CharField(max_length=255)
     lastname= models.CharField(max_length=255)
