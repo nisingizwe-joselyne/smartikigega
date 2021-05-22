@@ -49,7 +49,11 @@ def work(request):
     return render(request,'work.html')    
 
 def pay(request):
-    return render(request,'pay.html')    
+    return render(request,'pay.html') 
+
+
+def ndash(request):
+    return render(request,'ndashboard.html')         
  
 def signin(request):
     return render(request,'signin.html')      
@@ -278,7 +282,7 @@ def digitalapp(request):
                     
             elif num == '2*1'and int(len(level))==3 and str(level[2]) in str(level):
                 hcode = str(level[2])  
-                hacode =Allfarmers.objetcs.all(farmercode=hcode)    
+                hacode =Allfarmers.objetcs.filter(farmercode=hcode)    
                 if hacode.exists():
                     response = 'CON hitamo kureba \n'
                     response += '1.umusaruro wukukwezi\n'
@@ -287,6 +291,8 @@ def digitalapp(request):
                     response = 'CON code mwashyizemo ntibaho :\n'
                         
             elif text =='2*1*1':
+                hcode = str(level[2])  
+                hacode =Allfarmers.objetcs.filter(farmercode=hcode)  
                 Q=Harvestrecord.abjects.filter(Quantity=hacode)
                 for ha in Q :
                     idhsn = ha.id
@@ -577,70 +583,7 @@ def Insurancerequesting(request):
         return render(request,'insurance.html',{'message':'you have to enter a farmercode to get insurance','data':select})   
     return render(request,'insurance.html',{'data':select})
 
-
-
-def editpro(request):
-    tur=request.user
-    pas=User.objects.get(username=tur)
-    prof=Profilecooperative.objects.filter(cooperative=str(tur))
-    cname=pas.username
-    cpassword=pas.password
-    workers=Recorder.objects.filter(cooperativename=cname)
-    farmers=Farmers.objects.filter(cooperativename=cname)
-    Records=Harvestrecord.objects.filter(cooperativename=cname)
-    if request.method=='POST':
-        username=request.POST['email']
-        passw=request.POST['password']
-        pass2=request.POST['pass1']
-        newpass=make_password(pass2)
-        if check_password(passw,cpassword) ==True:
-            pas.username=username
-            pas.password=newpass
-            pas.save()
-            for dt in workers:
-                dt.cooperativename=username
-                dt.save()
-            for dt in farmers:
-                dt.instutename=username
-                dt.save()
-            for dt in Records:
-                dt.instutename=username
-                dt.save()
-            auth.logout(request)
-            return redirect('login')
-        else:
-            messages.info(request,'please enter existing password')
-            return redirect('editpro')
-    else:
-        return render(request,'editpro.html',{'pas':pas,'prof':prof})       
-
-#  def logout(request):
-#         auth.logout(request)
-#     return redirect('/')
-
-
-# def login(request):
-#     if request.method=='POST':
-#         userd=request.POST['username']
-#         pass1=request.POST['pass']
-#         user=auth.authenticate(username=userd,password=pass1)
-#         if user is not None:
-#             auth.login(request,user)
-#             if Workers.objects.filter(user=request.user).exists():
-#                 return redirect('worker')
-#             elif Active.objects.filter(user=request.user).exists():
-#                 return redirect('inside')
-#             else:
-#                 messages.info(request,'make sure if your account is Activate')
-#                 return redirect('login')
-#         else:
-#             print(userd)
-#             print(pass1)
-#             messages.info(request,'Check your username and password password ')
-#             return redirect('login')
-#     else:
-#         return render(request,'login.html')
-#     return render(request,'login.html')       
+     
 def reset(request):
     if request.method == 'POST':
         username = request.POST['username']
@@ -700,22 +643,6 @@ class CustomAuthToken(ObtainAuthToken):
 
         })       
 
-# def registration(request):
-#     select = Cooperative.objects.all()
-#     if request.method == 'POST':
-#         name = request.POST['name']
-#         Cooperativedistrict = request.POST['Cooperativedistrict']
-#         leaderphone = request.POST['leaderphone']
-#         harvesttype = request.POST['harvesttype']
-#         leadername = request.POST['leadername']
-#         Cooperativesector = request.POST['Cooperativesector']
-#         insert = Cooperativesreg(name=name,Cooperativedistrict=Cooperativedistrict,leaderphone=leaderphone, harvesttype= harvesttype,leadername=leadername,Cooperativesector=Cooperativesector)
-#         try:
-#             insert.save()
-#             return render(request,'cooperative.html',{'message':'your request has been succeeful submitted we will  get in touch with u soon','data':select})
-#         except :
-#             return render(request,'cooperative.html',{'message':'failed to insert','data':select})
-#     return render(request,'cooperative.html',{'data':select})
 
 def login(request):
     if request.method=='POST':
@@ -761,7 +688,28 @@ def loginadmin(request):
             
     else:
         return render(request,'adminsignin.html')
+
+        # farmer login
+def loginfarm(request):
+    if request.method=='POST':
+        userd=request.POST['username']
+        pass1=request.POST['password']
+        farmer=Allfarmers.auth.authenticate(username=userd,password=pass1)
+        if farmer is not None:
+            auth.login(request,farmer)
+            if Allfarmers.objects.filter(farmercode=request.user).exists():
+                return redirect('dashboard')              
+            else:
+                return render(request,'adminsignin.html',{'message':'this farmer doesnt exist'})
+        else:
+            print(userd)
+            print(pass1)
+            return render(request,'adminsignin.html',{'message':'invalid credentials' })
+            
+    else:
+        return render(request,'adminsignin.html')
         
+
 
 def Harvestrecording(request):
     select =Regfarmer.objects.all()
