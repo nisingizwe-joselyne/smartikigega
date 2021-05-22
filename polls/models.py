@@ -24,19 +24,17 @@ class Payment(models.Model):
     pay_time=models.TimeField(auto_now=True)
 
 class Recorder(models.Model):
-    email = models.CharField(max_length=255)
-    phone = models.CharField(max_length=255)
-    password = models.CharField(max_length=255)
-    username = models.CharField(max_length=255)
+    record= models.CharField(max_length=255)
+    type = models.CharField(max_length=255)
     regCooperative=models.ForeignKey(User, on_delete=models.CASCADE)
-    def __str__(self):
-        return self.username 
+  
 
 
 class Active(models.Model):
     user=models.ForeignKey(User, on_delete=models.CASCADE)
     activate=models.FloatField(default=False)
     pub_date=models.DateTimeField(auto_now_add=True)
+    
 class Farmers(models.Model):
     firstname= models.CharField(max_length=255)
     lastname= models.CharField(max_length=255)
@@ -63,9 +61,7 @@ class Allfarmers(models.Model):
     district = models.CharField(max_length=255)
     village = models.CharField(max_length=255)
     email = models.CharField(max_length=255)
-    country = models.CharField(max_length=255)
     harvesttype = models.CharField(max_length=255)
-    dateofbirth = models.CharField(max_length=255)
     number = models.CharField(max_length=255)
     Cooperative=models.CharField(max_length=255)
     telephone = models.CharField(max_length=255)

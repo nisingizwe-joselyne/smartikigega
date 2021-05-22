@@ -726,7 +726,7 @@ def login(request):
             auth.login(request,user)
             if Cooperative.objects.filter(username=request.user).exists():
                 return redirect('dashboard')
-            elif Recorder.objects.filter(username=request.user).exists():
+            elif Recorder.objects.filter(record=request.user.id).exists():
                 return redirect('record')
             elif user.is_superuser:
                 return redirect('record')     
@@ -748,7 +748,7 @@ def loginadmin(request):
             auth.login(request,user)
             if Cooperative.objects.filter(username=request.user).exists():
                 return redirect('dashboard')     
-            elif Recorder.objects.filter(username=request.user).exists():
+            elif Recorder.objects.filter(record=request.user).exists():
                 return redirect('record') 
             elif user.is_superuser:
                 return redirect('dashboard')           
@@ -764,35 +764,41 @@ def loginadmin(request):
         
 
 def Harvestrecording(request):
-    select =Allfarmers.objects.all()
-    # st=Recorder.objects.filter(id= str(request.user.id))
-    # # prin("hfyfhfy")
-    # print(st)
+    select =Regfarmer.objects.all()
+    st=Recorder.objects.filter(record=request.user.id)
+ 
+    for dt in st:
+        ud=dt.id
+    st_id=Recorder.objects.get(id=ud)
+    cop=st_id.regCooperative
+ 
+    
+   
     if request.method == 'POST':
+
         Quantity = request.POST['Quantity']
         farmercode = request.POST['farmercode']
         # regCooperative=request.POST['regCooperative']
         print(farmercode)
-        codes=Allfarmers.objects.filter(farmercode=farmercode)
+        codes=Regfarmer.objects.filter(farmercode=farmercode)
         for dt in codes:
             tel=dt.telephone
             fname=dt.firstname
             email=dt.email
+        print(fname)
+
+ 
         if Quantity !=None or farmercode !=None:
-            subject='umusaruro wawe muri smart ikigega'
-            message='kuri '+fname +'\n'+'ugurishije umusaruro wawe kuwa '+' '+str(datetime.datetime.now()) +' '+'ungana'+' '+Quantity +' '+ 'murakoze gukoresha smartikigega'
-            from_email=settings.EMAIL_HOST_USER
-            rt=send_mail(subject,message,from_email,[str(email),],fail_silently=True)
+    
                 # print(rt)
+            rt=True
             if rt == True:
-
-        
-
-
-              
-
                 if codes.count()>0:
-                    insert = Harvestrecord.objects.create(Quantity=Quantity,farmercode=farmercode,telephone=tel,email=email,firstname=fname)
+                    subject='umusaruro wawe muri smart ikigega'
+                    message='kuri '+fname +'\n'+'ugurishije umusaruro wawe kuwa '+' '+str(datetime.datetime.now()) +' '+'ungana'+' '+Quantity +' '+ 'murakoze gukoresha smartikigega'
+                    from_email=settings.EMAIL_HOST_USER
+                    rt=send_mail(subject,message,from_email,[str(email),],fail_silently=True)
+                    insert = Harvestrecord.objects.create(recorder=st_id,regCooperative=cop,Quantity=Quantity,farmercode=farmercode,telephone=tel,email=email,firstname=fname)
                     insert.save()
                     mess=email
                     return render(request,'record.html',{'message':'data submitted successful','mess':mess,'data':select})
@@ -992,7 +998,7 @@ def addRecorder(request):
     if str(request.user)=='AnonymousUser':
             return redirect('index')
     else:
-        if Recorder.objects.filter(email=(request.user)):
+        if User.objects.filter(email=(request.user)):
             return redirect('recorder')
         else:
             # zipcod=Zipcodes.objects.all()
@@ -1003,7 +1009,7 @@ def addRecorder(request):
                 phone=request.POST['phone']
                 rand=random.randint(1111,99999)
                 password=str(username)+str(rand)
-                if Recorder.objects.filter(email=Email).exists():
+                if User.objects.filter(email=Email).exists():
                     return render(request,'addRecorder.html',{'message':'email already used'})
                 else:
                     subject='comfirmation to become a recorder '
@@ -1013,7 +1019,8 @@ def addRecorder(request):
                     if rt == True:
                         user=User.objects.create_user(email=Email,username=username,password=password)
                         user.save()
-                        Recorder.objects.create(email=Email,username=username,phone=phone,password=password,regCooperative=request.user).save()
+                        print(user.id)
+                        Recorder.objects.create(record=user.id,type="Recorder",regCooperative=request.user).save()
                         mess='succesfully added a recorder'
                         return render(request,'addRecorder.html',{'message':'successfully added as recorder','mess':mess})
                     else:
