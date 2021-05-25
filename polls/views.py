@@ -973,7 +973,7 @@ def activate(request):
 
 def addRecorder(request):
     if str(request.user)=='AnonymousUser':
-            return redirect('index')
+            return redirect('recorder')
     else:
         if User.objects.filter(email=(request.user)):
             return redirect('recorder')
