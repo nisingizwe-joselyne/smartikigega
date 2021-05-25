@@ -69,6 +69,35 @@ def adminsignin(request):
 def cooaddfarmer(request):
     return render(request,'cooaddfarmer.html')    
 
+# interview
+
+def todo(request):
+    select = Todoreg.objects.all()
+    if request.method == 'POST':
+        todo = request.POST['todo']
+        insert = Todoreg(todo=todo)
+        try:
+            insert.save()
+            return render(request,'interview.html',{'message':'your todos has been inserted succesful','data':select})
+        except :
+            return render(request,'interview.html',{'message':'failed to insert','data':select})
+    return render(request,'interview.html',{'data':select})
+
+def delreg(request,id):
+    select = Todoreg.objects.all().order_by('id')
+    deleteInfos = Todoreg.objects.get(id=id).delete()
+    return render(request,'interview.html',{'message':'data has been deleted','data':select})
+def updatereg(request,id):
+    select = Todoreg.objects.all().order_by('id')
+    update = Todoreg.objects.get(id=id)
+    if request.method=='POST':
+        update.todo = request.POST['todo']
+        try:
+            update.save()
+            return render(request, 'interview.html',{'message':'Data has been updated','data':select,'update':update})
+        except:
+            return render(request, 'updatetodo.html',{'message':'Fails to update','data':select,'update':update})
+    return render(request, 'updatetodo.html',{'data':select,'update':update})
     # ussd
 @csrf_exempt
 def digital (request):
@@ -958,7 +987,7 @@ def addRecorder(request):
                 rand=random.randint(1111,99999)
                 password=str(username)+str(rand)
                 if User.objects.filter(email=Email).exists():
-                    return render(request,'addRecorder.html',{'message':'email already used'})
+                    return render(request,'addrecorder.html',{'message':'email already used'})
                 else:
                     subject='comfirmation to become a recorder '
                     message='Dear '+username +'\n'+'https://smartikigega.herokuapp.com/singin/'+'\n'+'Username: '+Email+'\n'+'Password: '+password+'\n'+'Thank you are now recorder by'+str(request.user)
@@ -970,11 +999,11 @@ def addRecorder(request):
                         print(user.id)
                         Recorder.objects.create(record=user.id,type="Recorder",regCooperative=request.user).save()
                         mess='succesfully added a recorder'
-                        return render(request,'addRecorder.html',{'message':'successfully added as recorder','mess':mess})
+                        return render(request,'addrecorder.html',{'message':'successfully added as recorder','mess':mess})
                     else:
-                        return render(request,'addRecorder.html',{'message':'check if your email is correct'})
+                        return render(request,'addrecorder.html',{'message':'check if your email is correct'})
             else:
-                return render(request,'addRecorder.html',{coop:'prof'})
+                return render(request,'addrecorder.html',{coop:'prof'})
 
 def membersli(request):
     prof=Cooperative.objects.filter(username=str(request.user))

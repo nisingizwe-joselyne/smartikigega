@@ -155,3 +155,9 @@ class Profilecooperative(models.Model):
         except:
             url=''
         return url       
+
+# todoreg
+class Todoreg(models.Model):
+    todo=models.CharField(max_length=200)   
+    def __str__(self):
+        return self.todo
