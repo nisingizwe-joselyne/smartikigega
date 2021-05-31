@@ -6,10 +6,10 @@
             <table id="example" class="">
               <thead>
                 <tr>
-                   <th>Recorder</th>
-                    <th>Farmercode</th>
+                    <th>Farmer</th>
                     <th>Quantity</th>
-                    <th>Telephone</th>
+                    <th>Recorder</th>
+                    <th>regCooperative</th>
                     <th>Date</th>
                     <th>Time</th>
                 </tr>
@@ -19,11 +19,11 @@
               <tbody>
                             {% for dt in hinz %}
                 <tr>
-                  <td class="capitalize"> {{dt.recorder}}</td>
-                  <td class="capitalize"> {{dt.regCooperative}}</td>
-                  <td >{{dt.Quantity}} </td>
-                  <td class="capitalize">{{dt.farmercode}}</td>
-                  <td>{{dt.telephone}}</td>
+                  <td class="capitalize"> {{dt.farmercode}}</td>
+                  <td class="capitalize"> {{dt.Quantity}}</td>
+                  <td >{{dt.recorder}} </td>
+                  <td class="capitalize">{{dt.regCooperative}}</td>
+                  <td>{{dt.donedate}}</td>
                   <td>{{dt.donetime}}</td>
                   <!-- <td>{{dt.gender}}</td> -->
                 

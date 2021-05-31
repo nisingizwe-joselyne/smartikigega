@@ -344,52 +344,11 @@ def digitalapp(request):
                     response='CON ubusabe bwawe bwakiriwe murahabwa igisubizo mukanya'+str(level)+' \n'
                 else:
                     response='END code mwashyizemo ntibaho'+str(level[1])+' \n'     
-            # elif num == '2*2*1'and int(len(level))==4 and str(level[3]) in str(level):
-            #     response = 'CON kwiyandikisha gusaba ubwishingizi bwumwaka byagenze neza murahabwa igisubizo mu masaha macye'+str(len(level))+'\n'   
-            #         #  insert=Insurance.objects.filter(farmercode=str(level[4])) 
-            #         #  insert.save()     
-
+          
             elif text == '2*2*2':
                 response = 'CON  shyiramo code yawe ubashe kwinjira mubwishingizi bwimyaka itanu :' +str(len(level))+ '\n'
             elif num == '2*2*2'and int(len(level))==4 and str(level[3]) in str(level):  
                 response = 'CON kwiyandikisha gusaba ubwishingizi bwimyaka 5 byagenze neza murahabwa igisubizo mu masaha macye'+str(len(level))+'\n' 
-                    # insert=Insurance.objects.filter(farmercode=str(level[4])) 
-                    # insert.save()                        
-                    # response = 'CON code mwashyizemo ntibaho : \n'
-            # elif text == '3':
-            #     response = 'CON  hitamo kwiyandikisha  nk \n'
-            #     response += '1. itsinda(cooperative)\n'
-            #     response += '2.umuhinzi ku giti cye '
-            # elif text == '3*1':
-            #     response = 'CON  shyiramo izina rya cooperative :' +str(len(level))+ '\n'
-            #         # insert = Cooperativesreg.objects.create(name=str(level[2]))
-            #         # insert.save() 
-            # elif num == '3*1'and int(len(level))==3 and str(level[2]) in str(level):
-            #     response = 'CON  shyiramo izina ryumuyobozi wa cooperative' +str(len(level))+ '\n'
-            #         # insert= Cooperativesreg.objects.create(leadername=str(level[3]))
-            #         # insert.save()   
-
-            # elif num == '3*1'and int(len(level))==4 and str(level[3]) in str(level):
-            #     response = 'CON  shyiramo numero zumuyobozi wa cooperative :' +str(len(level))+ '\n'
-            #         # insert= Cooperativesreg.objects.create(leaderphone=str(level[4]))
-            #         # insert.save()   
-            # elif num == '3*1'and int(len(level))==5 and str(level[4]) in str(level):  
-            #     response = 'CON  ubusabe bwawe bwo kwiyandikisha mukigega nkitsinda bwakiriwe urahabwa igisubizo mu gihe gito' +str(len(level))+ '\n'  
-            # elif text == '3*2':
-            #     response = 'CON  shyiramo izina rya mbere :' +str(len(level))+ '\n'
-            #         # insert= Regfarmer.objects.create(firstname=str(level[2]))
-            #         # insert.save()
-            # elif num == '3*2'and int(len(level))==3 and str(level[2]) in str(level):
-            #     response = 'CON  shyiramo izina rya kabiri \n'
-            #         # insert= Regfarmer.objects.create(lastname=str(level[3]))
-            #         # insert.save()
-            # elif num == '3*2'and int(len(level))==4 and str(level[3]) in str(level):
-            #     response = 'CON  shyiramo numero yawe ya telephone \n'
-            #         # insert= Regfarmer.objects(telephone=str(level[4]))    
-            #         # insert.save()
-
-            # elif num == '3*2' and int(len(level))==5 and str(level[4]) in str(level):  
-            #     response = 'CON  ubusabe bwawe bwo kwiyandikisha mukigega bwakiriwe urahabwa igisubizo mu gihe gito \n'
             elif text == '3':
                 response = 'CON  shyiramo code yawe ubashe kubarura :' +str(len(level))+ '\n'
                 mycode = str(level[2])
@@ -461,12 +420,6 @@ def digitalapp(request):
                     response='CON shyiramo ingano yumusaruro mu biro cg litiro '+str(level)+' \n'
                 else:
                     response='END code mwashyizemo ntibaho '+str(level[1])+' \n'      
-            # elif int(st)== 2  and int(len(level))==3  and   str(level[2]) in str(level): 
-            #     response = "CON hitamo ubwoko bwumusaruro uguze: \n" 
-            #     response += '1.umuceri \n'
-            #     response += '2.ibishyimbo \n'
-            #     response += '3.ikawa \n'
-            #     response += '4.amata \n'   
             elif int(st)== 2  and int(len(level))==3  and   str(level[2]) in str(level): 
                 response = "CON shyiramo ingano yumusaruro mu biro cg litiro" +str(level)+ "\n"  
             elif int(st)== 2  and int(len(level))==4  and   str(level[3]) in str(level): 
@@ -503,7 +456,7 @@ def Loanrequesting(request):
         amount = request.POST['amount']
         farmercode = request.POST['farmercode']
         print(farmercode)
-        codes=Allfarmers.objects.filter(farmercode=farmercode)
+        codes=Regfarmer.objects.filter(farmercode=farmercode)
         for dt in codes:
             tel=dt.telephone
             fname=dt.firstname
@@ -513,12 +466,14 @@ def Loanrequesting(request):
             if amount !=None or farmercode !=None:
                 if codes.count()>0:
                     Havst=Harvestrecord.objects.filter(farmercode=farmercode)
+                    for dt in Havst:
+                        qty=dt.Quantity
                     if Havst.count()>0:
                                subject='Inguzanyo muri smart ikigega'
                                message='kuri '+fname +'\n'+'ubusabe bwawe bwinguzanyo '+' '+str(datetime.datetime.now()) +' '+'ingana'+' '+amount +' '+ 'Bwakiriwe urahabwa ubutumwa bubyemeza mukanya'
                                from_email=settings.EMAIL_HOST_USER
                                rt=send_mail(subject,message,from_email,[str(email),],fail_silently=True)
-                               insert=Loan.objects.create(amount=amount,farmercode=farmercode,telephone=tel,email=email,firstname=fname)
+                               insert=Loan.objects.create(amount=amount,farmercode=farmercode,telephone=tel,email=email,firstname=fname,Quantity=qty)
                                insert.save()
                                mess=email
                                return render(request,'loan.html',{'message':'data submitted successful','mess':mess,'data':select})
@@ -682,7 +637,7 @@ def login(request):
             auth.login(request,user)
             if Cooperative.objects.filter(username=request.user).exists():
                 return redirect('dashboard')
-            elif Recorder.objects.filter(record=request.user.id).exists():
+            elif Recorder.objects.filter(username=request.user).exists():
                 return redirect('record')
             elif user.is_superuser:
                 return redirect('record')     
@@ -704,7 +659,7 @@ def loginadmin(request):
             auth.login(request,user)
             if Cooperative.objects.filter(username=request.user).exists():
                 return redirect('dashboard')     
-            elif Recorder.objects.filter(record=request.user).exists():
+            elif Recorder.objects.filter(username=request.user).exists():
                 return redirect('record') 
             elif user.is_superuser:
                 return redirect('dashboard')           
@@ -742,27 +697,20 @@ def loginfarm(request):
 
 def Harvestrecording(request):
     select =Regfarmer.objects.all()
-    st=Recorder.objects.filter(record=request.user.id)
- 
-    for dt in st:
-        ud=dt.id
-    st_id=Recorder.objects.get(id=ud)
-    cop=st_id.regCooperative
- 
-    
-   
+    # st=Recorder.objects.get(username=str(request.user.id))
+    # print(st)
     if request.method == 'POST':
-
         Quantity = request.POST['Quantity']
         farmercode = request.POST['farmercode']
-        # regCooperative=request.POST['regCooperative']
+        recorder=request.POST['recorder']
         print(farmercode)
         codes=Regfarmer.objects.filter(farmercode=farmercode)
         for dt in codes:
             tel=dt.telephone
             fname=dt.firstname
             email=dt.email
-        print(fname)
+            cop =dt.regCooperative
+        print(codes)
 
  
         if Quantity !=None or farmercode !=None:
@@ -770,12 +718,12 @@ def Harvestrecording(request):
                 # print(rt)
             rt=True
             if rt == True:
-                if codes.count()>0:
+                if codes.exists():
                     subject='umusaruro wawe muri smart ikigega'
                     message='kuri '+fname +'\n'+'ugurishije umusaruro wawe kuwa '+' '+str(datetime.datetime.now()) +' '+'ungana'+' '+Quantity +' '+ 'murakoze gukoresha smartikigega'
                     from_email=settings.EMAIL_HOST_USER
                     rt=send_mail(subject,message,from_email,[str(email),],fail_silently=True)
-                    insert = Harvestrecord.objects.create(recorder=st_id,regCooperative=cop,Quantity=Quantity,farmercode=farmercode,telephone=tel,email=email,firstname=fname)
+                    insert = Harvestrecord.objects.create(regCooperative=cop,Quantity=Quantity,farmercode=farmercode,telephone=tel,email=email,firstname=fname,recorder=recorder)
                     insert.save()
                     mess=email
                     return render(request,'record.html',{'message':'data submitted successful','mess':mess,'data':select})
@@ -973,13 +921,13 @@ def activate(request):
 
 def addRecorder(request):
     if str(request.user)=='AnonymousUser':
-            return redirect('recorder')
+            return redirect('index')
     else:
         if User.objects.filter(email=(request.user)):
-            return redirect('recorder')
-        else:
-            # zipcod=Zipcodes.objects.all()
-            coop=Cooperative.objects.filter(username=str(request.user))
+            return render(request,'addrecorder.html',{'message':'add recorder'})
+        else: 
+            coop=User.objects.filter(username=str(request.user))
+            print(coop)
             if request.method=='POST':
                 Email=request.POST['Email']
                 username=request.POST['username']
@@ -990,20 +938,19 @@ def addRecorder(request):
                     return render(request,'addrecorder.html',{'message':'email already used'})
                 else:
                     subject='comfirmation to become a recorder '
-                    message='Dear '+username +'\n'+'https://smartikigega.herokuapp.com/singin/'+'\n'+'Username: '+Email+'\n'+'Password: '+password+'\n'+'Thank you are now recorder by'+str(request.user)
+                    message='Dear '+username +'\n'+'https://smartikigega.herokuapp.com/singin'+'\n'+'Username: '+Email+'\n'+'Password: '+password+'\n'+'Thank you are now recorder by'+str(request.user)
                     from_email=settings.EMAIL_HOST_USER
                     rt=send_mail(subject,message,from_email,[str(Email),],fail_silently=True)
                     if rt == True:
                         user=User.objects.create_user(email=Email,username=username,password=password)
                         user.save()
-                        print(user.id)
-                        Recorder.objects.create(record=user.id,type="Recorder",regCooperative=request.user).save()
+                        Recorder.objects.create(username=username,password=password,regCooperative=request.user).save()
                         mess='succesfully added a recorder'
                         return render(request,'addrecorder.html',{'message':'successfully added as recorder','mess':mess})
                     else:
                         return render(request,'addrecorder.html',{'message':'check if your email is correct'})
             else:
-                return render(request,'addrecorder.html',{coop:'prof'})
+                return render(request,'addrecorder.html',{'message':'Invalid credentials'})
 
 def membersli(request):
     prof=Cooperative.objects.filter(username=str(request.user))
@@ -1021,9 +968,8 @@ def farmersli(request):
 def recordersli(request):
     prof=Cooperative.objects.filter(username=str(request.user))
     Rec=Recorder.objects.filter().order_by('-id')
-    return render(request,'Recorder.html',{'prof':prof,'Rec':Rec})     
-
-def harvestli(request):
+    return render(request,'Recorder.html',{'prof':prof,'Rec':Rec})   
+def harvestli(request):  
     prof=Cooperative.objects.filter(username=str(request.user))
     hinz=Harvestrecord.objects.filter().order_by('-id')
     return render(request,'harvestrecord.html',{'prof':prof,'Rec':hinz})      

@@ -2,34 +2,25 @@ from django.db import models
 from django.contrib.auth.models import User,auth
 # from ussd.models import *
 # Create your models here.
-
-
 class Cooperative(models.Model):
     username=models.CharField(max_length=255)
     email=models.CharField(max_length=255) 
     password=models.CharField(max_length=255) 
-    # leaderphone=models.CharField(max_length=255)
-    # harvesttype=models.CharField(max_length=255)
-    # email=models.CharField(max_length=255)
-    # password1=models.CharField(max_length=255)
-    # password2=models.CharField(max_length=255)
-    # district=models.CharField(max_length=255) 
-    # Cooperativesector=models.CharField(max_length=255) 
     def __str__(self):
         return self.username
-
 class Payment(models.Model):
     name=models.CharField(max_length=255,null=False,blank=False)
     pay_date=models.DateField(auto_now=True)
     pay_time=models.TimeField(auto_now=True)
 
 class Recorder(models.Model):
-    record= models.CharField(max_length=255)
+    username = models.CharField(max_length=255)
+    password= models.CharField(max_length=255)
+    record = models.CharField(max_length=255)
     type = models.CharField(max_length=255)
-    regCooperative=models.ForeignKey(User, on_delete=models.CASCADE)
-  
-
-
+    regCooperative = models.ForeignKey(User, on_delete=models.CASCADE)
+    def __str__(self):
+        return self.username 
 class Active(models.Model):
     user=models.ForeignKey(User, on_delete=models.CASCADE)
     activate=models.FloatField(default=False)
@@ -92,7 +83,7 @@ class Insurance(models.Model):
     def __str__(self):
         return self.farmercode  
 class Harvestrecord(models.Model):
-    recorder=models.ForeignKey(Recorder, on_delete=models.CASCADE)
+    recorder=models.CharField(max_length=255)
     regCooperative=models.ForeignKey(User, on_delete=models.CASCADE)
     Quantity=models.CharField(max_length=255)
     farmercode=models.CharField(max_length=255)
@@ -103,10 +94,6 @@ class Harvestrecord(models.Model):
     donetime=models.TimeField(auto_now=True)
     def __str__(self):
         return self.firstname 
-
-
-
- 
 class EndpointAfripay(models.Model):
     status=models.CharField(max_length=255)
     transaction_ref=models.CharField(max_length=234)
@@ -125,6 +112,7 @@ class Loan(models.Model):
     amount= models.CharField(max_length=255)
     firstname= models.CharField(max_length=255)
     telephone= models.CharField(max_length=255)
+    Quantity= models.CharField(max_length=255)
     def __str__(self):
         return self.farmercode
 
