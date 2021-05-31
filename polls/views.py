@@ -482,15 +482,7 @@ def Loanrequesting(request):
                 else:
                     return render(request,'loan.html',{'message':'code does  not exist'})
 
-                  #account_sid = 'AC1b41153cd2a60b01893bb9740d2fd875'
-                  #auth_token = 'efa2a032ba78dff3111fce2efafa5940'
-                   #client =Client(account_sid, auth_token)
-                  #message = client.messages.create(body='your Code is: '+nost,from_='+16305280341',to='+250784447864')
-                  # sendsms = requests.post('http://rslr.connectbind.com:8080/bulksms/bulksms?username=1212-pathos&password=Chance@1&type=0&dlr=1&destination='+str(telephone)+'&source=smartikigega&message='+str(mess)+'')
-                  # pass
-                  # return render(request,'record.html',{'message':'data submitted successful','data':select})
-                  # insert = Harvestrecord(Quantity=Quantity,code=code, donetime=donetime,donedate=donedate,email=email,firstname=firstname)
-                  # insert.save()
+                  
             else:
                 return render(request,'loan.html',{'message':'the farmercode must be filled','data':select})
     return render(request,'loan.html',{'data':select})
