@@ -689,8 +689,8 @@ def loginfarm(request):
 
 def Harvestrecording(request):
     select =Regfarmer.objects.all()
-    # st=Recorder.objects.get(username=str(request.user.id))
-    # print(st)
+    st=Recorder.objects.filter(username=str(request.user))
+    print(st)
     if request.method == 'POST':
         Quantity = request.POST['Quantity']
         farmercode = request.POST['farmercode']
@@ -715,7 +715,7 @@ def Harvestrecording(request):
                     message='kuri '+fname +'\n'+'ugurishije umusaruro wawe kuwa '+' '+str(datetime.datetime.now()) +' '+'ungana'+' '+Quantity +' '+ 'murakoze gukoresha smartikigega'
                     from_email=settings.EMAIL_HOST_USER
                     rt=send_mail(subject,message,from_email,[str(email),],fail_silently=True)
-                    insert = Harvestrecord.objects.create(regCooperative=cop,Quantity=Quantity,farmercode=farmercode,telephone=tel,email=email,firstname=fname,recorder=recorder)
+                    insert = Harvestrecord.objects.create(regCooperative=cop,Quantity=Quantity,farmercode=farmercode,telephone=tel,email=email,firstname=fname,recorder=st)
                     insert.save()
                     mess=email
                     return render(request,'record.html',{'message':'data submitted successful','mess':mess,'data':select})
