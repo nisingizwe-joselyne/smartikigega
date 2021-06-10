@@ -16,7 +16,7 @@ class Payment(models.Model):
 class Recorder(models.Model):
     username = models.CharField(max_length=255)
     password= models.CharField(max_length=255)
-    record = models.CharField(max_length=255)
+    telephone = models.CharField(max_length=255)
     type = models.CharField(max_length=255)
     regCooperative = models.ForeignKey(User, on_delete=models.CASCADE)
     def __str__(self):
@@ -83,7 +83,7 @@ class Insurance(models.Model):
     def __str__(self):
         return self.farmercode  
 class Harvestrecord(models.Model):
-    recorder=models.ForeignKey(Recorder, on_delete=models.CASCADE)
+    recorder=models.CharField(max_length=255)
     regCooperative=models.ForeignKey(User, on_delete=models.CASCADE)
     Quantity=models.CharField(max_length=255)
     farmercode=models.CharField(max_length=255)
